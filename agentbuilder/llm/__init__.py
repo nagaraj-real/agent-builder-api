@@ -10,6 +10,8 @@ from agentbuilder.llm.openai_llm import openai_chat,openai_embed
 from langchain.agents import create_tool_calling_agent
 import os
 
+chat_llm = None
+
 def get_chat_llm(*args,**Kwargs):
     model_name= os.getenv("MODEL_NAME")
     if model_name is None:
@@ -76,8 +78,9 @@ def extract_after_slash(text):
   else:
     return (text,None)
 
-try:
-    chat_llm = get_chat_llm()
-except Exception as exc:
-    chat_llm = None
-    logger.error(f"Error: {str(exc)}")
+def load_chat_llm():
+    global chat_llm
+    try:
+        chat_llm = get_chat_llm()
+    except Exception as exc:
+        logger.error(f"Error: {str(exc)}")

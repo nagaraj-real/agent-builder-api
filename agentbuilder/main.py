@@ -13,6 +13,7 @@ from agentbuilder.chat import chat,chat_stream
 from agentbuilder.db import pesist_db
 from agentbuilder.factory.tool_factory import get_all_tools
 from agentbuilder.factory.agent_factory import get_all_agents
+from agentbuilder.llm import load_chat_llm
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from agentbuilder.types import AgentData, ChatRequest, ChatResponse, ToolData
 from agentbuilder.logger import uvicorn_logger as logger
@@ -30,7 +31,8 @@ async def migrate_to_db():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-   load_dotenv(override=False)
+   load_dotenv(override=True)
+   load_chat_llm()
    await migrate_to_db()
    yield
 
