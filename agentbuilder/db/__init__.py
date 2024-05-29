@@ -45,14 +45,15 @@ class Database:
         
 
     async def update_agent_steps(self,query,output,agent_name,messagelog: list[tuple[AgentAction, str]]):
-        steps_to_save= await self.__extract_agent_steps(query,output,agent_name,messagelog)
+        tools= await self.get_tools()
+        steps_to_save= await self.__extract_agent_steps(query,output,agent_name,messagelog,tools)
         return await self.db_mod.update_agent_steps(steps_to_save)
 
-    async def __extract_agent_steps(self,query,output,agent_name,messagelog: list[tuple[AgentAction, str]]):
+    async def __extract_agent_steps(self,query,output,agent_name,messagelog: list[tuple[AgentAction, str]],tools=None):
         previous_steps= await self.get_steps()
         new_id=str(uuid.uuid1())
         key= f'({query},{agent_name},{new_id})'
-        steps_to_save= {key:{"query":query,"id":str(uuid.uuid1()),"agent_name":agent_name,"output":output,"steps":steps_serializer(messagelog)}}
+        steps_to_save= {key:{"query":query,"id":str(uuid.uuid1()),"agent_name":agent_name,"output":output,"steps":steps_serializer(messagelog,tools)}}
         steps_to_save = steps_to_save if previous_steps is None else {**steps_to_save,**previous_steps}
         return steps_to_save
     

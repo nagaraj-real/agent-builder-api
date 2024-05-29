@@ -18,6 +18,5 @@
       "documentationUrl": "https://platform.openai.com/docs/quickstart/account-setup"
     }
   },
-  "updateContentCommand": "sh -c /app/install-extra-deps.sh",
-  "postStartCommand": "sh -c /app/start-server.sh"
+  "postStartCommand": "sh -c /app/install-extra-deps.sh && /app/start-server.sh"
 }
