@@ -2,7 +2,7 @@
 
 from agentbuilder.agents.BaseAgentBuilder import AgentBuilderParams, BaseAgentBuilder
 from agentbuilder.agents.params import AgentParams
-from agentbuilder.factory.tool_factory import greeting_tool,temperature_sensor_tool,weather_clothing_tool,temperature_tool
+from agentbuilder.factory.tool_factory import greeting_tool,temperature_sensor_tool,weather_clothing_tool,temperature_tool,git_pull_request_diff_tool
 from agentbuilder.tools.repl_tool import repl_tool
 
 def default_agent():
@@ -27,8 +27,11 @@ def python_agent():
 def git_agent():
       return AgentParams(
             name="git_agent",
-            preamble= "You are very powerful code assistant,with access to various git tools, using them to come up with simple solutions. One such solution is to provide commit message",
-            tools=  ["git_diff_tool"]
+            preamble= """You are very powerful code assistant,with access to various git tools, using them to come up with simple solutions. 
+            One such solution is to provide Pull request message
+            Prompt the user to enter pull request url if not given
+            """,
+            tools=  [git_pull_request_diff_tool]
       )
 
 
