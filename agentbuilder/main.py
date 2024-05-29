@@ -1,6 +1,5 @@
 from dotenv import load_dotenv
 from agentbuilder.helper.env_helper import get_log_level
-load_dotenv(override=False)
 import uuid
 from fastapi.exceptions import RequestValidationError
 import uvicorn
@@ -31,6 +30,7 @@ async def migrate_to_db():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+   load_dotenv(override=False)
    await migrate_to_db()
    yield
 
