@@ -1,0 +1,133 @@
+{
+    "sum_operation": {
+        "name": "sum_operation",
+        "description": "calculates sum",
+        "metadata": {
+            "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\llm-langchain\\agentbuilder\\tools\\sum_tool.py"
+        },
+        "params": {
+            "a": {
+                "description": "First input",
+                "title": "A",
+                "type": "integer"
+            },
+            "b": {
+                "description": "Second input",
+                "title": "B",
+                "type": "integer"
+            }
+        }
+    },
+    "greeting_tool": {
+        "name": "greeting_tool",
+        "description": "Response for the user when they greet.",
+        "metadata": {
+            "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\llm-langchain\\agentbuilder\\tools\\greeting_tool.py"
+        },
+        "params": {
+            "name": {
+                "description": "Name of the user",
+                "title": "Name",
+                "type": "string"
+            }
+        }
+    },
+    "weather_clothing_tool": {
+        "name": "weather_clothing_tool",
+        "description": "Returns clothing for the given temperature input",
+        "metadata": {
+            "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\llm-langchain\\agentbuilder\\tools\\weather_tools.py"
+        },
+        "params": {
+            "temperature": {
+                "title": "Temperature",
+                "description": "Temperature of the current city in float.",
+                "type": "number"
+            }
+        }
+    },
+    "temperature_tool": {
+        "name": "temperature_tool",
+        "description": "Provides current temperature for a given city in celsius",
+        "metadata": {
+            "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\llm-langchain\\agentbuilder\\tools\\weather_tools.py"
+        },
+        "params": {
+            "city": {
+                "title": "City",
+                "description": "City name",
+                "type": "string"
+            }
+        }
+    },
+    "temperature_sensor_tool": {
+        "name": "temperature_sensor_tool",
+        "description": "Returns if weather is hot or cold based on input",
+        "metadata": {
+            "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\llm-langchain\\agentbuilder\\tools\\weather_tools.py"
+        },
+        "params": {
+            "temperature": {
+                "title": "Temperature",
+                "description": "Temperature of the current city in float",
+                "type": "number"
+            }
+        }
+    },
+    "directly_answer": {
+        "name": "directly_answer",
+        "description": "Model can provide direct answers",
+        "metadata": {
+            "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\llm-langchain\\agentbuilder\\tools\\direct_answer_tool.py"
+        },
+        "params": {}
+    },
+    "git_diff_tool": {
+        "name": "git_diff_tool",
+        "description": "provides the staged code diff just before commit",
+        "metadata": {
+            "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\llm-langchain\\agentbuilder\\tools\\git_diff_tool.py"
+        },
+        "params": {}
+    },
+    "python_interpreter": {
+        "name": "python_interpreter",
+        "description": "Executes python code and returns the result. The code runs in astatic sandbox without interactive mode, so print output or save output to a file.",
+        "metadata": {
+            "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\llm-langchain\\agentbuilder\\tools\\repl_tool.py"
+        },
+        "params": {
+            "code": {
+                "title": "Code",
+                "description": "Python code to execute.",
+                "type": "string"
+            }
+        }
+    },
+    "json_spec_list_keys": {
+        "name": "json_spec_list_keys",
+        "description": "\n    Can be used to list all keys at a given path. \n    Before calling this you should be SURE that the path to this exists.\n    The input is a text representation of the path to the dict in Python syntax (e.g. data[\"key1\"][0][\"key2\"]).\n    ",
+        "metadata": {
+            "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\llm-langchain\\agentbuilder\\tools\\json_tool_kit.py"
+        },
+        "params": {
+            "tool_input": {
+                "title": "Tool Input",
+                "type": "string"
+            }
+        }
+    },
+    "json_spec_get_value": {
+        "name": "json_spec_get_value",
+        "description": "\n    Can be used to see value in string format at a given path.\n    Before calling this you should be SURE that the path to this exists.\n    The input is a text representation of the path to the dict in Python syntax (e.g. data[\"key1\"][0][\"key2\"]).\n    ",
+        "metadata": {
+            "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\llm-langchain\\agentbuilder\\tools\\json_tool_kit.py"
+        },
+        "params": {
+            "tool_input": {
+                "title": "Tool Input",
+                "type": "string"
+            }
+        }
+    }
+}

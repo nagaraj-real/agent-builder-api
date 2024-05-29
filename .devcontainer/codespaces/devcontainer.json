@@ -1,0 +1,23 @@
+{
+  "name": "Codespace Agent Builder",
+  "dockerComposeFile": "../../agent-containers/docker-compose-codespace.yml",
+  "service": "agent-builder",
+  "workspaceFolder": "/app",
+  "shutdownAction": "stopCompose",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "mongodb.mongodb-vscode"
+      ]
+    }
+  },
+  "secrets": {
+    "OPENAI_API_KEY": {
+      "description": "OPEN AI API KEY",
+      "documentationUrl": "https://platform.openai.com/docs/quickstart/account-setup"
+    }
+  },
+  "updateContentCommand": "sh -c /app/install-extra-deps.sh",
+  "postStartCommand": "sh -c /app/start-server.sh"
+}

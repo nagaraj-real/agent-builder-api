@@ -1,0 +1,14 @@
+.data/*
+**/__pycache__/*
+venv/*
+poetry-venv/*
+**/build/*
+/docker-compose.yml
+start.sh
+dist
+install_output.txt
+agentbuilder/agentbuilder.egg-info/*
+deploy.txt
+todo.md
+
+

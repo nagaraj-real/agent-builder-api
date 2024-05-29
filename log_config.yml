@@ -1,0 +1,33 @@
+version: 1
+disable_existing_loggers: false
+formatters:
+  colored:
+    "()": agentbuilder.logger.custom_logging.ColorFormatter
+    format: "%(asctime)s -%(levelname)s - %(message)s"
+  simple:
+    "()": agentbuilder.logger.custom_logging.DefaultFormatter
+    format: "%(asctime)s - %(levelname)s - %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: colored
+    level: INFO
+  file:
+    class: logging.FileHandler
+    formatter: simple
+    filename: agentbuilder.log
+    level: INFO
+loggers:
+  uvicorn:
+    handlers: [console, file]
+    level: INFO
+    propagate: false
+  uvicorn.error:
+    handlers: [console, file]
+    level: INFO
+    propagate: false
+  uvicorn.access:
+    handlers: [console, file]
+    level: INFO
+    propagate: false

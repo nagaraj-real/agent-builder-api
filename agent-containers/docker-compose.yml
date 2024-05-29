@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongo-container
+    ports:
+      - "27017:27017"
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - llm-network
+
+  agent-builder:
+    image: nagaraj23/agent-builder-api
+    tty: true
+    depends_on:
+      - mongodb
+    ports:
+      - "8080:8080"
+    networks:
+      - llm-network
+    container_name: agent-builder-container
+    env_file: ./../.env
+    environment:
+      UVICORN_OPTIONS: "--host 0.0.0.0 --port 8080 --log-level info --log-config /app/log_config.yml --workers 1 --reload --reload-dir /app --reload-include .env"
+      MONGODB_URL: "mongodb://mongodb:27017/llmdb"
+
+networks:
+  llm-network:
+
+volumes:
+  dbdata:
