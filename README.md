@@ -1,6 +1,6 @@
-# Agent Builder API 
+# Agent Builder API
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/nagaraj-real/agent-llm-api?devcontainer_path=.devcontainer%2Fcodespaces%2Fdevcontainer.json) 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/nagaraj-real/agent-builder-api?devcontainer_path=.devcontainer%2Fcodespaces%2Fdevcontainer.json)
 
 ## 🚀 Quick Start
 
@@ -13,7 +13,7 @@ Refer this [section](#dependency-packs-and-environment-configuration) on how to 
 
 2. Click on the badge below to run the API in an isolated container environment.
 
-   [![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/nagaraj-real/agent-llm-api)
+   [![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/nagaraj-real/agent-builder-api)
 
    This will clone the repo and start API and Mongo DB container services.
 
@@ -28,20 +28,18 @@ Refer this [section](#dependency-packs-and-environment-configuration) on how to 
 
 5. Open AgentBuilder Dev Container to make file updates with live reload.
 
-   ![agentbuilder-reload](https://github.com/nagaraj-real/agent-llm-api/assets/17967313/7f98c42f-16e2-4943-9bde-1a4c2cdc2b8f)
+   ![agentbuilder-reload](https://github.com/nagaraj-real/agent-builder-api/assets/17967313/7f98c42f-16e2-4943-9bde-1a4c2cdc2b8f)
 
 6. [Optional] Monitor container logs
 
-   ![container-log](https://github.com/nagaraj-real/agent-llm-api/assets/17967313/8ef8ea30-e35c-48fe-8d67-9a57de5475d2)
-
-
+   ![container-log](https://github.com/nagaraj-real/agent-builder-api/assets/17967313/8ef8ea30-e35c-48fe-8d67-9a57de5475d2)
 
 ### Manual Setup
 
 1. Set up a Python virtualenv and install dependencies
 
    ```sh
-   python -m venv --prompt agent-llm-api venv
+   python -m venv --prompt agent-builder-api venv
    source venv/bin/activate
    # venv/Scripts/activate (Windows)
    pip install -r requirements.txt
