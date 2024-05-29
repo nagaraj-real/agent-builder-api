@@ -5,34 +5,12 @@
 ## 🚀 Quick Start
 
 You can start the API server using docker containers or manually cloning and building this repository.
-Refer this [section](#dependency-packs-and-environment-configuration) on how to use environment variables to configure dependencies and LLM model specifications (model name, API keys).
 
-### Dev Containers Setup
+[Manual setup](#manual-setup) : Clone this repository in your local machine and start python FAST API server. Optionally, install and set up Mongo DB.
 
-1. Enable Dev Containers in vscode by following the steps in [official documentation](https://code.visualstudio.com/docs/devcontainers/containers#_installation).
-
-2. Click on the badge below to run the API in an isolated container environment.
-
-   [![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/nagaraj-real/agent-builder-api)
-
-   This will clone the repo and start API and Mongo DB container services.
-
-3. Set model name and API key in **.env** file
-
-   ```env
-   OPENAI_API_KEY="sk----"
-   MODEL_NAME="openai"
-   ```
-
-4. Execute **F1 > Dev Containers: Rebuild Container** to restart the container with updated environment configuration.
-
-5. Open AgentBuilder Dev Container to make file updates with live reload.
-
-   ![agentbuilder-reload](https://github.com/nagaraj-real/agent-builder-api/assets/17967313/7f98c42f-16e2-4943-9bde-1a4c2cdc2b8f)
-
-6. [Optional] Monitor container logs
-
-   ![container-log](https://github.com/nagaraj-real/agent-builder-api/assets/17967313/8ef8ea30-e35c-48fe-8d67-9a57de5475d2)
+[Dev Container Setup](#dev-containers-setup) : Dev Containers allow you to automate the environment setup.
+Use this setup to install and run container services in an isolated environment with extensions preinstalled.
+You can also open in GitHub Codespaces in a remote environment/browser using secrets to pass Model API keys.
 
 ### Manual Setup
 
@@ -94,7 +72,26 @@ By default, data is stored as Json files. Enable storage in Mongo DB by setting 
 MONGODB_URL="mongodb://localhost:27017/llmdb"
 ```
 
-Refer [Configuring Models](#configuring-models) for information on how to configure other providers including Ollama.
+### Dev Containers Setup
+
+1. Enable Dev Containers in vscode by following the steps in [official documentation](https://code.visualstudio.com/docs/devcontainers/containers#_installation).
+
+2. Click on the badge below to run the services in an isolated container environment in local machine.
+
+   This will clone the repo and start the API and Mongo DB container services.
+
+   [![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/nagaraj-real/agent-builder-api)
+
+> [!TIP]
+> Use url _mongodb://mongodb:27017/llmdb_ in Mongo DB vscode extension to view storage data.
+
+4. Execute **F1 > Dev Containers: Attach to Running Container..** and select _agent-builder-container_.
+5. Set model name and API key in **.env** file
+
+   ```env
+   OPENAI_API_KEY="sk----"
+   MODEL_NAME="openai"
+   ```
 
 ## Customization
 
