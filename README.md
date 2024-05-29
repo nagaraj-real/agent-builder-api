@@ -98,17 +98,18 @@ MONGODB_URL="mongodb://localhost:27017/llmdb"
 ### Dependency packs and environment configuration
 
 Dependency packs allow fine grained package installations based on your requirement.
-Use environment variable EXTRA_DEPS to update these packs.
+Use environment variable EXTRA_DEPS in docker compose file to update.
 
 For example the below environment configuration will install dependencies for Gemini model,
 Mongo DB, Langchain Graph and VectorDB
 
 ```env
-EXTRA_DEPS="gemini,mongodb,langgraph,vectordb"
+EXTRA_DEPS: "gemini,mongodb,langgraph,vectordb"
 ```
 
 > [!TIP]
 > Start with basic depedency pack to support your model and add other features incrementally
+> install-extra-deps.sh script can be used in dev container mode if docker compose is not available.
 
 Following models are supported with its dependency pack
 

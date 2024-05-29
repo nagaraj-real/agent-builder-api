@@ -23,6 +23,7 @@ services:
     container_name: agent-builder-container
     env_file: ./../.env
     environment:
+      EXTRA_DEPS: "openai,mongodb"
       UVICORN_OPTIONS: "--host 0.0.0.0 --port 8080 --log-level info --log-config /app/log_config.yml --workers 1 --reload --reload-dir /app --reload-include .env"
       MONGODB_URL: "mongodb://mongodb:27017/llmdb"
     command: ["/bin/sh", "-c", "while sleep 1000; do :; done"]
