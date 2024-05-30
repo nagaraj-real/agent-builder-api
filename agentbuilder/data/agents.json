@@ -1,154 +1,4 @@
 {
-    "my_weather_agent": {
-        "name": "my_weather_agent",
-        "agent_type": "tool_calling",
-        "source_type": "ui",
-        "preamble": "You are a weather agent",
-        "tools": [
-            "weather_clothing_tool",
-            "temperature_tool",
-            "temperature_sensor_tool"
-        ]
-    },
-    "my_agent": {
-        "name": "my_agent",
-        "agent_type": "tool_calling",
-        "source_type": "ui",
-        "preamble": "Agent that can search web",
-        "tools": [
-            "internet_search"
-        ]
-    },
-    "new_agent_99": {
-        "name": "new_agent_99",
-        "agent_type": "tool_calling",
-        "source_type": "ui",
-        "preamble": "",
-        "tools": [
-            "internet_search"
-        ]
-    },
-    "graph_agent": {
-        "name": "graph_agent",
-        "agent_type": "tool_calling",
-        "source_type": "ui",
-        "preamble": "You are a weather agent",
-        "tools": [
-            "temperature_sensor_tool",
-            "temperature_tool",
-            "weather_clothing_tool"
-        ]
-    },
-    "python json": {
-        "name": "python json",
-        "agent_type": "json",
-        "source_type": "ui",
-        "preamble": "",
-        "tools": [
-            "python_interpreter"
-        ]
-    },
-    "json_greeting": {
-        "name": "json_greeting",
-        "agent_type": "json",
-        "source_type": "ui",
-        "preamble": "You are an agent that uses tools to greet user",
-        "tools": [
-            "greeting_tool"
-        ]
-    },
-    "paul_agent": {
-        "name": "paul_agent",
-        "agent_type": "tool_calling",
-        "source_type": "ui",
-        "preamble": "",
-        "tools": []
-    },
-    "json_search_agent": {
-        "name": "json_search_agent",
-        "agent_type": "json",
-        "source_type": "ui",
-        "preamble": "",
-        "tools": [
-            "json_spec_get_value",
-            "json_spec_list_keys"
-        ]
-    },
-    "test_agent99": {
-        "name": "test_agent99",
-        "agent_type": "tool_calling",
-        "source_type": "ui",
-        "preamble": "",
-        "tools": [
-            "temperature_sensor_tool",
-            "temperature_tool",
-            "weather_clothing_tool",
-            "directly_answer",
-            "internet_search"
-        ]
-    },
-    "sum_agent": {
-        "name": "sum_agent",
-        "agent_type": "tool_calling",
-        "source_type": "ui",
-        "preamble": "you are an agent that can add numbers",
-        "tools": [
-            "sum_operation"
-        ]
-    },
-    "tool_calling_agent": {
-        "name": "tool_calling_agent",
-        "agent_type": "tool_calling",
-        "source_type": "ui",
-        "preamble": "You are a weather agent that uses weather tools. ",
-        "tools": [
-            "temperature_sensor_tool",
-            "temperature_tool",
-            "weather_clothing_tool"
-        ]
-    },
-    "structure_agent": {
-        "name": "structure_agent",
-        "agent_type": "structured",
-        "source_type": "ui",
-        "preamble": "",
-        "tools": [
-            "temperature_sensor_tool",
-            "temperature_tool",
-            "weather_clothing_tool"
-        ]
-    },
-    "react_agent": {
-        "name": "react_agent",
-        "agent_type": "react",
-        "source_type": "ui",
-        "preamble": "You are a weather agent that uses weather tools. ",
-        "tools": [
-            "temperature_sensor_tool",
-            "temperature_tool",
-            "weather_clothing_tool"
-        ]
-    },
-    "json_agent": {
-        "name": "json_agent",
-        "agent_type": "json",
-        "source_type": "ui",
-        "preamble": "You are a weather agent that uses weather tools. ",
-        "tools": [
-            "temperature_sensor_tool",
-            "temperature_tool",
-            "weather_clothing_tool"
-        ]
-    },
-    "web_agent": {
-        "name": "web_agent",
-        "agent_type": "tool_calling",
-        "source_type": "ui",
-        "preamble": "You care an agent than can use internet search tool",
-        "tools": [
-            "internet_search"
-        ]
-    },
     "default_agent": {
         "name": "default_agent",
         "agent_type": "tool_calling",
@@ -182,9 +32,28 @@
         "name": "git_agent",
         "agent_type": "tool_calling",
         "source_type": "code",
-        "preamble": "You are very powerful code assistant,with access to various git tools, using them to come up with simple solutions. One such solution is to provide commit message",
+        "preamble": "You are very powerful code assistant,with access to various git tools, using them to come up with simple solutions. \n            One such solution is to provide Pull request message\n            Prompt the user to enter pull request url if not given\n            ",
         "tools": [
-            "git_diff_tool"
+            "git_pull_request_diff_tool"
+        ]
+    },
+    "sum_agent": {
+        "name": "sum_agent",
+        "agent_type": "tool_calling",
+        "source_type": "code",
+        "preamble": "You are a powerful assistant with access to tools that help you calculate sum of 2 numbers",
+        "tools": [
+            "sum_operation"
+        ]
+    },
+    "rest_api_agent": {
+        "name": "rest_api_agent",
+        "agent_type": "tool_calling",
+        "source_type": "code",
+        "preamble": "You are a powerful assistant with access to json openapi tools",
+        "tools": [
+            "json_spec_list_keys",
+            "json_spec_get_value"
         ]
     }
 }

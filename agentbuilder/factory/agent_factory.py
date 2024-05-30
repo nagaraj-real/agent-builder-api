@@ -2,7 +2,8 @@
 
 from agentbuilder.agents.BaseAgentBuilder import AgentBuilderParams, BaseAgentBuilder
 from agentbuilder.agents.params import AgentParams
-from agentbuilder.factory.tool_factory import greeting_tool,temperature_sensor_tool,weather_clothing_tool,temperature_tool,git_pull_request_diff_tool
+from agentbuilder.factory.tool_factory import greeting_tool,temperature_sensor_tool,weather_clothing_tool,temperature_tool
+from agentbuilder.factory.tool_factory import  git_pull_request_diff_tool,sum_tool,json_tools
 from agentbuilder.tools.repl_tool import repl_tool
 
 def default_agent():
@@ -24,6 +25,21 @@ def python_agent():
             tools= [repl_tool]
      )
 
+def sum_agent():
+     return AgentParams(
+            name="sum_agent",
+            preamble= "You are a powerful assistant with access to tools that help you calculate sum of 2 numbers",
+            tools= [sum_tool]
+     )
+
+def rest_api_agent():
+     return AgentParams(
+            name="rest_api_agent",
+            preamble= "You are a powerful assistant with access to json openapi tools",
+            tools= json_tools
+     )
+
+
 def git_agent():
       return AgentParams(
             name="git_agent",
@@ -39,8 +55,11 @@ def get_all_agents():
     return [
             default_agent(),
             weather_agent(),
+            git_agent(),
+            sum_agent(),
+            rest_api_agent(),
             python_agent(),
-            git_agent()
+
     ]
 
 def get_agent_builder(params:AgentBuilderParams):
