@@ -10,6 +10,8 @@ services:
     container_name: ollama-container
 
   agent-builder:
+    build:
+      context: ../../
     environment:
       EXTRA_DEPS: "mongodb"
       MODEL_NAME: "ollama/mistral:v0.3"
