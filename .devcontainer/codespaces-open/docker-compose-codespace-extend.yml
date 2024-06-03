@@ -1,0 +1,16 @@
+services:
+  ollama:
+    image: ghcr.io/nagaraj-real/ollama:mistral
+    ports:
+      - "11434:11434"
+    networks:
+      - llm-network
+    volumes:
+      - ollama:/root/.ollama
+    container_name: ollama-container
+
+  agent-builder:
+    environment:
+      EXTRA_DEPS: "mongodb"
+      OLLAMA_URL: "http://ollama:11434"
+      DEFAULT_AGENT_TYPE: "json"

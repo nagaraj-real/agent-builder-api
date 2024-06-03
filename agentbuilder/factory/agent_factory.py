@@ -10,7 +10,6 @@ def default_agent():
     return AgentParams(name="default_agent",
             preamble= "You are a greeter assistant withh access to greeting tool",
             tools= [greeting_tool],
-            agent_type="json"
     )
 
 def weather_agent():
@@ -18,14 +17,12 @@ def weather_agent():
             name="weather_agent",
             preamble= "You are a powerful weather assistant with access to weather tools",
             tools= [temperature_tool,temperature_sensor_tool,weather_clothing_tool],
-            agent_type="json"
     )
 
 def python_agent():
      return AgentParams(
             name="python_agent",
             tools= [repl_tool],
-            agent_type="json"
      )
 
 def sum_agent():
@@ -33,7 +30,6 @@ def sum_agent():
             name="sum_agent",
             preamble= "You are a powerful assistant with access to tools that help you calculate sum of 2 numbers",
             tools= [sum_tool],
-            agent_type="json"
      )
 
 def rest_api_agent():
@@ -41,7 +37,6 @@ def rest_api_agent():
             name="rest_api_agent",
             preamble= "You are a powerful assistant with access to json openapi tools",
             tools= json_tools,
-            agent_type="json"
      )
 
 
