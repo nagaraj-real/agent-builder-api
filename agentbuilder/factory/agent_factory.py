@@ -9,34 +9,39 @@ from agentbuilder.tools.repl_tool import repl_tool
 def default_agent():
     return AgentParams(name="default_agent",
             preamble= "You are a greeter assistant withh access to greeting tool",
-            tools= [greeting_tool]
+            tools= [greeting_tool],
+            agent_type="json"
     )
 
 def weather_agent():
     return AgentParams(
             name="weather_agent",
             preamble= "You are a powerful weather assistant with access to weather tools",
-            tools= [temperature_tool,temperature_sensor_tool,weather_clothing_tool]
+            tools= [temperature_tool,temperature_sensor_tool,weather_clothing_tool],
+            agent_type="json"
     )
 
 def python_agent():
      return AgentParams(
             name="python_agent",
-            tools= [repl_tool]
+            tools= [repl_tool],
+            agent_type="json"
      )
 
 def sum_agent():
      return AgentParams(
             name="sum_agent",
             preamble= "You are a powerful assistant with access to tools that help you calculate sum of 2 numbers",
-            tools= [sum_tool]
+            tools= [sum_tool],
+            agent_type="json"
      )
 
 def rest_api_agent():
      return AgentParams(
             name="rest_api_agent",
             preamble= "You are a powerful assistant with access to json openapi tools",
-            tools= json_tools
+            tools= json_tools,
+            agent_type="json"
      )
 
 
@@ -47,7 +52,8 @@ def git_agent():
             One such solution is to provide Pull request message
             Prompt the user to enter pull request url if not given
             """,
-            tools=  [git_pull_request_diff_tool]
+            tools=  [git_pull_request_diff_tool],
+            agent_type="json"
       )
 
 
