@@ -1,6 +1,6 @@
 {
   "name": "Codespace Open Agent Builder",
-  "dockerComposeFile": "../../agent-containers/docker-compose-codespace-open.yml",
+  "dockerComposeFile": "docker-compose-codespace-open.yml",
   "service": "agent-builder",
   "workspaceFolder": "/app",
   "shutdownAction": "stopCompose",
