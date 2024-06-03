@@ -6,3 +6,5 @@ docker tag mongo ghcr.io/nagaraj-real/agent-builder-mongo:latest
 docker push nagaraj23/agent-builder-api:latest | tee install_output.txt
 docker push ghcr.io/nagaraj-real/agent-builder-api:latest | tee install_output.txt
 docker push ghcr.io/nagaraj-real/agent-builder-mongo:latest | tee install_output.txt
+
+docker system prune -a -f
