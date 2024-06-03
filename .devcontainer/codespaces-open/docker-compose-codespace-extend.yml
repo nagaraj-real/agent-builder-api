@@ -15,3 +15,6 @@ services:
       MODEL_NAME: "ollama/mistral:v0.3"
       OLLAMA_URL: "http://ollama:11434"
       DEFAULT_AGENT_TYPE: "json"
+
+volumes:
+  ollama:
