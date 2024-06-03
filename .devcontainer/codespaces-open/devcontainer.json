@@ -6,6 +6,9 @@
   "shutdownAction": "stopCompose",
   "customizations": {
     "vscode": {
+      "settings": {
+        "workbench.colorTheme": "Default Dark Modern"
+      },
       "extensions": [
         "ms-python.python",
         "mongodb.mongodb-vscode"
