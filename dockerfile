@@ -12,7 +12,7 @@ RUN pip install .
 
 COPY ./.vscode ./.vscode
 
-COPY ./install-extra-deps.sh ./start-server.sh ./log_config.yml .env .
+COPY ./install-extra-deps.sh ./start-server.sh ./log_config.yml .env README.md .
 
 ENV EXTRA_DEPS="openai mongodb"
 
