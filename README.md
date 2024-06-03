@@ -6,11 +6,11 @@
 
 You can start the API server using docker containers or manually cloning and building this repository.
 
-[Manual setup](#manual-setup) : Clone this repository in your local machine and start python FAST API server. Optionally, install and set up Mongo DB.
+[Manual setup](#manual-setup): Clone this repository in your local machine and start the python FAST API server. Optionally, install and set up Mongo DB.
 
-[Dev Container Setup](#dev-containers-setup) : Dev Containers allow you to automate the environment setup.
+[Dev Container Setup](#dev-containers-setup): Dev Containers allow you to automate the environment setup.
 Use this setup to install and run container services in an isolated environment with extensions preinstalled.
-You can also open in GitHub Codespaces in a remote environment/browser using secrets to pass Model API keys.
+You can also open GitHub Codespaces in a remote environment/browser using secrets to pass Model API keys.
 
 ### Manual Setup
 
@@ -23,14 +23,14 @@ You can also open in GitHub Codespaces in a remote environment/browser using sec
    pip install -r requirements.txt
    ```
 
-2. Set model name and API key in **.env** file
+2. Set the model name and API key in **.env** file
 
    ```env
    OPENAI_API_KEY="sk----"
    MODEL_NAME="openai"
    ```
 
-3. Start server in new terminal
+3. Start the server in the new terminal
 
    ```sh
    python -m agentbuilder.main
@@ -38,7 +38,7 @@ You can also open in GitHub Codespaces in a remote environment/browser using sec
 
 #### [Optional] Start using Poetry
 
-For fine grained dependency management, use [Poetry](https://python-poetry.org/) to pick and choose dependency packs based on your LLM model provider and tool features.
+For fine-grained dependency management, use [Poetry](https://python-poetry.org/) to pick and choose dependency packs based on your LLM model provider and tool features.
 
 1. Follow the [Offical Instruction Guide](https://python-poetry.org/docs/#installation) to install Poetry.
 
@@ -48,25 +48,25 @@ For fine grained dependency management, use [Poetry](https://python-poetry.org/)
    poetry install --extras "openai gemini cohere anthropic mongodb vectordb langgraph"
    ```
 
-3. Set model name and API key in **.env** file
+3. Set the model name and API key in **.env** file
 
    ```env
    OPENAI_API_KEY="sk----"
    MODEL_NAME="openai"
    ```
 
-4. Start server in new terminal
+4. Start the server in the new terminal
 
    ```sh
    poetry run start-server
    ```
 
 > [!NOTE]
-> Poetry will create virtual environment for us.
+> Poetry will create a virtual environment for us.
 
 #### [Optional] Enable MongoDB
 
-By default, data is stored as Json files. Enable storage in Mongo DB by setting url using envrironment variable.
+By default, data is stored as JSON files. Enable storage in Mongo DB by setting url using the environment variable.
 
 ```env
 MONGODB_URL="mongodb://localhost:27017/llmdb"
@@ -76,17 +76,17 @@ MONGODB_URL="mongodb://localhost:27017/llmdb"
 
 1. Enable Dev Containers in vscode by following the steps in [official documentation](https://code.visualstudio.com/docs/devcontainers/containers#_installation).
 
-2. Click on the badge below to run the services in an isolated container environment in local machine.
+2. Click on the badge below to run the services in an isolated container environment in a local machine.
 
    This will clone the repo and start the API and Mongo DB container services.
 
    [![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/nagaraj-real/agent-builder-api)
 
 > [!TIP]
-> Use url _mongodb://mongodb:27017/llmdb_ in Mongo DB vscode extension to view storage data.
+> Use URL _mongodb://mongodb:27017/llmdb_ in Mongo DB vscode extension to view storage data.
 
 4. Execute **F1 > Dev Containers: Attach to Running Container..** and select _agent-builder-container_.
-5. Set model name and API key in **.env** file
+5. Set the model name and API key in **.env** file
 
    ```env
    OPENAI_API_KEY="sk----"
@@ -97,22 +97,22 @@ MONGODB_URL="mongodb://localhost:27017/llmdb"
 
 ### Dependency packs and environment configuration
 
-Dependency packs allow fine grained package installations based on your requirement.
-Use environment variable EXTRA_DEPS in docker compose file to update.
+Dependency packs allow fine-grained package installations based on your requirements.
+Use the environment variable EXTRA_DEPS in the docker-compose file to update.
 
-*install-extra-deps.sh* script can be used in dev container mode if docker compose is not available.
+*install-extra-deps.sh* script can be used in dev container mode if docker-compose is not available.
 
-For example the below environment configuration will install dependencies for Gemini model,
-Mongo DB, Langchain Graph and VectorDB
+For example, the below environment configuration will install dependencies for the Gemini model,
+Mongo DB, Langchain Graph, and VectorDB
 
 ```env
 EXTRA_DEPS: "gemini,mongodb,langgraph,vectordb"
 ```
 
 > [!TIP]
-> Start with basic depedency pack to support your model and add other features incrementally
+> Start with a basic dependency pack to support your model and add other features incrementally
 
-Following models are supported with its dependency pack
+The following models are supported by its dependency pack
 
 |   Model   | Dependency pack |   ENV key name    |
 | :-------: | :-------------: | :---------------: |
@@ -180,7 +180,7 @@ Add custom [Tools](https://python.langchain.com/v0.2/docs/how_to/custom_tools/) 
 ### Adding Agents
 
 Agents can be created using Extension UI or declared in code.
-Add your agents using Agent Factory Module (_agentbuilder/factory/agent_factory_).
+Add your agents using the Agent Factory Module (_agentbuilder/factory/agent_factory_).
 
 1. Create your agent
 
@@ -209,10 +209,10 @@ Add your agents using Agent Factory Module (_agentbuilder/factory/agent_factory_
 
 ### Custom Agent Builder and Graphs
 
-Customize your own Agent Workflow using custom prompts and graphs.
-Filter the agent using agent name to apply customizations.
+Customize your Agent Workflow using custom prompts and graphs.
+Filter the agent using the agent name to apply customizations.
 
-For example, the following code applies graph builder worlflow for the Agent named "graph_agent"
+For example, the following code applies graph builder workflow for the Agent named "graph_agent"
 
 ```py
 def get_agent_builder(params:AgentBuilderParams):
@@ -226,7 +226,7 @@ def get_agent_builder(params:AgentBuilderParams):
 ```
 
 > [!IMPORTANT]
-> Dependency pack "langgraph" needs to installed for BaseGraphAgentBuilder.
+> Dependency pack "langgraph" needs to be installed for BaseGraphAgentBuilder.
 
 ## Configuring models
 
@@ -278,8 +278,10 @@ Supports _{Provider}/{ModelName}_ format
 - Ollama
 
   Use local models for function calls.
+> [!TIP]
+> Use JSON chat agent type for better compatibility with local models.
 
-  Install [Ollama](https://ollama.com/) and pull model.
+  Install [Ollama](https://ollama.com/) and pull the model.
 
   ```sh
   ollama pull mistral:v0.3
@@ -291,5 +293,4 @@ Supports _{Provider}/{ModelName}_ format
   MODEL_NAME="ollama/mistral:v0.3"
   ```
 
-> [!TIP]
-> Use JSON chat agent type for better compatibility with local models.
+
