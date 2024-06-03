@@ -15,5 +15,5 @@
       ]
     }
   },
-  "postStartCommand": "sh -c /app/install-extra-deps.sh && /app/start-server.sh"
+  "postStartCommand": "rm /app/.env && sh -c /app/install-extra-deps.sh && /app/start-server.sh"
 }
