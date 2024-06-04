@@ -83,16 +83,29 @@ class BaseGraphAgentBuilder:
         messages = prompt.format_messages(input=input,chat_history=chat_history)
         return {"messages":messages}
     
+    def message_output_parser(self,messages_dict:dict):
+         if "messages" in messages_dict:
+            messages = messages_dict['messages']
+            if messages and isinstance(messages[-1],AIMessage):
+                return {"output":messages[-1].content}
+
+    async def ainvoke(self,params):
+        runnable=  self.compile()
+        response = await runnable.ainvoke(self.input_parser(params))
+        messages_dict = response
+        parsed_response = self.message_output_parser(messages_dict)
+        parsed_response["intermediate_steps"] = self.get_intermediate_steps()
+        return parsed_response
+    
     def astream(self,params):
         runnable=  self.compile()
         response= runnable.astream(self.input_parser(params),stream_mode="updates")
         async def gen():
             async for output in response:
                 for _, value in output.items():
-                    if "messages" in value:
-                        messages = value['messages']
-                        if messages and isinstance(messages[-1],AIMessage):
-                            yield {"output":messages[-1].content}
+                    output_dict= self.message_output_parser(value)
+                    if(output_dict):
+                        yield output_dict
             yield {"intermediate_steps": self.get_intermediate_steps()}
         return gen()
 

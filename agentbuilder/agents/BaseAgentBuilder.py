@@ -65,6 +65,11 @@ class BaseAgentBuilder:
             async for payload in response:
                     yield payload
         return gen()
+    
+    async def ainvoke(self,params):
+        runnable=  self.compile()
+        response = await runnable.ainvoke(self.input_parser(params))
+        return response
         
     def create_prompt(self):
         agent_type= self.builder_params.agent_type

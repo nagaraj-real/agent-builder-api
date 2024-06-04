@@ -12,9 +12,8 @@ async def chat(query:str,chat_history:list[BaseMessage]=[],agent_name=None)->str
     agent_builder:BaseAgentBuilder|BaseGraphAgentBuilder|None = await build_agent(agent_name)
     if agent_builder is None:
         return await chat_without_agent(query,chat_history)
-    runnable = agent_builder.compile()
     try:
-        response = await runnable.ainvoke(agent_builder.input_parser({"input": query,"chat_history": chat_history }))
+        response = await agent_builder.ainvoke({"input": query,"chat_history": chat_history })
         if("intermediate_steps" in response):
             await db.update_agent_steps(query,response["output"],agent_name,response["intermediate_steps"])
         return response["output"]
@@ -26,9 +25,8 @@ async def chat_stream(query:str,chat_history:list[BaseMessage]=[],agent_name=Non
     agent_builder:BaseAgentBuilder|BaseGraphAgentBuilder|None = await build_agent(agent_name)
     if agent_builder is None:
         return await chat_without_agent_stream(query,chat_history)
-    runnable = agent_builder.compile()
     try:
-        response= runnable.astream({"input": query,"chat_history": chat_history })
+        response= agent_builder.astream({"input": query,"chat_history": chat_history })
         async def gen(new_res=None):
             intermediate_steps=[]
             final_output=""
