@@ -10,6 +10,7 @@
         "workbench.colorTheme": "Default Dark Modern"
       },
       "extensions": [
+        "nr-codetools.agentsmith",
         "ms-python.python",
         "mongodb.mongodb-vscode"
       ]
