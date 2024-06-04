@@ -9,7 +9,6 @@ import json
 @register_validator(name="validate-patient-age", data_type="integer")
 class ValidatePatientAge(Validator):
     def validate(self,*args,**kwargs):
-        print(args)
         return ValidRange(min=0, max=50,on_fail="exception").validate(*args,**kwargs)
         
 rail_spec = """
@@ -81,7 +80,6 @@ class AgentBuilderWithGuardRails(BaseAgentBuilder):
         response= runnable.astream(self.input_parser(params))
         async def gen():
             async for payload in response:
-                print(payload)
                 if payload.validation_passed:
                     output="```json\n"+json.dumps(payload.validated_output)+"\n```"
                 else:
