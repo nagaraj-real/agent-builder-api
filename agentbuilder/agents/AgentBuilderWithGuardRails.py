@@ -1,15 +1,20 @@
-from guardrails import Validator, register_validator
+from typing import Any, Dict
 from agentbuilder.agents.BaseAgentBuilder import BaseAgentBuilder
 from langchain.output_parsers import GuardrailsOutputParser
 from langchain.prompts import PromptTemplate
-from guardrails.hub import ValidRange
 from langchain_core.runnables import Runnable
 import json
+from guardrails.validators import Validator, register_validator, PassResult, FailResult, ValidationResult
 
 @register_validator(name="validate-patient-age", data_type="integer")
 class ValidatePatientAge(Validator):
-    def validate(self,*args,**kwargs):
-        return ValidRange(min=0, max=50,on_fail="exception").validate(*args,**kwargs)
+    def validate(self,value: Any,metadata: Dict):
+        if(value >=50):
+             return FailResult(
+                error_message=f"Age {value} is greater than 50",
+                fix_value=40,
+            ) 
+        return PassResult() 
         
 rail_spec = """
 <rail version="0.1">

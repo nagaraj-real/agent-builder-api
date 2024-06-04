@@ -6,7 +6,7 @@ authors = ["Nagarajan Ramasamy"]
 packages = [{ include = "agentbuilder" }]
 
 [tool.poetry.dependencies]
-python = "^3.10.0"
+python = ">=3.10.0,<3.13"
 langchain = "*"
 langchain-community = "*"
 langchain-experimental = "*"
@@ -28,6 +28,7 @@ langchain-google-genai = { version = "1.0.4", optional = true }
 langchain-anthropic = { version = "0.1.13", optional = true }
 langchain-voyageai = { version = "0.1.1", optional = true }
 guardrails-ai = { version = "0.4.4", optional = true }
+nemoguardrails = { version = "0.9.0", optional = true }
 
 [tool.poetry.extras]
 vectordb = ["faiss-cpu", "beautifulsoup4", "tiktoken"]
@@ -37,7 +38,7 @@ openai = ["langchain-openai"]
 cohere = ["langchain-cohere"]
 gemini = ["langchain-google-genai"]
 anthropic = ["langchain-anthropic", "langchain-voyageai"]
-guardrails = ["guardrails-ai"]
+guardrails = ["guardrails-ai", "nemoguardrails"]
 
 [tool.poetry.scripts]
 start-server = "agentbuilder.main:start_api"
