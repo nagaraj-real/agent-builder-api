@@ -1,5 +1,3 @@
-
-
 from agentbuilder.agents.BaseAgentBuilder import AgentBuilderParams, BaseAgentBuilder
 from agentbuilder.agents.params import AgentParams
 from agentbuilder.factory.tool_factory import greeting_tool,temperature_sensor_tool,weather_clothing_tool,temperature_tool
@@ -76,6 +74,9 @@ def get_agent_builder(params:AgentBuilderParams):
         case "graph_agent":
             from agentbuilder.agents.BaseGraphAgentBuilder import BaseGraphAgentBuilder
             return BaseGraphAgentBuilder(params)
+        case "doctor_agent":
+            from agentbuilder.agents.AgentBuilderWithGuardRails import AgentBuilderWithGuardRails
+            return AgentBuilderWithGuardRails(params)
         case _:
             return BaseAgentBuilder(params)
 
