@@ -1,0 +1,25 @@
+import core
+import llm
+import guardrails
+
+flow main
+  activate math question
+
+flow math question
+  """You are an assistant that can extract 2 numbers a and b from math question.
+  Last user question is: "{{ question }}"
+  Generate the output in the following format if you are able to extract:
+
+  bot express math answer "<<a>>" "<<b>>"
+
+  Generate the output in the following format if you are not able to extract:
+
+  bot say "Sorry I can't help you with that."
+  """
+  $question = await user said something
+  ...
+  
+flow bot express math answer $a $b
+  $result = await SumAction(a=float($a),b=float($b))
+  bot say "{$result}"
+

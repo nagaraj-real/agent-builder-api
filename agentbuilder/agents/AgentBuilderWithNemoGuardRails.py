@@ -5,15 +5,13 @@ from nemoguardrails import RailsConfig
 from nemoguardrails.integrations.langchain.runnable_rails import RunnableRails
 from langchain_core.output_parsers import StrOutputParser
 
-
-config = RailsConfig.from_path(str(Path(__file__).parent)+"./config")
-
 class AgentBuilderWithNemoGuardRails(BaseAgentBuilder):
     guardrails = None 
-
+    
     def __init__(self,params):
         super().__init__(params=params)
-        self.guardrails = RunnableRails(config,llm=self.builder_params.chat_llm,tools=self.builder_params.tools)
+        config = RailsConfig.from_path(str(Path(__file__).parent)+"./nemo-config/math-config")
+        self.guardrails = RunnableRails(config,llm=self.builder_params.chat_llm,tools=self.builder_params.tools,verbose=True)
     
     def create_agent(self) -> Runnable:
         prompt = self.create_prompt()
@@ -24,6 +22,8 @@ class AgentBuilderWithNemoGuardRails(BaseAgentBuilder):
         )
         return agent
 
+    def input_parser(self,params):
+        return {"input": params["input"],"chat_history": [] }
     
     async def ainvoke(self,params):
         runnable=  self.create_agent()
