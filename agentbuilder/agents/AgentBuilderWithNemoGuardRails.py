@@ -17,7 +17,7 @@ class AgentBuilderWithNemoGuardRails(BaseAgentBuilder):
         prompt = self.create_prompt()
         agent = (
              prompt
-            | (self.guardrails | self.builder_params.chat_llm)
+            | self.guardrails
             | StrOutputParser()
         )
         return agent

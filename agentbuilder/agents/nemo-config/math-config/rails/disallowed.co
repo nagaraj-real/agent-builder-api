@@ -13,3 +13,15 @@ flow check user utterance $input_text -> $input_safe
   $is_safe = ..."Consider the following user message: '{$input_text}'. Assign 'True' if it follows company policy, 'False' if not."
   print $is_safe
   return $is_safe
+
+flow output rails $output_text
+  $output_safe = await check bot utterance $output_text
+
+  if not $output_safe
+    bot say "I'm sorry, I can't respond to that."
+    abort
+
+flow check bot utterance $output_text -> $output_safe
+  $is_safe = ..."Consider the following bot message: '{$output_text}'. Assign 'True' if it follows company policy, 'False' if not."
+  print $is_safe
+  return $is_safe
