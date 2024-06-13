@@ -1,18 +1,15 @@
-from pathlib import Path
 from agentbuilder.agents.BaseAgentBuilder import BaseAgentBuilder
 from langchain_core.runnables import Runnable
 from nemoguardrails import RailsConfig
-from nemoguardrails.integrations.langchain.runnable_rails import RunnableRails
 from langchain_core.output_parsers import StrOutputParser
 
-class AgentBuilderWithNemoGuardRails(BaseAgentBuilder):
+class BaseNemoGuardRailsBuilder(BaseAgentBuilder):
     guardrails = None 
+    config:RailsConfig = None
     
     def __init__(self,params):
         super().__init__(params=params)
-        config = RailsConfig.from_path(str(Path(__file__).parent)+"./nemo-config/math-config")
-        self.guardrails = RunnableRails(config,llm=self.builder_params.chat_llm,tools=self.builder_params.tools,verbose=True)
-    
+
     def create_agent(self) -> Runnable:
         prompt = self.create_prompt()
         agent = (

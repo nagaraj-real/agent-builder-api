@@ -4,7 +4,6 @@ from agentbuilder.factory.tool_factory import greeting_tool,temperature_sensor_t
 from agentbuilder.factory.tool_factory import  git_pull_request_diff_tool,sum_tool,json_tools
 from agentbuilder.tools.repl_tool import repl_tool
 from agentbuilder.helper.env_helper import get_default_agent_type
-from agentbuilder.agents.AgentBuilderWithNemoGuardRails import AgentBuilderWithNemoGuardRails
 
 def default_agent():
     return AgentParams(name="default_agent",
@@ -74,15 +73,17 @@ def get_agent_builder(params:AgentBuilderParams):
         case "graph_agent":
             from agentbuilder.agents.BaseGraphAgentBuilder import BaseGraphAgentBuilder
             return BaseGraphAgentBuilder(params)
+        case "interview_agent":
+            from agentbuilder.agents.interview_agent import InterviewAgentBuilder
+            return InterviewAgentBuilder.InterviewAgentBuilder(params)
         case "math_agent_guard":
-            from agentbuilder.agents.AgentBuilderWithNemoGuardRails import AgentBuilderWithNemoGuardRails
-            return AgentBuilderWithNemoGuardRails(params)
+            from agentbuilder.agents.math_agent import MathAgentBuilder
+            return MathAgentBuilder.MathAgentBuilder(params)
         case "doctor_agent_guard":
-            from agentbuilder.agents.AgentBuilderWithGuardRails import AgentBuilderWithGuardRails
-            return AgentBuilderWithGuardRails(params)
+            from agentbuilder.agents.doctor_agent import DoctorAgentBuilder
+            return DoctorAgentBuilder.DoctorAgentBuilder(params)
         case _:
             return BaseAgentBuilder(params)
-
 
 
 

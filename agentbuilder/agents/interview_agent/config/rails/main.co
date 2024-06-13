@@ -1,0 +1,124 @@
+import core
+import llm
+import guardrails
+
+flow main
+  activate user expressed something
+ 
+flow user expressed something
+  priority 0.1
+  $user_message = await user said something
+  bot express start interview $user_message
+  
+
+flow bot express start interview $user_message
+  global $programming_language
+  $programming_language = await GetInterviewStateAction(key="programming_language")
+  $user_confirmed = await GetInterviewStateAction(key="user_confirmed_interview")
+  if not $programming_language
+    user expressed programming language $user_message
+  elif not $user_confirmed
+      bot express interview start confirmation $user_message
+  else
+      bot express interview start $user_message 
+
+flow bot express interview start confirmation $user_message
+  $confirmed = ..."The user was asked a confirmation question for which the user gave a response: {$user_message}. Return True if user confimred else return False"
+  if $confirmed
+    await UpdateInterviewStateAction(new_data={"user_confirmed_interview": True})
+    bot express interview start
+  else
+    await ClearInterviewStateAction()
+    bot say "ok ! Have a nice day ! "
+
+flow bot express interview start $user_message
+  $current_number = await GetInterviewStateAction(key="current_question_number")
+  if $current_number <= 6
+    await UpdateInterviewQuestionsAction(question_answer={"answer": $user_message, "question_num": $current_number - 1  })
+  await UpdateInterviewStateAction(new_data={"current_question_number": $current_number + 1})
+  if $current_number <= 5
+    $question = await bot express interview questions $programming_language
+    await UpdateInterviewQuestionsAction(question_answer={"question": $question, "question_num": $current_number })
+  else 
+    start bot express rating
+    match BotExpressedRatingActionFinished(return_value="") as $ref
+    $result = $ref.arguments["return_value"]
+    bot say $result
+    $rating_list = await bot express rating list """$result"""
+    await UpdateRatingAction(rating_list=$rating_list)
+
+flow bot express rating list $result
+  $rating_list = ..."Answers provided: '{$result}'. Provide the ratings in a list structure, e.g. [2, 3]"
+  return $rating_list
+
+flow bot express rating
+  """
+  You are a rating bot that can rate question and answers
+  provided by the user in {{ programming_language }} interview.
+  Provide a rating for each answer with explanation.
+  Refer below Conversation between bot and user to extract questions and answers.
+  {{ questions_answers }}
+  Remember this interview is for a Lead Programming Developer Role and provide a rating based on that.
+  Make sure the answers are accurate and descriptive. Use the following criteria to rate.
+  Answer them yourself to compare your answer with the user answers.
+  - Assign rating below 5 if the answer is inaccurate.
+  - Assign rating above 5 but below 7 if the answer is accurate but not perfect.
+  - Assign 8, 9 or 10 only if the answer is perfect.
+  Use markdown to format the output so that each rating is seperated and visually appealing.
+  Provide the rating and explanation as "markdown_output" in following format. 
+  BotExpressedRatingAction(output='''markdown_output''')
+  """
+  global $programming_language
+  $questions_answers = await GetInterviewQuestionsAction()
+  ...
+
+flow user expressed programming language $user_message
+  """
+  You are a bot that can help in interview preparation.
+
+  Below is the message from user.
+  "user say {{ user_message }}"
+
+  Check if the user has provided the programming language.
+  If yes, generate the output in following format:
+    bot update programming language "<<programming_language>>"
+  If no, generate the output in following format:
+    bot express which language
+
+  """
+  ...
+
+flow bot express which language
+  print $convo_history
+  bot say "Can you please provide a programming language to prepare you for interview."
+
+flow bot update programming language $programming_language
+  await UpdateInterviewStateAction(new_data={"programming_language":$programming_language})
+  bot express programming language confirm $programming_language
+
+flow bot express programming language confirm $programming_language
+  bot say "Your progamming language is set to : {$programming_language}. Would you like you start Interview ?"
+
+flow bot express interview questions $programming_language
+    """
+    You are a bot that can prepare the user for interview on 
+    programming language : 
+    "{{ programming_language }}".
+
+    Conversation history:
+    "{{ convo_history }}"
+
+    Generate a programming question for the user.
+    Make sure the question is not already in Conversation history.
+    Make sure the question doesn't require any coding.
+    The question should test a senior developer understanding of the language.
+
+    generate the output in following format
+      bot say "<<question>>"
+      return "<<question>>"
+    """
+    ...
+
+
+
+
