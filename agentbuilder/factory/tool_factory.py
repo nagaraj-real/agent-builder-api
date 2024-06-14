@@ -12,9 +12,7 @@ from agentbuilder.tools.json_tool_kit import json_tools
 def get_vectordb_tools():
     try:
         from agentbuilder.tools.vector_store_search_tool import vectorstore_search
-        from agentbuilder.tools.resume_search_tool import resume_search
-        from agentbuilder.tools.job_description_tool import job_description_tool
-        return [vectorstore_search,resume_search,job_description_tool]
+        return [vectorstore_search]
     except:
         return []
     
