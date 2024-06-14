@@ -1,0 +1,44 @@
+Full job description
+What you will be doing:
+
+· You will be responsible for designing, developing and unit testing code, delivering on objectives established by business partners. You will understand and adhere to best practices and guidelines, and work with a delivery team to ensure understanding of objectives, requirements and specifications.
+
+· Coding experience in React, Angular, .NET, C#, (SQL, KQL is a plus)
+
+· Strong experience with tools and development frameworks such as PowerShell, NPM, VSC, GIT, Docker, K8S, ReactJS
+
+· Strong experience & understanding in Infrastructure as code applied to DevOps, DevSecOps, cloud security best practices and well architected framework.
+
+· Demonstrated knowledge of web/mobile design and object-oriented programming practices
+
+· rovide technical leadership for more junior team members, oversee solution implementation to ensure compliance with security, and governance.
+
+· Involve others in planning and executing, and in so doing, gains their buy-in.
+
+· May be required to complete work outside of normal business hours to meet project deadlines and support weekend implementations, may be required to participate in rotating on-call shifts.
+
+What you will bring:
+
+· Minimum 5 years experience in IT with multi-domain experience.
+
+· Post-secondary degree or equivalent combination of education and experience in the following or related discipline: computer science, computer systems engineering, software engineering.
+
+· Hands on working knowledge of React, Next.js, NET, C#, PWAs, APIs, Azure DevOps/Cloud, SQL, and Design Library Systems
+
+· Experience with agile practices, scrum delivery, test automation and Azure Pipelines
+
+· Experience leading other developers on projects; task and priority setting, working with business partners, etc.
+
+· Working knowledge of responsive design and grid principles
+
+Job Type: Full-time
+
+Experience:
+
+C#: 5 years (required)
+.NET: 5 years (required)
+Azure: 5 years (required)
+Java: 5 years (required)
+Test automation: 5 years (required)
+Location:
+Waterloo, ON (required)

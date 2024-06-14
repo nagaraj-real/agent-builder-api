@@ -4,23 +4,26 @@ import guardrails
 
 flow main
   activate user expressed something
- 
+
 flow user expressed something
-  priority 0.1
   $user_message = await user said something
+  global $interview_state
+  $interview_state = await GetInterviewFullStateAction()
+  print($interview_state)
   bot express start interview $user_message
   
 
 flow bot express start interview $user_message
-  global $programming_language
-  $programming_language = await GetInterviewStateAction(key="programming_language")
-  $user_confirmed = await GetInterviewStateAction(key="user_confirmed_interview")
+  global $interview_state
+  $programming_language = $interview_state["programming_language"]
+  $user_confirmed = $interview_state["user_confirmed_interview"]
+  $job_skills = await GetInterviewJobSkillsAction()
   if not $programming_language
-    user expressed programming language $user_message
+    bot express request programming language $user_message $job_skills
   elif not $user_confirmed
       bot express interview start confirmation $user_message
   else
-      bot express interview start $user_message 
+      bot express interview start $user_message
 
 flow bot express interview start confirmation $user_message
   $confirmed = ..."The user was asked a confirmation question for which the user gave a response: {$user_message}. Return True if user confimred else return False"
@@ -72,25 +75,29 @@ flow bot express rating
   $questions_answers = await GetInterviewQuestionsAction()
   ...
 
-flow user expressed programming language $user_message
+flow bot express request programming language $user_message $job_skills
   """
   You are a bot that can help in interview preparation.
 
   Below is the message from user.
   "user say {{ user_message }}"
 
-  Check if the user has provided the programming language.
-  If yes, generate the output in following format:
-    bot update programming language "<<programming_language>>"
-  If no, generate the output in following format:
-    bot express which language
+  Extract the programming language from the user message.
+  The programming language provided could be part of the list: {{ job_skills }}
+  or it could be any other progamming language.
 
+  If the user provided any programming language, generate the output in following format:
+    bot update programming language "<<programming_language>>"
+  If the user did not provide any programming language, generate the output in following format:
+    bot express which language $job_skills
   """
   ...
 
-flow bot express which language
-  print $convo_history
-  bot say "Can you please provide a programming language to prepare you for interview."
+flow bot express which language $job_skills
+  if $job_skills
+    bot say "These are the suggested skills: {$job_skills}. Please choose a programming language to start interview."
+  else
+    bot say "Please provide a programming language to start interview."
 
 flow bot update programming language $programming_language
   await UpdateInterviewStateAction(new_data={"programming_language":$programming_language})

@@ -2,10 +2,11 @@
 from pydantic import BaseModel
 
 class InterviewStateModel(BaseModel):
-    programming_language: bool = False
+    programming_language: str = ""
     current_question_number:int = 1
     user_confirmed_interview:bool = False
     question_answers: list=[]
+    suggested_skills: list=["React","Java",]
 
 
 class InterviewState:

@@ -12,7 +12,7 @@ class InterviewAgentBuilder(BaseNemoGuardRailsBuilder):
     def __init__(self,params):
         super().__init__(params=params)
         self.config=RailsConfig.from_path(str(Path(__file__).parent)+"./config")
-        self.guardrails= RunnableRails(config=self.config,llm=self.builder_params.chat_llm,tools=self.builder_params.tools,verbose=True)
+        self.guardrails= RunnableRails(config=self.config,llm=self.builder_params.chat_llm,verbose=True)
 
     def create_agent(self) -> Runnable:
             agent = (

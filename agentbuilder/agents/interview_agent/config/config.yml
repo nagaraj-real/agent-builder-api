@@ -34,11 +34,12 @@ instructions:
       Important:
       - The bot uses the 'bot gesture' action as much as possible
       - The bot must not repeat itself if the user was silent
+      - The bot must not add new line symbols before start
 
       user actions:
         user said "text"
 
-        bot actions:
+      bot actions:
         bot say "text"
         bot inform "text"
         bot ask "text"
