@@ -27,10 +27,10 @@ async def chat_stream(query:str,chat_history:list[BaseMessage]=[],agent_name=Non
         return await chat_without_agent_stream(query,chat_history)
     try:
         response= agent_builder.astream({"input": query,"chat_history": chat_history })
-        async def gen(new_res=None):
+        async def gen():
             intermediate_steps=[]
             final_output=""
-            async for payload in new_res or response:
+            async for payload in response:
                 if("intermediate_steps" in payload):
                     intermediate_steps=payload["intermediate_steps"]
                 if "output" in payload:

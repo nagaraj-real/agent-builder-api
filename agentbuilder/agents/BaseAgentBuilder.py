@@ -6,11 +6,13 @@ from langchain.agents import AgentExecutor
 from agentbuilder.llm import chat_llm as default_llm
 class BaseAgentBuilder:
 
+    chat_llm=None
     def __init__(self,params:AgentBuilderParams):
         self.builder_params=params
+        self.chat_llm = self.builder_params.chat_llm or default_llm
 
     def create_agent(self)-> Any:
-        chat_llm= self.builder_params.chat_llm or default_llm
+        chat_llm= self.chat_llm
         tools= self.builder_params.tools
         preamble= self.builder_params.preamble
         prompt = self.builder_params.prompt or self.create_prompt()
@@ -85,6 +87,4 @@ class BaseAgentBuilder:
                 return get_json_agent_prompt(preamble)
             case _:
                 return get_default_agent_prompt(preamble)
-            
-    
 

@@ -58,6 +58,7 @@ flow bot express rating
   """
   You are a rating bot that can rate question and answers
   provided by the user in {{ programming_language }} interview.
+
   Provide a rating for each answer with explanation.
   Refer below Conversation between bot and user to extract questions and answers.
   {{ questions_answers }}
@@ -67,11 +68,17 @@ flow bot express rating
   - Assign rating below 5 if the answer is inaccurate.
   - Assign rating above 5 but below 7 if the answer is accurate but not perfect.
   - Assign 8, 9 or 10 only if the answer is perfect.
-  Use markdown to format the output so that each rating is seperated and visually appealing.
-  Provide the rating and explanation as "markdown_output" in following format. 
-  BotExpressedRatingAction(output='''markdown_output''')
+
+  Provide both the rating and explanation.
+  Generate a markdown to display the rating and explanation for each question: <<markdown_output>>.
+  Seperate each Q & A with horizontal line and use proper headings.
+  Place question, answer, rating , explanation on seperate lines.
+  Use star emojis to convey rating.
+  Use the following output format and fill only <<markdown_output>>: 
+  BotExpressedRatingAction(output='''<<markdown_output>>''')
   """
-  global $programming_language
+  global $interview_state
+  $programming_language = $interview_state["programming_language"]
   $questions_answers = await GetInterviewQuestionsAction()
   ...
 
@@ -89,11 +96,12 @@ flow bot express request programming language $user_message $job_skills
   If the user provided any programming language, generate the output in following format:
     bot update programming language "<<programming_language>>"
   If the user did not provide any programming language, generate the output in following format:
-    bot express which language $job_skills
+    bot express which language
   """
   ...
 
-flow bot express which language $job_skills
+flow bot express which language
+  $job_skills = await GetInterviewJobSkillsAction()
   if $job_skills
     bot say "These are the suggested skills: {$job_skills}. Please choose a programming language to start interview."
   else

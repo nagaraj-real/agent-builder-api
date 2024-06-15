@@ -23,7 +23,7 @@ class BaseGuardRailsBuilder(BaseAgentBuilder):
         prompt = self.create_prompt()
         agent = (
              prompt
-            | self.builder_params.chat_llm
+            | self.chat_llm
             | self.output_parser
         )
         return agent

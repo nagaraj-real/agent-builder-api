@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Any, Literal
 from langchain_core.messages import AIMessage,ToolMessage
 from agentbuilder.agents.params import AgentBuilderParams
@@ -13,6 +14,8 @@ def add_messages(left: list, right: list):
 
 class AgentState(TypedDict):
     messages: Annotated[list, add_messages]
+
+data_path= str(Path(__file__).parent)+"./../data"
 
 class BaseGraphAgentBuilder:
 
@@ -71,7 +74,7 @@ class BaseGraphAgentBuilder:
                     draw_method=MermaidDrawMethod.API,
                 )
             )
-        with open(f"agentbuilder/data/{file_name}.png", "wb") as fout:
+        with open(f"{data_path}/{file_name}.png", "wb") as fout:
             fout.write(img.data)
         
     
