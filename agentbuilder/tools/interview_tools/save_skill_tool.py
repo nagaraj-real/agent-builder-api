@@ -1,3 +1,4 @@
+
 from langchain_core.tools import StructuredTool
 from pydantic.v1 import BaseModel, Field
 from agentbuilder.agents.interview_agent.data import interview_state
@@ -7,10 +8,9 @@ async def save_programming_skills(skills_list:list[str]) -> dict|None:
     Saves the interview programming skills
     """
     try:
-        interview_state.update({"suggested_skills":skills_list})
-        return interview_state
+        interview_state.get_model().suggested_skills=skills_list
+        return interview_state.get()
     except Exception as ex:
-        print(ex)
         return None
 
 class InterviewSkillsInput(BaseModel):
@@ -18,7 +18,7 @@ class InterviewSkillsInput(BaseModel):
 
 save_skill_tool= StructuredTool.from_function(
         coroutine=save_programming_skills,
-        name="save_interview_skills",
+        name="save_skill_tool",
         description="Saves the interview programming skills",
         args_schema=InterviewSkillsInput
     )

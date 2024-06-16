@@ -6,83 +6,70 @@ flow main
   activate user expressed something
 
 flow user expressed something
-  $user_message = await user said something
+  global $user_message
+  match UtteranceUserActionFinished() as $event_ref
+  $user_message = $event_ref.final_transcript
   global $interview_state
   $interview_state = await GetInterviewFullStateAction()
   print($interview_state)
-  bot express start interview $user_message
+  bot express start interview
   
 
-flow bot express start interview $user_message
+flow bot express start interview
   global $interview_state
   $programming_language = $interview_state["programming_language"]
   $user_confirmed = $interview_state["user_confirmed_interview"]
   $job_skills = await GetInterviewJobSkillsAction()
   if not $programming_language
-    bot express request programming language $user_message $job_skills
+    bot express request programming language $job_skills
   elif not $user_confirmed
-      bot express interview start confirmation $user_message
+    bot express interview start confirmation
   else
-      bot express interview start $user_message
+    bot express interview start 
 
-flow bot express interview start confirmation $user_message
-  $confirmed = ..."The user was asked a confirmation question for which the user gave a response: {$user_message}. Return True if user confimred else return False"
-  if $confirmed
+flow bot express interview start confirmation
+  """
+  The user was asked a confirmation question for which the user gave the following response: 
+  {{ user_message }}
+  
+  If user confirmed, respond in following format:
+  bot express interview start
+  If user declined, respond in following format:
+  bot express interview declined
+  """
+  global $user_message
+  ...
+
+flow bot express interview declined
+  await ClearInterviewStateAction()
+  bot say "ok ! Have a nice day ! "
+
+
+flow bot express interview start
+  global $user_message
+  global $interview_state
+  $num_questions= $interview_state["questions_count"]
+  $user_confirmed = $interview_state["user_confirmed_interview"]
+  $qa = $interview_state["question_answers"]
+  if not $user_confirmed
     await UpdateInterviewStateAction(new_data={"user_confirmed_interview": True})
-    bot express interview start
   else
-    await ClearInterviewStateAction()
-    bot say "ok ! Have a nice day ! "
+    $qa = await AddInterviewQuestionsAction(answer=$user_message)
 
-flow bot express interview start $user_message
-  $current_number = await GetInterviewStateAction(key="current_question_number")
-  if $current_number <= 6
-    await UpdateInterviewQuestionsAction(question_answer={"answer": $user_message, "question_num": $current_number - 1  })
-  await UpdateInterviewStateAction(new_data={"current_question_number": $current_number + 1})
-  if $current_number <= 5
-    $question = await bot express interview questions $programming_language
-    await UpdateInterviewQuestionsAction(question_answer={"question": $question, "question_num": $current_number })
+  if len($qa) <= $num_questions-1
+    $question = await bot express interview questions
+    await UpdateInterviewStateAction(new_data={"current_question": $question})
   else 
-    start bot express rating
-    match BotExpressedRatingActionFinished(return_value="") as $ref
-    $result = $ref.arguments["return_value"]
-    bot say $result
-    $rating_list = await bot express rating list """$result"""
-    await UpdateRatingAction(rating_list=$rating_list)
+    $response = await InterviewRatingAction()
+    bot say """{$response}"""
+    
 
 flow bot express rating list $result
   $rating_list = ..."Answers provided: '{$result}'. Provide the ratings in a list structure, e.g. [2, 3]"
   return $rating_list
 
-flow bot express rating
-  """
-  You are a rating bot that can rate question and answers
-  provided by the user in {{ programming_language }} interview.
 
-  Provide a rating for each answer with explanation.
-  Refer below Conversation between bot and user to extract questions and answers.
-  {{ questions_answers }}
-  Remember this interview is for a Lead Programming Developer Role and provide a rating based on that.
-  Make sure the answers are accurate and descriptive. Use the following criteria to rate.
-  Answer them yourself to compare your answer with the user answers.
-  - Assign rating below 5 if the answer is inaccurate.
-  - Assign rating above 5 but below 7 if the answer is accurate but not perfect.
-  - Assign 8, 9 or 10 only if the answer is perfect.
-
-  Provide both the rating and explanation.
-  Generate a markdown to display the rating and explanation for each question: <<markdown_output>>.
-  Seperate each Q & A with horizontal line and use proper headings.
-  Place question, answer, rating , explanation on seperate lines.
-  Use star emojis to convey rating.
-  Use the following output format and fill only <<markdown_output>>: 
-  BotExpressedRatingAction(output='''<<markdown_output>>''')
-  """
-  global $interview_state
-  $programming_language = $interview_state["programming_language"]
-  $questions_answers = await GetInterviewQuestionsAction()
-  ...
-
-flow bot express request programming language $user_message $job_skills
+flow bot express request programming language $job_skills
   """
   You are a bot that can help in interview preparation.
 
@@ -94,10 +81,11 @@ flow bot express request programming language $user_message $job_skills
   or it could be any other progamming language.
 
   If the user provided any programming language, generate the output in following format:
-    bot update programming language "<<programming_language>>"
+    bot express programming language confirm "<<programming_language>>"
   If the user did not provide any programming language, generate the output in following format:
     bot express which language
   """
+  global $user_message
   ...
 
 flow bot express which language
@@ -107,32 +95,43 @@ flow bot express which language
   else
     bot say "Please provide a programming language to start interview."
 
-flow bot update programming language $programming_language
-  await UpdateInterviewStateAction(new_data={"programming_language":$programming_language})
-  bot express programming language confirm $programming_language
-
 flow bot express programming language confirm $programming_language
+  await UpdateInterviewStateAction(new_data={"programming_language":$programming_language})
   bot say "Your progamming language is set to : {$programming_language}. Would you like you start Interview ?"
 
-flow bot express interview questions $programming_language
+flow bot express interview questions
     """
     You are a bot that can prepare the user for interview on 
     programming language : 
     "{{ programming_language }}".
 
+    Generate a single programming question for the user and make sure to follow these rules.
+    - Use any of the following types of question.
+      - Coding questions that require the developer to write code.
+      - Non coding questions that answer can answer without coding skills
+
+    Use total number of questions and conversation history to identify what type of question you should ask.
+    Make sure the question is not repeated. Check conversation history for previous questions.
+    Also make sure to switch question type based on the type of previous questions.
+
+    Total number of questions: "{{ num_questions }}".
+
+    Refer conversation history for previous questions.
     Conversation history:
     "{{ convo_history }}"
 
-    Generate a programming question for the user.
-    Make sure the question is not already in Conversation history.
-    Make sure the question doesn't require any coding.
-    The question should test a senior developer understanding of the language.
+    The question should test a lead developer for understanding of the language.
 
-    generate the output in following format
+    # Important.
+    Generate the output in following format.
       bot say "<<question>>"
       return "<<question>>"
     """
+    global $interview_state
+    $programming_language = $interview_state["programming_language"]
+    $num_questions= $interview_state["questions_count"]
     ...
+    
 
 
 

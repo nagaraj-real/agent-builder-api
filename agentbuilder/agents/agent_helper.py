@@ -35,6 +35,8 @@ async def build_agent(agent_name:str|None)-> None| BaseGraphAgentBuilder | BaseA
      return create_llm_agent(AgentParams(**agent_params))
 
 def extract_tools(tools:list[BaseTool|str|Callable]):
+    if not tools:
+         return []
     def get_tool(tool:BaseTool|str|Any)->BaseTool|None:
         if isinstance(tool,str):
             result_tools= [t for t in get_all_tools() if t.name==tool]

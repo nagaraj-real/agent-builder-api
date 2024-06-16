@@ -24,7 +24,6 @@ class InterviewAgentBuilder(BaseNemoGuardRailsBuilder):
             return agent
     
     def output_parser(self,params):
-         print(params)
          return params["output"]
 
     async def transform_prompt(self,params):
@@ -35,7 +34,6 @@ class InterviewAgentBuilder(BaseNemoGuardRailsBuilder):
               if isinstance(message,AIMessage):
                    convo_history+=f"bot say '{message.content}' \n"
          interview_data= interview_state.get()
-         print(interview_data)
          return {"context":{"convo_history":convo_history,"interview_data": interview_data},"input":params["input"]}
 
     def input_parser(self,params):

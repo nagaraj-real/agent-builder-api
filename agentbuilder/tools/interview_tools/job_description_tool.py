@@ -13,7 +13,7 @@ current_path = str(Path(__file__).parent)
 
 # Docs to index
 urls = [
-   current_path+"./../data/job_description.txt",
+   current_path+"./../../data/job_description.txt",
 ]
 
 # Load

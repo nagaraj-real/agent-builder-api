@@ -55,6 +55,25 @@ def git_agent():
             agent_type= get_default_agent_type()
       )
 
+def resume_vector_agent():
+    return AgentParams(
+            name="resume_vector_agent",
+            preamble= """
+            You are very powerful code assistant,with access to resume and job description tools.
+            """,
+            tools=  ["resume_search_tool","job_description_tool","save_skill_tool"],
+            agent_type= get_default_agent_type()
+      )
+
+def rating_agent():
+    return AgentParams(
+            name="rating_agent",
+            preamble= """
+            You are very powerful interview rating assistant,with access to save rating tools.
+            """,
+            tools=  ["interview_answers_tool","save_rating_tool","save_evaluation_tool"],
+            agent_type= get_default_agent_type()
+      )
 
 def get_all_agents():
     return [
@@ -64,7 +83,8 @@ def get_all_agents():
             sum_agent(),
             rest_api_agent(),
             python_agent(),
-
+            resume_vector_agent(),
+            rating_agent()
     ]
 
 def get_agent_builder(params:AgentBuilderParams):

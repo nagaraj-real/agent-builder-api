@@ -8,6 +8,7 @@ from agentbuilder.tools.direct_answer_tool import directly_answer_tool
 from agentbuilder.tools.repl_tool import repl_tool
 from langchain.tools import BaseTool
 from agentbuilder.tools.json_tool_kit import json_tools
+from agentbuilder.tools.interview_tools.interview_toolkit import interview_tools
 
 def get_vectordb_tools():
     try:
@@ -32,8 +33,8 @@ def get_all_tools()->Sequence[BaseTool]:
             temperature_sensor_tool,
             directly_answer_tool,
             git_pull_request_diff_tool,
-            repl_tool
-            ] + get_vectordb_tools()+ get_websearch_tools() + json_tools
+            repl_tool,
+            ] + interview_tools+get_vectordb_tools()+ get_websearch_tools() + json_tools
 
 
 

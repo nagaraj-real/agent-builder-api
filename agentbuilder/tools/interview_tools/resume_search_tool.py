@@ -13,7 +13,7 @@ current_path = str(Path(__file__).parent)
 
 # Docs to index
 urls = [
-   current_path+"./../data/resume.txt",
+   current_path+"./../../data/resume.txt",
 ]
 
 # Load
@@ -39,7 +39,7 @@ from langchain.tools.retriever import create_retriever_tool
 
 resume_search = create_retriever_tool(
    retriever=vectorstore_retriever,
-   name="resume_search",
+   name="resume_search_tool",
    description="Retrieve relevant info from a vectorstore that contains information on a candidate resume."
 )
 
