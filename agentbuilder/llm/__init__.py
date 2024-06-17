@@ -7,7 +7,7 @@ from agentbuilder.llm.gemini_llm import gemini_chat,gemini_embed
 from agentbuilder.llm.cohere_llm import cohere_chat,cohere_embed
 from agentbuilder.llm.ollama_llm import ollama_chat,ollama_functions_chat
 from agentbuilder.llm.openai_llm import openai_chat,openai_embed
-from agentbuilder.llm.nvidia_llm import nvidia_chat
+from agentbuilder.llm.nvidia_llm import nvidia_chat, nvidia_embed
 from langchain.agents import create_tool_calling_agent
 import os
 
@@ -59,6 +59,8 @@ def get_embed_llm(*args,**Kwargs) -> Embeddings:
             return openai_embed(*args,**default_kwargs)
         case "voyageai":
             return voyage_embed(*args,**default_kwargs)
+        case "nvidia":
+            return nvidia_embed(*args,**Kwargs) 
         case _:
             raise Exception(f"Embed Model not found: {model}")
 

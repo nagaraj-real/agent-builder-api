@@ -1,5 +1,5 @@
 from pathlib import Path
-from agentbuilder.agents.BaseNemoGuardRailsBuilder import BaseNemoGuardRailsBuilder
+from agentbuilder.agents.base_nemo_guard_rails_builder import BaseNemoGuardRailsBuilder
 from nemoguardrails import RailsConfig
 from nemoguardrails.integrations.langchain.runnable_rails import RunnableRails
 

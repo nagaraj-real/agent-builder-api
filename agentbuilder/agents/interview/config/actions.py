@@ -1,6 +1,6 @@
 
 from nemoguardrails.actions import action
-from agentbuilder.agents.interview_agent.data import interview_state
+from agentbuilder.agents.interview.data import interview_state
 from agentbuilder.chat import chat
 
 @action(name="UpdateInterviewStateAction", execute_async=True)
@@ -69,46 +69,26 @@ async def get_interview_job_skills_action() -> str|None:
     
 @action(name="BotExpressedQuestionAction", execute_async=True)
 async def bot_expressed_question_action(
-    output:str=""
+    question:str=""
 ) -> str|None:
     try:
-        return output
+        return question
     except Exception as ex:
         return ""
 
 @action(name="InterviewRatingAction", execute_async=True)
 async def interview_rating_action() -> str|None:
     try:
-        programming_language:str=interview_state.get_by_key("programming_language")
-
-        prompt=f"""
-        You are a rating bot that can rate question and answers
-        provided by the user in {programming_language} interview.
-
-        Provide a rating for each answer with explanation.
-        Remember this interview is for a Lead Programming Developer Role and provide a rating based on that.
-        Make sure the answers are accurate and descriptive. Use the following criteria to rate.
-        Answer them yourself to compare your answer with the user answers.
-        - Assign rating below 5 if the answer is inaccurate.
-        - Assign rating above 5 but below 7 if the answer is accurate but not perfect.
-        - Assign 8, 9 or 10 only if the answer is perfect.
-    
-        Follow these steps:
-        ## Step 1 
-        Fetch question, answers using tools.
-        ## Step 2
-        Generate a markdown to display the rating and explanation for each question: <<evaluation_markdown_output>>.
-        Seperate each Q & A with horizontal line and use proper headings.
-        Place question, answer, rating , explanation on seperate lines.
-        Use star emojis to convey rating.
-        ## Step 3
-        Extract the rating,explanation for each question and save each of them using tools.
-        ## Step 4
-        Save the output in markdown format: <<evaluation_markdown_output>> using save evaluation tool.
-        and provide the output as response.
-        """
-        await chat(prompt,[],agent_name="rating_agent")
+        await chat("",[],agent_name="rating_agent")
         return interview_state.get_model().evaluation_output
+    except Exception as ex:
+        return ""
+    
+@action(name="InterviewQuestionAction", execute_async=True)
+async def interview_question_action(user_message:str="") -> str|None:
+    try:
+        await chat(user_message,[],agent_name="interview_question_agent")
+        return interview_state.get_model().current_question
     except Exception as ex:
         return ""
     

@@ -1,4 +1,4 @@
-from agentbuilder.agents.BaseAgentBuilder import AgentBuilderParams, BaseAgentBuilder
+from agentbuilder.agents.base_agent_builder import AgentBuilderParams, BaseAgentBuilder
 from agentbuilder.agents.params import AgentParams
 from agentbuilder.factory.tool_factory import greeting_tool,temperature_sensor_tool,weather_clothing_tool,temperature_tool
 from agentbuilder.factory.tool_factory import  git_pull_request_diff_tool,sum_tool,json_tools
@@ -102,11 +102,11 @@ def get_agent_builder(params:AgentBuilderParams):
     agent_name= params.name
     match agent_name:
         case "graph_agent":
-            from agentbuilder.agents.BaseGraphAgentBuilder import BaseGraphAgentBuilder
+            from agentbuilder.agents.base_graph_agent_builder import BaseGraphAgentBuilder
             return BaseGraphAgentBuilder(params)
         case "interview_agent":
-            from agentbuilder.agents.interview_agent import InterviewAgentBuilder
-            return InterviewAgentBuilder.InterviewAgentBuilder(params)
+            from agentbuilder.agents.interview.interview_agent import InterviewAgentBuilder
+            return InterviewAgentBuilder(params)
         case "math_agent_guard":
             from agentbuilder.agents.math_agent import MathAgentBuilder
             return MathAgentBuilder.MathAgentBuilder(params)

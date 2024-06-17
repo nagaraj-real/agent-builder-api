@@ -1,4 +1,4 @@
-from agentbuilder.agents.BaseAgentBuilder import BaseAgentBuilder
+from agentbuilder.agents.base_guard_rails_builder import BaseAgentBuilder
 from langchain.output_parsers import GuardrailsOutputParser
 from langchain.prompts import PromptTemplate
 from langchain_core.runnables import Runnable

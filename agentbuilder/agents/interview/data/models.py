@@ -7,6 +7,7 @@ class QuestionAnswer(BaseModel):
     question_num: int=0
     rating: int=0
     explanation: str=""
+    correct_answer:str=""
 
 class InterviewStateModel(BaseModel):
     programming_language: str = ""
@@ -16,6 +17,7 @@ class InterviewStateModel(BaseModel):
     suggested_skills: list=[]
     questions_count:int = 3
     evaluation_output: str = ""
+    job_summary:str=""
 
 test_data= InterviewStateModel(
   programming_language="javascript",

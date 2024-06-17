@@ -1,4 +1,4 @@
-from agentbuilder.agents.BaseAgentBuilder import BaseAgentBuilder
+from agentbuilder.agents.base_agent_builder import BaseAgentBuilder
 from langchain_core.runnables import Runnable
 from nemoguardrails import RailsConfig
 from langchain_core.output_parsers import StrOutputParser
