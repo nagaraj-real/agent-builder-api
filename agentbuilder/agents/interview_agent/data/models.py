@@ -9,11 +9,11 @@ class QuestionAnswer(BaseModel):
     explanation: str=""
 
 class InterviewStateModel(BaseModel):
-    programming_language: str = "React"
+    programming_language: str = ""
     current_question:str = ""
-    user_confirmed_interview:bool = True
-    question_answers: list[QuestionAnswer]=[QuestionAnswer(question='Explain the concept of state and props in React and how they differ from each other.', answer='hi', question_num=1, rating=0, explanation=''), QuestionAnswer(question='Write a React component that uses the useState hook to manage a counter and display the current count on the screen.', answer='hi', question_num=2, rating=0, explanation=''), QuestionAnswer(question='Explain the concept of virtual DOM in React and how it helps in improving performance of web applications.', answer='hi', question_num=3, rating=0, explanation='')]
-    suggested_skills: list=["React","Java"]
+    user_confirmed_interview:bool = False
+    question_answers: list[QuestionAnswer]=[]
+    suggested_skills: list=[]
     questions_count:int = 3
     evaluation_output: str = ""
 

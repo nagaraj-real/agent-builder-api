@@ -75,6 +75,16 @@ def rating_agent():
             agent_type= get_default_agent_type()
       )
 
+def interview_agent():
+    return AgentParams(
+            name="interview_agent",
+            preamble= """
+            You are very powerful interview preparation agent.
+            """,
+            tools=  [],
+            agent_type= get_default_agent_type()
+      )
+
 def get_all_agents():
     return [
             default_agent(),
@@ -84,7 +94,8 @@ def get_all_agents():
             rest_api_agent(),
             python_agent(),
             resume_vector_agent(),
-            rating_agent()
+            rating_agent(),
+            interview_agent()
     ]
 
 def get_agent_builder(params:AgentBuilderParams):

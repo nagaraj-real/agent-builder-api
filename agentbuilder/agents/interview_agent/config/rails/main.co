@@ -19,8 +19,8 @@ flow bot express start interview
   global $interview_state
   $programming_language = $interview_state["programming_language"]
   $user_confirmed = $interview_state["user_confirmed_interview"]
-  $job_skills = await GetInterviewJobSkillsAction()
   if not $programming_language
+    $job_skills = await GetInterviewJobSkillsAction()
     bot express request programming language $job_skills
   elif not $user_confirmed
     bot express interview start confirmation
@@ -36,6 +36,8 @@ flow bot express interview start confirmation
   bot express interview start
   If user declined, respond in following format:
   bot express interview declined
+  If user neither confirmed nor declined, respond in following format:
+  bot say "Sorry I did not get that ! Are you ready for your interview ?"
   """
   global $user_message
   ...
@@ -50,16 +52,20 @@ flow bot express interview start
   global $interview_state
   $num_questions= $interview_state["questions_count"]
   $user_confirmed = $interview_state["user_confirmed_interview"]
+  $current_question = $interview_state["current_question"]
   $qa = $interview_state["question_answers"]
+
   if not $user_confirmed
     await UpdateInterviewStateAction(new_data={"user_confirmed_interview": True})
-  else
+
+  if $current_question
     $qa = await AddInterviewQuestionsAction(answer=$user_message)
 
-  if len($qa) <= $num_questions-1
+  if len($qa) == 0 or len($qa) < $num_questions-1
     $question = await bot express interview questions
     await UpdateInterviewStateAction(new_data={"current_question": $question})
   else 
+    await UpdateInterviewStateAction(new_data={"current_question": ""})
     $response = await InterviewRatingAction()
     bot say """{$response}"""
     

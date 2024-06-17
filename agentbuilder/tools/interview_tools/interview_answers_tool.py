@@ -1,5 +1,5 @@
 from agentbuilder.agents.interview_agent.data import interview_state
-from agentbuilder.agents.interview_agent.data.InterviewStateModel import QuestionAnswer
+from agentbuilder.agents.interview_agent.data.models import QuestionAnswer
 from langchain_core.tools import StructuredTool
 
 async def interview_answers() -> list[QuestionAnswer]:
