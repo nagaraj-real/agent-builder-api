@@ -7,6 +7,7 @@ from agentbuilder.llm.gemini_llm import gemini_chat,gemini_embed
 from agentbuilder.llm.cohere_llm import cohere_chat,cohere_embed
 from agentbuilder.llm.ollama_llm import ollama_chat,ollama_functions_chat
 from agentbuilder.llm.openai_llm import openai_chat,openai_embed
+from agentbuilder.llm.nvidia_llm import nvidia_chat
 from langchain.agents import create_tool_calling_agent
 import os
 
@@ -32,6 +33,8 @@ def get_chat_llm(*args,**Kwargs):
             return openai_chat(*args,**default_kwargs)
         case "anthropic":
             return anthropic_chat(*args,**default_kwargs)
+        case "nvidia":
+            return nvidia_chat(*args,**default_kwargs)
         case _:
             raise Exception(f"Model not found: {model}")
 

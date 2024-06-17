@@ -2,7 +2,7 @@ from langchain_core.tools import StructuredTool
 from pydantic.v1 import BaseModel, Field
 from agentbuilder.agents.interview_agent.data import interview_state
 
-async def save_evaluation(markdown_output:str) -> dict|None:
+def save_evaluation(markdown_output:str) -> dict|None:
     """
     Saves final evaluation report in markdown format
     """
@@ -16,7 +16,7 @@ class SaveEvaluationInputs(BaseModel):
     markdown_output:str = Field(description="Evaluation report in markdown format")
 
 save_evaluation_tool= StructuredTool.from_function(
-        coroutine=save_evaluation,
+        func=save_evaluation,
         name="save_evaluation_tool",
         description="Saves final evaluation report in markdown format",
         args_schema=SaveEvaluationInputs

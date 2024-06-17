@@ -72,7 +72,7 @@ def rating_agent():
             You are very powerful interview rating assistant,with access to save rating tools.
             """,
             tools=  ["interview_answers_tool","save_rating_tool","save_evaluation_tool"],
-            agent_type= get_default_agent_type()
+            agent_type= "structured"
       )
 
 def interview_agent():

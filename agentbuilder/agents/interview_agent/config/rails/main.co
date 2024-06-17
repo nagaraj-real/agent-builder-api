@@ -29,15 +29,27 @@ flow bot express start interview
 
 flow bot express interview start confirmation
   """
+
+  You are a bot that verifies user confirmation and can respond only using bot expressions.
+
+  # Important:
+  You can only respond using any of the following 3 bot expressions:
+  - bot say "Sorry I did not get that ! Are you ready for your interview ?"
+  - bot express interview start
+  - bot express interview declined
+
   The user was asked a confirmation question for which the user gave the following response: 
   {{ user_message }}
   
-  If user confirmed, respond in following format:
+  If user confirmed, respond with following expression:
   bot express interview start
-  If user declined, respond in following format:
+
+  If user declined, respond with following expression:
   bot express interview declined
-  If user neither confirmed nor declined, respond in following format:
+
+  If user neither confirmed nor declined, respond with following expression:
   bot say "Sorry I did not get that ! Are you ready for your interview ?"
+
   """
   global $user_message
   ...
@@ -61,7 +73,7 @@ flow bot express interview start
   if $current_question
     $qa = await AddInterviewQuestionsAction(answer=$user_message)
 
-  if len($qa) == 0 or len($qa) < $num_questions-1
+  if len($qa) == 0 or len($qa) < $num_questions
     $question = await bot express interview questions
     await UpdateInterviewStateAction(new_data={"current_question": $question})
   else 
@@ -77,7 +89,18 @@ flow bot express rating list $result
 
 flow bot express request programming language $job_skills
   """
-  You are a bot that can help in interview preparation.
+  You are a bot that can extract the programming language from user message.
+
+  # This is how a conversation between a user and the bot can go:
+  {{ sample_conversation }}
+
+  # This is how the bot talks:
+  {{ examples }}
+  bot express programming language confirm "react"
+  bot express which language
+
+  The user was asked a confirmation question for which the user gave the following response: 
+  {{ user_message }}
 
   Below is the message from user.
   "user say {{ user_message }}"
@@ -87,9 +110,10 @@ flow bot express request programming language $job_skills
   or it could be any other progamming language.
 
   If the user provided any programming language, generate the output in following format:
-    bot express programming language confirm "<<programming_language>>"
+  bot express programming language confirm "<<programming_language>>"
+
   If the user did not provide any programming language, generate the output in following format:
-    bot express which language
+  bot express which language
   """
   global $user_message
   ...
@@ -106,37 +130,37 @@ flow bot express programming language confirm $programming_language
   bot say "Your progamming language is set to : {$programming_language}. Would you like you start Interview ?"
 
 flow bot express interview questions
-    """
-    You are a bot that can prepare the user for interview on 
-    programming language : 
-    "{{ programming_language }}".
+  """
+  You are a bot that can prepare the user for interview on 
+  programming language : 
+  "{{ programming_language }}".
 
-    Generate a single programming question for the user and make sure to follow these rules.
-    - Use any of the following types of question.
-      - Coding questions that require the developer to write code.
-      - Non coding questions that answer can answer without coding skills
+  Generate a single programming question for the user and make sure to follow these rules.
+  - Use any of the following types of question.
+    - Coding questions that require the developer to write code.
+    - Non coding questions that answer can answer without coding skills
 
-    Use total number of questions and conversation history to identify what type of question you should ask.
-    Make sure the question is not repeated. Check conversation history for previous questions.
-    Also make sure to switch question type based on the type of previous questions.
+  Use total number of questions and conversation history to identify what type of question you should ask.
+  Make sure the question is not repeated. Check conversation history for previous questions.
+  Also make sure to switch question type based on the type of previous questions.
 
-    Total number of questions: "{{ num_questions }}".
+  Total number of questions: "{{ num_questions }}".
 
-    Refer conversation history for previous questions.
-    Conversation history:
-    "{{ convo_history }}"
+  Refer conversation history for previous questions.
+  Conversation history:
+  "{{ convo_history }}"
 
-    The question should test a lead developer for understanding of the language.
+  The question should test a lead developer for understanding of the language.
 
-    # Important.
-    Generate the output in following format.
-      bot say "<<question>>"
-      return "<<question>>"
-    """
-    global $interview_state
-    $programming_language = $interview_state["programming_language"]
-    $num_questions= $interview_state["questions_count"]
-    ...
+  # Important.
+  Generate the output in following format and fill only <<question>>, keep other terms fixed.
+  bot say '''<<question>>'''
+  return '''<<question>>'''
+  """
+  global $interview_state
+  $programming_language = $interview_state["programming_language"]
+  $num_questions= $interview_state["questions_count"]
+  ...
     
 
 

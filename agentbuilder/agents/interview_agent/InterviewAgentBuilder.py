@@ -5,6 +5,7 @@ from nemoguardrails.integrations.langchain.runnable_rails import RunnableRails
 from langchain_core.runnables import Runnable,RunnableLambda
 from langchain_core.messages import AIMessage,HumanMessage
 from agentbuilder.agents.interview_agent.data import interview_state
+from agentbuilder.llm.nvidia_llm import nvidia_chat
 
 class InterviewAgentBuilder(BaseNemoGuardRailsBuilder):
     guardrails = None 
@@ -12,6 +13,7 @@ class InterviewAgentBuilder(BaseNemoGuardRailsBuilder):
     def __init__(self,params):
         super().__init__(params=params)
         self.config=RailsConfig.from_path(str(Path(__file__).parent)+"./config")
+        self.chat_llm = nvidia_chat()
         self.guardrails= RunnableRails(config=self.config,llm=self.chat_llm,verbose=True)
 
     def create_agent(self) -> Runnable:

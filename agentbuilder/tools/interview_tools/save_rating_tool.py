@@ -2,7 +2,7 @@ from langchain_core.tools import StructuredTool
 from pydantic.v1 import BaseModel, Field
 from agentbuilder.agents.interview_agent.data import interview_state
 
-async def save_rating(rating:int,explanation:str,question_number:int) -> dict|None:
+def save_rating(rating:int,explanation:str,question_number:int) -> dict|None:
     """
     Saves the interview programming skills
     """
@@ -18,7 +18,7 @@ class SaveRatingInputs(BaseModel):
     question_number:str = Field(description="question number")
 
 save_rating_tool= StructuredTool.from_function(
-        coroutine=save_rating,
+        func=save_rating,
         name="save_rating_tool",
         description="Saves the rating for each question",
         args_schema=SaveRatingInputs
