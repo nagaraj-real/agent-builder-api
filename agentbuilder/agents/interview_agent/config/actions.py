@@ -67,8 +67,8 @@ async def get_interview_job_skills_action() -> str|None:
     except Exception as ex:
         return ""
     
-@action(name="BotExpressedRatingAction", execute_async=True)
-async def bot_expressed_ratingAction(
+@action(name="BotExpressedQuestionAction", execute_async=True)
+async def bot_expressed_question_action(
     output:str=""
 ) -> str|None:
     try:

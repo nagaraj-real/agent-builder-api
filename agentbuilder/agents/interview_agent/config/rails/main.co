@@ -32,14 +32,18 @@ flow bot express interview start confirmation
 
   You are a bot that verifies user confirmation and can respond only using bot expressions.
 
-  # Important:
-  You can only respond using any of the following 3 bot expressions:
+  The user was asked a confirmation question for which the user gave the following response: 
+  {{ user_message }}
+
+  # Important.
+  Follow below rules while generating output.
+  1. Output text should not contain any internal thoughts.
+  2. Output response should only use the provided format below.
+  3. Output response must strictly follow bot expression with proper python like indentation.
+  4. Example Outputs:
   - bot say "Sorry I did not get that ! Are you ready for your interview ?"
   - bot express interview start
   - bot express interview declined
-
-  The user was asked a confirmation question for which the user gave the following response: 
-  {{ user_message }}
   
   If user confirmed, respond with following expression:
   bot express interview start
@@ -74,13 +78,19 @@ flow bot express interview start
     $qa = await AddInterviewQuestionsAction(answer=$user_message)
 
   if len($qa) == 0 or len($qa) < $num_questions
-    $question = await bot express interview questions
-    await UpdateInterviewStateAction(new_data={"current_question": $question})
+    bot express interview questions and bot express question
   else 
     await UpdateInterviewStateAction(new_data={"current_question": ""})
     $response = await InterviewRatingAction()
     bot say """{$response}"""
-    
+
+flow bot express question
+  match BotExpressedQuestionActionFinished() as $event_ref
+  $question = $event_ref.arguments["return_value"]
+  print($question)
+  await UpdateInterviewStateAction(new_data={"current_question": """{$question}"""})
+  bot say """{$question}"""
+  
 
 flow bot express rating list $result
   $rating_list = ..."Answers provided: '{$result}'. Provide the ratings in a list structure, e.g. [2, 3]"
@@ -89,25 +99,23 @@ flow bot express rating list $result
 
 flow bot express request programming language $job_skills
   """
-  You are a bot that can extract the programming language from user message.
-
-  # This is how a conversation between a user and the bot can go:
-  {{ sample_conversation }}
-
-  # This is how the bot talks:
-  {{ examples }}
-  bot express programming language confirm "react"
-  bot express which language
-
+  You are a bot that checks if user has provided any programming language and 
+  use bot expressions to respond.
+  
   The user was asked a confirmation question for which the user gave the following response: 
   {{ user_message }}
 
-  Below is the message from user.
-  "user say {{ user_message }}"
-
-  Extract the programming language from the user message.
+  Try to extract the programming language from the user message.
   The programming language provided could be part of the list: {{ job_skills }}
   or it could be any other progamming language.
+  # Important.
+  Follow below rules while generating output.
+  1. Output text should not contain any internal thoughts.
+  2. Output response should only use the provided format below.
+  3. Output response must strictly follow bot expression with proper python like indentation.
+  4. Example Outputs:
+  - bot express programming language confirm "Python"
+  - bot express which language
 
   If the user provided any programming language, generate the output in following format:
   bot express programming language confirm "<<programming_language>>"
@@ -135,6 +143,9 @@ flow bot express interview questions
   programming language : 
   "{{ programming_language }}".
 
+  This is how the bot responds:
+  {{ examples }}
+
   Generate a single programming question for the user and make sure to follow these rules.
   - Use any of the following types of question.
     - Coding questions that require the developer to write code.
@@ -153,9 +164,18 @@ flow bot express interview questions
   The question should test a lead developer for understanding of the language.
 
   # Important.
-  Generate the output in following format and fill only <<question>>, keep other terms fixed.
-  bot say '''<<question>>'''
-  return '''<<question>>'''
+  Follow below rules while generating output.
+  1. Output text should not contain any internal thoughts.
+  2. Output response should only contain the question.
+  3. Output response must strictly follow bot expression with proper python like indentation.
+  4. Example Output:
+  BotExpressedQuestionAction(output='''write fibonnaci code''')
+  5. Use Fill in mode to replace only <<question>> in the output format.
+  6. <<question>> should not contain be enclosed in quotes.
+  6. Make sure the final output can be parsed as python expression.
+
+  Now generate the output for the question :<<question>> in the below format:
+  BotExpressedQuestionAction(output='''<<question>>''')
   """
   global $interview_state
   $programming_language = $interview_state["programming_language"]

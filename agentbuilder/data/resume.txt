@@ -1,49 +1,28 @@
-SUMMARY OF QUALIFICATIONS
-▪ Project management and consulting experience primarily focused upon nonprofit projects, requiring quick
-turnarounds and extensive troubleshooting
-▪ Proven skills in planning, strategy development, and knowledge of customer and client business processes
-▪ Excellent team-building and management skills with demonstrated success
-EDUCATION
-Southeastern Louisiana University (SLU) Hammond, LA
-Bachelor of Science in Computer Science May 2021
-Thesis: Computerized Enrollment and Student Information Systems
-▪ Major GPA: 3.84/4.00
-▪ Taylor Opportunity Program for Students Scholarship
-TECHNICAL SKILLS
-▪ Programming Languages: Visual Basic, SQL, C, C++, Java
-▪ Operating Systems: Windows NT/ 2000/ XP/ Vista, Linux, Unix
-▪ Database: SQL Server, Microsoft (MS) Access, Oracle
-▪ Software: JCL, SQL, DB2, MS Visio, MS Excel, MS FrontPage, MS Word
-RELATED EXPERIENCE
-Blog Writer Hammond, LA
-SLU Computer Science Department August 2020 – Present
-▪ Designed a student portal website that allows access to blogs, research articles, and inter-office communication
-▪ Wrote and published 5+ blog posts highlighting current industry trends, meeting monthly deadlines
-▪ Interviewed faculty, staff, and employers ambitiously to generate content for blog posts and other relevant articles
-Financial Network Services, Pty Ltd. Sydney, Australia
-Unix Administrator Assistant June – August 2019
-▪ Operated Unix Hp/Ux 11i in the transferring of files between development and testing regions
-▪ Led team of 4 to configure notebooks and install multilingual software for 6 overseas consultants
-▪ Created user accounts and set permissions and passwords with UNIX - SCO
-PROJECT EXPERIENCE
-Tangi Humane Society Hammond, LA
-Web Programming Class January 2020 – June 2020
-▪ Served as a project team leader and developed a database to track the adoption of animals proficiently
-▪ Used Visual Basic to effectively establish a new user interface that improved user experience significantly
-▪ Incorporated Java, HTML, and Flash to create an interactive website
-LEADERSHIP EXPERIENCE
-Pi Kappa Alpha Fraternity, Mu Nu Chapter Hammond, LA
-Risk Manager September 2020 – May 2021
-▪ Regulated and ensured the compliance of campus and chapter safety rules and regulations for 85 members
-▪ Handled regulation violations and distribute appropriate sanctions
-▪ Coordinated 2 educational programs per semester to proactively avoid possible risks
-Treasurer September 2019 – May 2020
-▪ Managed comprehensive budget of $55,000+ and allocated funds as needed
-▪ Accurately completed all transactions and purchases to ensure proper account balances
-Self-Employed Lawn Service New Orleans, LA
-Lawn Maintenance Seasonal, Summers 2017 – 2019
-▪ Successfully established and retained customer base of 75 homes in local neighborhoods
-▪ Gained advanced experience establishing a small business, including marketing, sales, and financial components
-HONORS & INVOLVEMENT
-▪ Dean’s List (3 semesters); Presidential Scholar (2 semesters)
-▪ Women in Technology (August 2019 – May 2021); Intramural Soccer (Spring 2019
+Sabrina Chesterfield
+Buffalo, NY | 716-555-0195 | schesterfield@email.com
+Summary
+&nbsp;
+Self-motivated problem solver with experience in Android development using GitHub and Java. Designed and maintained the applications' full stacks through design, testing and deployment.
+Education
+&nbsp;
+Natural University
+2020
+Bachelor of Science in computer science
+Experience
+&nbsp;
+Marketeers, Inc., New York, NY, Android Developer
+December 2020 – Current
+Migrated applications from other operating systems to Android
+Coordinated updates for data storage and retrieval
+Designed new Android marketing software
+Integrated APIs for all applications
+Fixed application bugs within 24-hour service level agreement
+Certifications
+&nbsp;
+Associate Android Developer Certification, Google - 2020
+Skills
+&nbsp;
+Java
+Critical thinking
+UI/UX
+HTML
