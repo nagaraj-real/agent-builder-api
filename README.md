@@ -293,4 +293,29 @@ Supports _{Provider}/{ModelName}_ format
   MODEL_NAME="ollama/mistral:v0.3"
   ```
 
+## Setting up the repository for VS Code
 
+To set up the repository for VS Code, follow these steps:
+
+1. Install [Visual Studio Code](https://code.visualstudio.com/).
+2. Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
+3. Clone the repository to your local machine.
+4. Open the repository in VS Code.
+5. When prompted, reopen the repository in a container.
+
+## Using the provided dev containers
+
+The repository includes multiple `devcontainer.json` files for different configurations. To use the provided dev containers:
+
+1. Open the repository in VS Code.
+2. Press `F1` and select `Dev Containers: Reopen in Container`.
+3. Choose the appropriate `devcontainer.json` file for your configuration.
+
+## Using the provided `.vscode/launch.json` for debugging
+
+The `.vscode/launch.json` file is configured for debugging with Python and FastAPI. To use it:
+
+1. Open the repository in VS Code.
+2. Set breakpoints in your code where you want to debug.
+3. Press `F5` to start debugging.
+4. The server will start, and you can debug your code using the breakpoints you set.
