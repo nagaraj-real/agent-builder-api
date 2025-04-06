@@ -19,7 +19,7 @@ You can also open GitHub Codespaces in a remote environment/browser using secret
    ```sh
    python -m venv --prompt agent-builder-api venv
    source venv/bin/activate
-   # venv/Scripts/activate (Windows)
+   # venv/Scripts/activate (Windows PS)
    pip install -r requirements.txt
    ```
 
@@ -45,7 +45,7 @@ For fine-grained dependency management, use [Poetry](https://python-poetry.org/)
 2. Pick and choose dependency packs to install.
 
    ```sh
-   poetry install --extras "openai gemini cohere anthropic mongodb vectordb langgraph"
+   poetry install --extras "openai gemini cohere anthropic mongodb vectordb langgraph guardrails ui"
    ```
 
 3. Set the model name and API key in **.env** file
@@ -100,7 +100,7 @@ MONGODB_URL="mongodb://localhost:27017/llmdb"
 Dependency packs allow fine-grained package installations based on your requirements.
 Use the environment variable EXTRA_DEPS in the docker-compose file to update.
 
-*install-extra-deps.sh* script can be used in dev container mode if docker-compose is not available.
+_install-extra-deps.sh_ script can be used in dev container mode if docker-compose is not available.
 
 For example, the below environment configuration will install dependencies for the Gemini model,
 Mongo DB, Langchain Graph, and VectorDB
@@ -278,8 +278,9 @@ Supports _{Provider}/{ModelName}_ format
 - Ollama
 
   Use local models for function calls.
-> [!TIP]
-> Use JSON chat agent type for better compatibility with local models.
+
+  > [!TIP]
+  > Use JSON chat agent type for better compatibility with local models.
 
   Install [Ollama](https://ollama.com/) and pull the model.
 
@@ -292,5 +293,3 @@ Supports _{Provider}/{ModelName}_ format
   ```env
   MODEL_NAME="ollama/mistral:v0.3"
   ```
-
-

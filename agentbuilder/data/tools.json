@@ -34,7 +34,7 @@
     },
     "weather_clothing_tool": {
         "name": "weather_clothing_tool",
-        "description": "Returns clothing for the given temperature input",
+        "description": "weather_clothing_tool(temperature: float) -> str - Returns clothing for the given temperature input",
         "metadata": {
             "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\weather_tools.py"
         },
@@ -48,7 +48,7 @@
     },
     "temperature_tool": {
         "name": "temperature_tool",
-        "description": "Provides current temperature for a given city in celsius",
+        "description": "temperature_tool(city: str) -> str - Provides current temperature for a given city in celsius",
         "metadata": {
             "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\weather_tools.py"
         },
@@ -84,7 +84,7 @@
     },
     "git_pull_request_diff_tool": {
         "name": "git_pull_request_diff_tool",
-        "description": "Provides the code diff for a pull request",
+        "description": "git_pull_request_diff_tool(url: str) - Provides the code diff for a pull request",
         "metadata": {
             "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\git_pull_request_tool.py"
         },
@@ -107,6 +107,62 @@
                 "title": "Code",
                 "description": "Python code to execute.",
                 "type": "string"
+            }
+        }
+    },
+    "save_rating_tool": {
+        "name": "save_rating_tool",
+        "description": "save_rating_tool(correct_answer: str, rating: int | str, explanation: str, question_number: int | str) -> str | None - Saves the correct answer along with rating and explanation of the user answer for each question",
+        "metadata": null,
+        "params": {
+            "correct_answer": {
+                "title": "Correct Answer",
+                "description": "Expected correct answer for the question",
+                "type": "string"
+            },
+            "rating": {
+                "title": "Rating",
+                "description": "Rating for the answer between 1 to 10",
+                "anyOf": [
+                    {
+                        "type": "integer"
+                    },
+                    {
+                        "type": "string"
+                    }
+                ]
+            },
+            "explanation": {
+                "title": "Explanation",
+                "description": "Rating explanation",
+                "type": "string"
+            },
+            "question_number": {
+                "title": "Question Number",
+                "description": "question number",
+                "anyOf": [
+                    {
+                        "type": "integer"
+                    },
+                    {
+                        "type": "string"
+                    }
+                ]
+            }
+        }
+    },
+    "save_skill_tool": {
+        "name": "save_skill_tool",
+        "description": "save_skill_tool(skills_list: list[str]) -> dict | None - Saves the interview programming skills",
+        "metadata": null,
+        "params": {
+            "skills_list": {
+                "title": "Skills List",
+                "description": "programming skills list",
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
             }
         }
     },

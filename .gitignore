@@ -10,5 +10,6 @@ install_output.txt
 agentbuilder/agentbuilder.egg-info/*
 deploy.txt
 todo.md
+.env.sample
 
 

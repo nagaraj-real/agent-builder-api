@@ -1,0 +1,108 @@
+Job Summary
+
+Job Description
+
+What is the opportunity?
+
+As a senior frontend developer within the UX/UI team under the Innovation and Technology group, you're poised to drive transformative change at the forefront of new technologies within RBC. This role offers a unique opportunity to take lead on the development of user-centric interfaces that redefine the everyday experience of RBC employees. You'll collaborate closely with designers and backend engineers, leveraging your expertise to create sleek, intuitive, and responsive interfaces that enhance user engagement and satisfaction. With a focus on innovation, you'll have the chance to pioneer new technologies and methodologies for a variety of different applications that are data-centric and client facing.
+
+What will you do?
+
+Take charge in the development of cutting-edge frontend interfaces within RBC's Innovation and Technology group and Wealth Management.
+Collaborate closely with UX/UI designers to translate design concepts into intuitive and visually appealing user interfaces, adding animations and other micro-interactions to enhance the experience further.
+Utilize your expertise in frontend technologies to create responsive and accessible web applications.
+Drive innovation by utilizing and exploring new frontend frameworks, tools, and techniques.
+Mentor junior developers, fostering a culture of learning and growth within the team.
+Work closely with backend developers to ensure seamless integration of frontend and backend systems.
+Conduct code reviews and enforce best practices to maintain high-quality code standards.
+Stay abreast of industry trends and emerging technologies to continuously enhance the bank's internal digital offerings.
+
+What do you need to succeed?
+
+Must have
+
+Demonstrated ability in written and oral communication skills along with strong presentation skills. Ability to determine the information and communication needs of the stakeholders and project.
+3-4 years experience in HTML5/SASS/CSS and producing pixel-perfect interfaces according to design wireframes.
+3-4 years experience in TypeScript and JavaScript with a strong deep understanding of the intricacies of both languages.
+2-3 years experience in either React, VueJS or Angular frameworks.
+3-4 years experience in using Git or other version control systems.
+
+Nice-to-have
+
+Bachelor degree in Software Engineering or Computer Science.
+Experience in Agile methodology and the software development lifecycle.
+Experience in technology and/or financial services industry.
+Backend development experience in Node.JS, Python 3 or C#.
+Strategic thinker with excellent interpersonal skills to work across functions and businesses.
+
+What’s in it for you?
+
+We thrive on the challenge to be our best, progressive thinking to keep growing, and working together to deliver trusted advice to help our clients thrive and communities prosper. We care about each other, reaching our potential, making a difference to our communities, and achieving success that is mutual.
+
+A comprehensive Total Rewards Program including bonuses and flexible benefits, competitive compensation, commissions, and stock where applicable
+Leaders who support your development through coaching and managing opportunities
+Ability to make a difference and lasting impact
+Work in a dynamic, collaborative, progressive, and high-performing team
+A world-class training program in financial services
+Flexible work/life balance options
+Opportunities to do challenging work
+
+#TECHPJ
+
+Job Skills
+
+Analytical Thinking, Angular, Animation, Cascading Style Sheets (CSS), Core JavaScript, Debugging, Design, End-to-End Testing, HTML5, Node.js, Pixel Perfect, Python (Programming Language), React.js, Responsive UI, Sass Scss, Software Development Life Cycle (SDLC), TypeScript, Unit Testing, User Interface (UI) Design, Vue.js, Web Accessibility
+
+Additional Job Details
+
+Address:
+
+RBC WATERPARK PLACE, 88 QUEENS QUAY W:TORONTO
+
+City:
+
+TORONTO
+
+Country:
+
+Canada
+
+Work hours/week:
+
+37.5
+
+Employment Type:
+
+Full time
+
+Platform:
+
+Technology and Operations
+
+Job Type:
+
+Regular
+
+Pay Type:
+
+Salaried
+
+Posted Date:
+
+2024-04-26
+
+Application Deadline:
+
+2024-06-28
+
+Inclusion and Equal Opportunity Employment
+
+At RBC, we embrace diversity and inclusion for innovation and growth. We are committed to building inclusive teams and an equitable workplace for our employees to bring their true selves to work. We are taking actions to tackle issues of inequity and systemic bias to support our diverse talent, clients and communities.
+
+We also strive to provide an accessible candidate experience for our prospective employees with different abilities. Please let us know if you need any accommodations during the recruitment process.
+
+Join our Talent Community
+
+Stay in-the-know about great career opportunities at RBC. Sign up and get customized info on our latest jobs, career tips and Recruitment events that matter to you.
+
+Expand your limits and create a new future together at RBC. Find out how we use our passion and drive to enhance the well-being of our clients and communities at jobs.rbc.com</a/span>

@@ -1,18 +1,18 @@
 {
-    "(what is 5 + 8,sum_agent,afa5fd5a-1e2d-11ef-af8d-60a5e2d4ce9c)": {
-        "query": "what is 5 + 8",
-        "id": "afa5fd5b-1e2d-11ef-9f83-60a5e2d4ce9c",
+    "(what is 8 + 10,sum_agent,5c57529a-131e-11f0-83f3-60a5e2d4ce9c)": {
+        "query": "what is 8 + 10",
+        "id": "5c57529b-131e-11f0-b2b4-60a5e2d4ce9c",
         "agent_name": "sum_agent",
-        "output": "The sum of 5 and 8 is 13. Let me know if there's anything else you'd like to know or calculate!",
+        "output": "The sum of 8 and 10 is 18.",
         "steps": [
             {
                 "tool": {
                     "tool": "sum_operation",
                     "tool_input": {
-                        "a": 5,
-                        "b": 8
+                        "a": 8,
+                        "b": 10
                     },
-                    "log": "\nInvoking: `sum_operation` with `{'a': 5, 'b': 8}`\n\n\n",
+                    "log": "\nInvoking: `sum_operation` with `{'a': 8, 'b': 10}`\n\n\n",
                     "type": "AgentActionMessageLog",
                     "message_log": [
                         {
@@ -21,9 +21,9 @@
                                 "tool_calls": [
                                     {
                                         "index": 0,
-                                        "id": "call_sr2sPnrWGa4qpyiUIQ4PQjjO",
+                                        "id": "call_gJh1YcnudENrK4OJABmBWIra",
                                         "function": {
-                                            "arguments": "{\"a\":5,\"b\":8}",
+                                            "arguments": "{\"a\":8,\"b\":10}",
                                             "name": "sum_operation"
                                         },
                                         "type": "function"
@@ -35,56 +35,49 @@
                             },
                             "type": "AIMessageChunk",
                             "name": null,
-                            "id": "run-bc085b37-c8a1-4455-87d7-f043aa23f4be",
+                            "id": "run-2df2065f-fa7f-430f-ae1f-282d46b3dbb0",
                             "example": false,
                             "tool_calls": [
                                 {
                                     "name": "sum_operation",
                                     "args": {
-                                        "a": 5,
-                                        "b": 8
+                                        "a": 8,
+                                        "b": 10
                                     },
-                                    "id": "call_sr2sPnrWGa4qpyiUIQ4PQjjO"
+                                    "id": "call_gJh1YcnudENrK4OJABmBWIra"
                                 }
                             ],
                             "invalid_tool_calls": [],
                             "tool_call_chunks": [
                                 {
                                     "name": "sum_operation",
-                                    "args": "{\"a\":5,\"b\":8}",
-                                    "id": "call_sr2sPnrWGa4qpyiUIQ4PQjjO",
+                                    "args": "{\"a\":8,\"b\":10}",
+                                    "id": "call_gJh1YcnudENrK4OJABmBWIra",
                                     "index": 0
                                 }
                             ]
                         }
                     ],
-                    "tool_call_id": "call_sr2sPnrWGa4qpyiUIQ4PQjjO",
+                    "tool_call_id": "call_gJh1YcnudENrK4OJABmBWIra",
                     "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\sum_tool.py"
                 },
-                "output": 13
+                "output": 18
             }
         ]
     },
-    "(hello,sum_agent,aa997fa8-1e2d-11ef-b61e-60a5e2d4ce9c)": {
-        "query": "hello",
-        "id": "aa997fa9-1e2d-11ef-988d-60a5e2d4ce9c",
-        "agent_name": "sum_agent",
-        "output": "It seems like you greeted me with \"hello\" again. How can I assist you today?",
-        "steps": []
-    },
-    "(hello,default_agent,a1b48650-1e2d-11ef-984d-60a5e2d4ce9c)": {
-        "query": "hello",
-        "id": "a1b48651-1e2d-11ef-8371-60a5e2d4ce9c",
-        "agent_name": "default_agent",
-        "output": "Hello user, I can use my existing knowledge and tools to answer your questions. In fact, I am currently using a tool 'Hello World'.",
+    "(toronto,weather_agent,1a565647-131e-11f0-b878-60a5e2d4ce9c)": {
+        "query": "toronto",
+        "id": "1a565648-131e-11f0-bcb9-60a5e2d4ce9c",
+        "agent_name": "weather_agent",
+        "output": "The current temperature in Toronto is 10 degrees Celsius, and it is considered cold. It is recommended to wear a warm jacket to stay comfortable in this weather.",
         "steps": [
             {
                 "tool": {
-                    "tool": "greeting_tool",
+                    "tool": "temperature_tool",
                     "tool_input": {
-                        "name": "user"
+                        "city": "Toronto"
                     },
-                    "log": "\nInvoking: `greeting_tool` with `{'name': 'user'}`\n\n\n",
+                    "log": "\nInvoking: `temperature_tool` with `{'city': 'Toronto'}`\n\n\n",
                     "type": "AgentActionMessageLog",
                     "message_log": [
                         {
@@ -93,10 +86,10 @@
                                 "tool_calls": [
                                     {
                                         "index": 0,
-                                        "id": "call_OSVi6PL0ubrDSVT4PeNiAkFg",
+                                        "id": "call_4iZoQnaFSjUbqkrsxLdZ0RSq",
                                         "function": {
-                                            "arguments": "{\"name\":\"user\"}",
-                                            "name": "greeting_tool"
+                                            "arguments": "{\"city\":\"Toronto\"}",
+                                            "name": "temperature_tool"
                                         },
                                         "type": "function"
                                     }
@@ -107,32 +100,520 @@
                             },
                             "type": "AIMessageChunk",
                             "name": null,
-                            "id": "run-f10207cc-0afa-477c-be45-04e8d09d09dc",
+                            "id": "run-bb434985-1df4-4529-b141-62de72b0b3f7",
                             "example": false,
                             "tool_calls": [
                                 {
-                                    "name": "greeting_tool",
+                                    "name": "temperature_tool",
                                     "args": {
-                                        "name": "user"
+                                        "city": "Toronto"
                                     },
-                                    "id": "call_OSVi6PL0ubrDSVT4PeNiAkFg"
+                                    "id": "call_4iZoQnaFSjUbqkrsxLdZ0RSq"
                                 }
                             ],
                             "invalid_tool_calls": [],
                             "tool_call_chunks": [
                                 {
-                                    "name": "greeting_tool",
-                                    "args": "{\"name\":\"user\"}",
-                                    "id": "call_OSVi6PL0ubrDSVT4PeNiAkFg",
+                                    "name": "temperature_tool",
+                                    "args": "{\"city\":\"Toronto\"}",
+                                    "id": "call_4iZoQnaFSjUbqkrsxLdZ0RSq",
                                     "index": 0
                                 }
                             ]
                         }
                     ],
-                    "tool_call_id": "call_OSVi6PL0ubrDSVT4PeNiAkFg",
-                    "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\greeting_tool.py"
+                    "tool_call_id": "call_4iZoQnaFSjUbqkrsxLdZ0RSq",
+                    "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\weather_tools.py"
                 },
-                "output": "Hello user, I can use my existing knowledge and tools to answer your questions. Infact, I am currently using a tool 'Hello World' "
+                "output": "10 degrees celsius"
+            },
+            {
+                "tool": {
+                    "tool": "temperature_sensor_tool",
+                    "tool_input": {
+                        "temperature": 10
+                    },
+                    "log": "\nInvoking: `temperature_sensor_tool` with `{'temperature': 10}`\n\n\n",
+                    "type": "AgentActionMessageLog",
+                    "message_log": [
+                        {
+                            "content": "",
+                            "additional_kwargs": {
+                                "tool_calls": [
+                                    {
+                                        "index": 0,
+                                        "id": "call_YnaApuVv8R2c9C9zphUNhRIZ",
+                                        "function": {
+                                            "arguments": "{\"temperature\":10}",
+                                            "name": "temperature_sensor_tool"
+                                        },
+                                        "type": "function"
+                                    }
+                                ]
+                            },
+                            "response_metadata": {
+                                "finish_reason": "tool_calls"
+                            },
+                            "type": "AIMessageChunk",
+                            "name": null,
+                            "id": "run-3a82698f-6c64-4418-89ef-7d9f5d868ae9",
+                            "example": false,
+                            "tool_calls": [
+                                {
+                                    "name": "temperature_sensor_tool",
+                                    "args": {
+                                        "temperature": 10
+                                    },
+                                    "id": "call_YnaApuVv8R2c9C9zphUNhRIZ"
+                                }
+                            ],
+                            "invalid_tool_calls": [],
+                            "tool_call_chunks": [
+                                {
+                                    "name": "temperature_sensor_tool",
+                                    "args": "{\"temperature\":10}",
+                                    "id": "call_YnaApuVv8R2c9C9zphUNhRIZ",
+                                    "index": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "tool_call_id": "call_YnaApuVv8R2c9C9zphUNhRIZ",
+                    "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\weather_tools.py"
+                },
+                "output": "cold"
+            },
+            {
+                "tool": {
+                    "tool": "weather_clothing_tool",
+                    "tool_input": {
+                        "temperature": 10
+                    },
+                    "log": "\nInvoking: `weather_clothing_tool` with `{'temperature': 10}`\n\n\n",
+                    "type": "AgentActionMessageLog",
+                    "message_log": [
+                        {
+                            "content": "",
+                            "additional_kwargs": {
+                                "tool_calls": [
+                                    {
+                                        "index": 0,
+                                        "id": "call_DrivrXgLAgpTBvhf1iIfu1Im",
+                                        "function": {
+                                            "arguments": "{\"temperature\":10}",
+                                            "name": "weather_clothing_tool"
+                                        },
+                                        "type": "function"
+                                    }
+                                ]
+                            },
+                            "response_metadata": {
+                                "finish_reason": "tool_calls"
+                            },
+                            "type": "AIMessageChunk",
+                            "name": null,
+                            "id": "run-0537e477-bb84-4a30-9e27-2e8b7fc41a51",
+                            "example": false,
+                            "tool_calls": [
+                                {
+                                    "name": "weather_clothing_tool",
+                                    "args": {
+                                        "temperature": 10
+                                    },
+                                    "id": "call_DrivrXgLAgpTBvhf1iIfu1Im"
+                                }
+                            ],
+                            "invalid_tool_calls": [],
+                            "tool_call_chunks": [
+                                {
+                                    "name": "weather_clothing_tool",
+                                    "args": "{\"temperature\":10}",
+                                    "id": "call_DrivrXgLAgpTBvhf1iIfu1Im",
+                                    "index": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "tool_call_id": "call_DrivrXgLAgpTBvhf1iIfu1Im",
+                    "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\weather_tools.py"
+                },
+                "output": "Warm Jacket"
+            }
+        ]
+    },
+    "(what's the weather,weather_agent,150d09d3-131e-11f0-8f0a-60a5e2d4ce9c)": {
+        "query": "what's the weather",
+        "id": "150d09d4-131e-11f0-828a-60a5e2d4ce9c",
+        "agent_name": "weather_agent",
+        "output": "Sure, I can provide you with the current weather information. Could you please specify the city or location you would like to know the weather for?",
+        "steps": []
+    },
+    "(hello,weather_agent,d53379d9-131d-11f0-a427-60a5e2d4ce9c)": {
+        "query": "hello",
+        "id": "d53379da-131d-11f0-9371-60a5e2d4ce9c",
+        "agent_name": "weather_agent",
+        "output": "Hello! How can I assist you today?",
+        "steps": []
+    },
+    "(,rating_agent,dc13c1da-131c-11f0-9b22-60a5e2d4ce9c)": {
+        "query": "",
+        "id": "dc13d78a-131c-11f0-98ce-60a5e2d4ce9c",
+        "agent_name": "rating_agent",
+        "output": "Hello! How can I assist you today?",
+        "steps": []
+    },
+    "(\n        You are a bot that can access candidate's resume and a job description.\n        Extract a list of programming languages (max 5) that candidate has to focus on\n        to help him secure the job. Try to pick languages that the candidate has least experience.\n        Finally save the programming language list.\n        ,resume_vector_agent,d47b4cc7-131c-11f0-b5b8-60a5e2d4ce9c)": {
+        "query": "\n        You are a bot that can access candidate's resume and a job description.\n        Extract a list of programming languages (max 5) that candidate has to focus on\n        to help him secure the job. Try to pick languages that the candidate has least experience.\n        Finally save the programming language list.\n        ",
+        "id": "d47b4cc8-131c-11f0-8fd2-60a5e2d4ce9c",
+        "agent_name": "resume_vector_agent",
+        "output": "I will need the candidate's resume and the job description to proceed. Please provide the candidate's resume and the job description so that I can analyze them and extract the required information.",
+        "steps": []
+    },
+    "(\n        You are a bot that can access candidate's resume and a job description.\n        Extract a list of programming languages (max 5) that candidate has to focus on\n        to help him secure the job. Try to pick languages that the candidate has least experience.\n        Finally save the programming language list.\n        ,resume_vector_agent,ce514731-131c-11f0-b173-60a5e2d4ce9c)": {
+        "query": "\n        You are a bot that can access candidate's resume and a job description.\n        Extract a list of programming languages (max 5) that candidate has to focus on\n        to help him secure the job. Try to pick languages that the candidate has least experience.\n        Finally save the programming language list.\n        ",
+        "id": "ce514732-131c-11f0-8243-60a5e2d4ce9c",
+        "agent_name": "resume_vector_agent",
+        "output": "To proceed, please provide the candidate's resume and the job description for analysis.",
+        "steps": []
+    },
+    "(Suggest what to wear in London,weather_agent,8eb29430-131c-11f0-affb-60a5e2d4ce9c)": {
+        "query": "Suggest what to wear in London",
+        "id": "8eb29431-131c-11f0-84ce-60a5e2d4ce9c",
+        "agent_name": "weather_agent",
+        "output": "You should wear a warm jacket in London as the temperature is 10\u00b0C.",
+        "steps": [
+            {
+                "tool": {
+                    "tool": "temperature_tool",
+                    "tool_input": {
+                        "city": "London"
+                    },
+                    "log": "\nInvoking: `temperature_tool` with `{'city': 'London'}`\n\n\n",
+                    "type": "AgentActionMessageLog",
+                    "message_log": [
+                        {
+                            "content": "",
+                            "additional_kwargs": {
+                                "tool_calls": [
+                                    {
+                                        "index": 0,
+                                        "id": "call_umUEsSEfpTfNnUNdbXzvtocc",
+                                        "function": {
+                                            "arguments": "{\"city\":\"London\"}",
+                                            "name": "temperature_tool"
+                                        },
+                                        "type": "function"
+                                    }
+                                ]
+                            },
+                            "response_metadata": {
+                                "finish_reason": "tool_calls"
+                            },
+                            "type": "AIMessageChunk",
+                            "name": null,
+                            "id": "run-d4209f8b-1af2-46b1-8fac-6bf1b6beca4d",
+                            "example": false,
+                            "tool_calls": [
+                                {
+                                    "name": "temperature_tool",
+                                    "args": {
+                                        "city": "London"
+                                    },
+                                    "id": "call_umUEsSEfpTfNnUNdbXzvtocc"
+                                }
+                            ],
+                            "invalid_tool_calls": [],
+                            "tool_call_chunks": [
+                                {
+                                    "name": "temperature_tool",
+                                    "args": "{\"city\":\"London\"}",
+                                    "id": "call_umUEsSEfpTfNnUNdbXzvtocc",
+                                    "index": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "tool_call_id": "call_umUEsSEfpTfNnUNdbXzvtocc",
+                    "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\weather_tools.py"
+                },
+                "output": "10 degrees celsius"
+            },
+            {
+                "tool": {
+                    "tool": "weather_clothing_tool",
+                    "tool_input": {
+                        "temperature": 10
+                    },
+                    "log": "\nInvoking: `weather_clothing_tool` with `{'temperature': 10}`\n\n\n",
+                    "type": "AgentActionMessageLog",
+                    "message_log": [
+                        {
+                            "content": "",
+                            "additional_kwargs": {
+                                "tool_calls": [
+                                    {
+                                        "index": 0,
+                                        "id": "call_TfbuzPs73tNTaObaVBpUH0W7",
+                                        "function": {
+                                            "arguments": "{\"temperature\":10}",
+                                            "name": "weather_clothing_tool"
+                                        },
+                                        "type": "function"
+                                    }
+                                ]
+                            },
+                            "response_metadata": {
+                                "finish_reason": "tool_calls"
+                            },
+                            "type": "AIMessageChunk",
+                            "name": null,
+                            "id": "run-9ce7378b-4dc0-469f-a5ee-f38519a303be",
+                            "example": false,
+                            "tool_calls": [
+                                {
+                                    "name": "weather_clothing_tool",
+                                    "args": {
+                                        "temperature": 10
+                                    },
+                                    "id": "call_TfbuzPs73tNTaObaVBpUH0W7"
+                                }
+                            ],
+                            "invalid_tool_calls": [],
+                            "tool_call_chunks": [
+                                {
+                                    "name": "weather_clothing_tool",
+                                    "args": "{\"temperature\":10}",
+                                    "id": "call_TfbuzPs73tNTaObaVBpUH0W7",
+                                    "index": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "tool_call_id": "call_TfbuzPs73tNTaObaVBpUH0W7",
+                    "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\weather_tools.py"
+                },
+                "output": "Warm Jacket"
+            }
+        ]
+    },
+    "(Suggest what to wear in London,sum_agent,8aec5d1c-131c-11f0-8d16-60a5e2d4ce9c)": {
+        "query": "Suggest what to wear in London",
+        "id": "8aec5d1d-131c-11f0-a7c2-60a5e2d4ce9c",
+        "agent_name": "sum_agent",
+        "output": "I can't help with that.",
+        "steps": []
+    },
+    "(what is 8 + 10,sum_agent,88a9a54c-131c-11f0-ba11-60a5e2d4ce9c)": {
+        "query": "what is 8 + 10",
+        "id": "88a9a54d-131c-11f0-979b-60a5e2d4ce9c",
+        "agent_name": "sum_agent",
+        "output": "The sum of 8 and 10 is 18.",
+        "steps": [
+            {
+                "tool": {
+                    "tool": "sum_operation",
+                    "tool_input": {
+                        "a": 8,
+                        "b": 10
+                    },
+                    "log": "\nInvoking: `sum_operation` with `{'a': 8, 'b': 10}`\n\n\n",
+                    "type": "AgentActionMessageLog",
+                    "message_log": [
+                        {
+                            "content": "",
+                            "additional_kwargs": {
+                                "tool_calls": [
+                                    {
+                                        "index": 0,
+                                        "id": "call_QjdeYGBQVPgaYWSntdPQVwRh",
+                                        "function": {
+                                            "arguments": "{\"a\":8,\"b\":10}",
+                                            "name": "sum_operation"
+                                        },
+                                        "type": "function"
+                                    }
+                                ]
+                            },
+                            "response_metadata": {
+                                "finish_reason": "tool_calls"
+                            },
+                            "type": "AIMessageChunk",
+                            "name": null,
+                            "id": "run-b770e4ab-42c3-4190-858a-4f69fedca5ad",
+                            "example": false,
+                            "tool_calls": [
+                                {
+                                    "name": "sum_operation",
+                                    "args": {
+                                        "a": 8,
+                                        "b": 10
+                                    },
+                                    "id": "call_QjdeYGBQVPgaYWSntdPQVwRh"
+                                }
+                            ],
+                            "invalid_tool_calls": [],
+                            "tool_call_chunks": [
+                                {
+                                    "name": "sum_operation",
+                                    "args": "{\"a\":8,\"b\":10}",
+                                    "id": "call_QjdeYGBQVPgaYWSntdPQVwRh",
+                                    "index": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "tool_call_id": "call_QjdeYGBQVPgaYWSntdPQVwRh",
+                    "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\sum_tool.py"
+                },
+                "output": 18
+            }
+        ]
+    },
+    "(\n        You are a bot that can access candidate's resume and a job description.\n        Extract a list of programming languages (max 5) that candidate has to focus on\n        to help him secure the job. Try to pick languages that the candidate has least experience.\n        Finally save the programming language list.\n        ,resume_vector_agent,6b3772ce-131c-11f0-a545-60a5e2d4ce9c)": {
+        "query": "\n        You are a bot that can access candidate's resume and a job description.\n        Extract a list of programming languages (max 5) that candidate has to focus on\n        to help him secure the job. Try to pick languages that the candidate has least experience.\n        Finally save the programming language list.\n        ",
+        "id": "6b3772cf-131c-11f0-9360-60a5e2d4ce9c",
+        "agent_name": "resume_vector_agent",
+        "output": "To proceed, I will need access to the candidate's resume and the job description. Please provide the candidate's resume and the job description so that I can extract the relevant information and help identify the programming languages the candidate should focus on. Thank you.",
+        "steps": []
+    },
+    "(\n        You are a bot that can access candidate's resume and a job description.\n        Extract a list of programming languages (max 5) that candidate has to focus on\n        to help him secure the job. Try to pick languages that the candidate has least experience.\n        Finally save the programming language list.\n        ,resume_vector_agent,68cfa55f-131c-11f0-8ef7-60a5e2d4ce9c)": {
+        "query": "\n        You are a bot that can access candidate's resume and a job description.\n        Extract a list of programming languages (max 5) that candidate has to focus on\n        to help him secure the job. Try to pick languages that the candidate has least experience.\n        Finally save the programming language list.\n        ",
+        "id": "68cfa560-131c-11f0-8f29-60a5e2d4ce9c",
+        "agent_name": "resume_vector_agent",
+        "output": "Sure, please provide me with the candidate's resume and the job description so that I can extract the required information.",
+        "steps": []
+    },
+    "(\n        You are a bot that can access candidate's resume and a job description.\n        Extract a list of programming languages (max 5) that candidate has to focus on\n        to help him secure the job. Try to pick languages that the candidate has least experience.\n        Finally save the programming language list.\n        ,resume_vector_agent,e22be2bb-1315-11f0-a3bc-60a5e2d4ce9c)": {
+        "query": "\n        You are a bot that can access candidate's resume and a job description.\n        Extract a list of programming languages (max 5) that candidate has to focus on\n        to help him secure the job. Try to pick languages that the candidate has least experience.\n        Finally save the programming language list.\n        ",
+        "id": "e22be2bc-1315-11f0-800a-60a5e2d4ce9c",
+        "agent_name": "resume_vector_agent",
+        "output": "To proceed, I will need access to the candidate's resume and the job description. Please provide the candidate's resume and the job description so that I can analyze them to extract the required information.",
+        "steps": []
+    },
+    "(\n        You are a bot that can access candidate's resume and a job description.\n        Extract a list of programming languages (max 5) that candidate has to focus on\n        to help him secure the job. Try to pick languages that the candidate has least experience.\n        Finally save the programming language list.\n        ,resume_vector_agent,dff40d08-1315-11f0-b3ce-60a5e2d4ce9c)": {
+        "query": "\n        You are a bot that can access candidate's resume and a job description.\n        Extract a list of programming languages (max 5) that candidate has to focus on\n        to help him secure the job. Try to pick languages that the candidate has least experience.\n        Finally save the programming language list.\n        ",
+        "id": "dff40d09-1315-11f0-9581-60a5e2d4ce9c",
+        "agent_name": "resume_vector_agent",
+        "output": "To proceed, please provide the candidate's resume and the job description.",
+        "steps": []
+    },
+    "(Suggest what to wear in London,weather_agent,99ff9a9d-1310-11f0-92fc-60a5e2d4ce9c)": {
+        "query": "Suggest what to wear in London",
+        "id": "99ff9a9e-1310-11f0-bd53-60a5e2d4ce9c",
+        "agent_name": "weather_agent",
+        "output": "You should wear a warm jacket in London as the temperature is currently 10 degrees Celsius.",
+        "steps": [
+            {
+                "tool": {
+                    "tool": "temperature_tool",
+                    "tool_input": {
+                        "city": "London"
+                    },
+                    "log": "\nInvoking: `temperature_tool` with `{'city': 'London'}`\n\n\n",
+                    "type": "AgentActionMessageLog",
+                    "message_log": [
+                        {
+                            "content": "",
+                            "additional_kwargs": {
+                                "tool_calls": [
+                                    {
+                                        "index": 0,
+                                        "id": "call_NBVkTKIMTG6ZFrkxsXZvycL1",
+                                        "function": {
+                                            "arguments": "{\"city\":\"London\"}",
+                                            "name": "temperature_tool"
+                                        },
+                                        "type": "function"
+                                    }
+                                ]
+                            },
+                            "response_metadata": {
+                                "finish_reason": "tool_calls"
+                            },
+                            "type": "AIMessageChunk",
+                            "name": null,
+                            "id": "run-65c59dd4-b868-436c-8da5-72f6d3ef6bfb",
+                            "example": false,
+                            "tool_calls": [
+                                {
+                                    "name": "temperature_tool",
+                                    "args": {
+                                        "city": "London"
+                                    },
+                                    "id": "call_NBVkTKIMTG6ZFrkxsXZvycL1"
+                                }
+                            ],
+                            "invalid_tool_calls": [],
+                            "tool_call_chunks": [
+                                {
+                                    "name": "temperature_tool",
+                                    "args": "{\"city\":\"London\"}",
+                                    "id": "call_NBVkTKIMTG6ZFrkxsXZvycL1",
+                                    "index": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "tool_call_id": "call_NBVkTKIMTG6ZFrkxsXZvycL1",
+                    "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\weather_tools.py"
+                },
+                "output": "10 degrees celsius"
+            },
+            {
+                "tool": {
+                    "tool": "weather_clothing_tool",
+                    "tool_input": {
+                        "temperature": 10
+                    },
+                    "log": "\nInvoking: `weather_clothing_tool` with `{'temperature': 10}`\n\n\n",
+                    "type": "AgentActionMessageLog",
+                    "message_log": [
+                        {
+                            "content": "",
+                            "additional_kwargs": {
+                                "tool_calls": [
+                                    {
+                                        "index": 0,
+                                        "id": "call_WglB7z7QthMDDGyuetVEUUzU",
+                                        "function": {
+                                            "arguments": "{\"temperature\":10}",
+                                            "name": "weather_clothing_tool"
+                                        },
+                                        "type": "function"
+                                    }
+                                ]
+                            },
+                            "response_metadata": {
+                                "finish_reason": "tool_calls"
+                            },
+                            "type": "AIMessageChunk",
+                            "name": null,
+                            "id": "run-b4994d30-6665-4a92-91d0-648f11837711",
+                            "example": false,
+                            "tool_calls": [
+                                {
+                                    "name": "weather_clothing_tool",
+                                    "args": {
+                                        "temperature": 10
+                                    },
+                                    "id": "call_WglB7z7QthMDDGyuetVEUUzU"
+                                }
+                            ],
+                            "invalid_tool_calls": [],
+                            "tool_call_chunks": [
+                                {
+                                    "name": "weather_clothing_tool",
+                                    "args": "{\"temperature\":10}",
+                                    "id": "call_WglB7z7QthMDDGyuetVEUUzU",
+                                    "index": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "tool_call_id": "call_WglB7z7QthMDDGyuetVEUUzU",
+                    "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\weather_tools.py"
+                },
+                "output": "Warm Jacket"
             }
         ]
     }

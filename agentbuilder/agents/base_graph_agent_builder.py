@@ -1,11 +1,15 @@
+from pathlib import Path
 from typing import Any, Literal
 from langchain_core.messages import AIMessage,ToolMessage
 from agentbuilder.agents.params import AgentBuilderParams
 from agentbuilder.agents.prompt_helper import get_default_agent_prompt
+from agentbuilder.data import data_path
 from langchain_core.agents import AgentAction
 from typing import TypedDict, Annotated
 from langchain_core.runnables.graph import MermaidDrawMethod
 from agentbuilder.llm import chat_llm as default_llm
+from langgraph.graph import StateGraph
+from langgraph.prebuilt import ToolNode
 
 def add_messages(left: list, right: list):
     """Add-don't-overwrite."""
@@ -14,16 +18,21 @@ def add_messages(left: list, right: list):
 class AgentState(TypedDict):
     messages: Annotated[list, add_messages]
 
+
 class BaseGraphAgentBuilder:
 
     def __init__(self,params:AgentBuilderParams):
-        from langgraph.graph import StateGraph
-        from langgraph.prebuilt import ToolNode
-  
         self.intermediate_steps=[]
-        self.builder= StateGraph(AgentState)
         self.builder_params=params
-        tool_node = ToolNode(params.tools)
+        self.initialize_state()
+        self.initialize_graph()
+        self.save_graph(params.name)
+
+    def initialize_state(self):
+        self.builder= StateGraph(AgentState)
+
+    def initialize_graph(self):
+        tool_node = ToolNode(self.builder_params.tools)
         self.builder.add_node("agent", self.call_model)
         self.builder.add_node("tools", tool_node)
         self.builder.set_entry_point("agent")
@@ -32,8 +41,6 @@ class BaseGraphAgentBuilder:
             self.should_continue,
         )
         self.builder.add_edge('tools', "agent")
-        self.save_graph(params.name)
-
     
     def should_continue(self,state: AgentState) -> Literal["tools", "__end__"]:
         messages = state['messages']
@@ -71,7 +78,7 @@ class BaseGraphAgentBuilder:
                     draw_method=MermaidDrawMethod.API,
                 )
             )
-        with open(f"agentbuilder/data/{file_name}.png", "wb") as fout:
+        with open(f"{data_path}/{file_name}.png", "wb") as fout:
             fout.write(img.data)
         
     

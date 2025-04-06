@@ -6,19 +6,20 @@ authors = ["Nagarajan Ramasamy"]
 packages = [{ include = "agentbuilder" }]
 
 [tool.poetry.dependencies]
-python = "^3.10.0"
-langchain = "0.2.0"
-langchain-community = "0.2.0"
-langchain-experimental = "0.0.59"
-langchainhub = "0.1.15"
-fastapi = "0.111.0"
+python = ">=3.10.0,<3.12.4"
+langchain = "*"
+langchain-community = "*"
+langchain-experimental = "*"
+langchainhub = "*"
+fastapi = "*"
 uvicorn = "0.30.0"
 python-dotenv = "1.0.1"
 colorama = "0.4.6"
+pydantic = "2.10.6"
 faiss-cpu = { version = "1.8.0", optional = true }
 beautifulsoup4 = { version = "4.12.3", optional = true }
 tiktoken = { version = "0.7.0", optional = true }
-langgraph = { version = "0.0.52", optional = true }
+langgraph = { version = "*", optional = true }
 ipython = { version = "8.24.0", optional = true }
 pymongo = { version = "4.7.2", optional = true }
 motor = { version = "3.4.0", optional = true }
@@ -26,7 +27,11 @@ langchain-openai = { version = "0.1.7", optional = true }
 langchain-cohere = { version = "0.1.5", optional = true }
 langchain-google-genai = { version = "1.0.4", optional = true }
 langchain-anthropic = { version = "0.1.13", optional = true }
-langchain-voyageai = { version = " 0.1.1", optional = true }
+langchain-voyageai = { version = "0.1.1", optional = true }
+guardrails-ai = { version = "*", optional = true }
+nemoguardrails = { version = "0.9.0", optional = true }
+gradio = { version = "4.44.1", optional = true }
+langchain-nvidia-ai-endpoints = { version = "*", optional = true }
 
 [tool.poetry.extras]
 vectordb = ["faiss-cpu", "beautifulsoup4", "tiktoken"]
@@ -36,9 +41,16 @@ openai = ["langchain-openai"]
 cohere = ["langchain-cohere"]
 gemini = ["langchain-google-genai"]
 anthropic = ["langchain-anthropic", "langchain-voyageai"]
+nvidia = ["langchain-nvidia-ai-endpoints"]
+guardrails = ["guardrails-ai", "nemoguardrails"]
+ui = ["gradio"]
 
 [tool.poetry.scripts]
 start-server = "agentbuilder.main:start_api"
+start-ui = "agentbuilder.ui.app:demo.launch"
+
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.8"
 
 [build-system]
 requires = ["poetry-core"]

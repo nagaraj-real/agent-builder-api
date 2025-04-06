@@ -1,15 +1,13 @@
 from agentbuilder.logger import uvicorn_logger as logger
 from langchain_core.messages import BaseMessage,AIMessage,HumanMessage
-from agentbuilder.agents.BaseAgentBuilder import BaseAgentBuilder
-from agentbuilder.agents.BaseGraphAgentBuilder import BaseGraphAgentBuilder
-from agentbuilder.db import pesist_db as db
+from agentbuilder.agents.base_agent_builder import BaseAgentBuilder
 from agentbuilder.agents.agent_helper import build_agent
 from langchain_core.prompts import ChatPromptTemplate
 from agentbuilder.llm import get_chat_llm,get_casual_chat_prompt
-
+from agentbuilder.db import pesist_db as db
 
 async def chat(query:str,chat_history:list[BaseMessage]=[],agent_name=None)->str:
-    agent_builder:BaseAgentBuilder|BaseGraphAgentBuilder|None = await build_agent(agent_name)
+    agent_builder:BaseAgentBuilder|None = await build_agent(agent_name)
     if agent_builder is None:
         return await chat_without_agent(query,chat_history)
     try:
@@ -22,15 +20,15 @@ async def chat(query:str,chat_history:list[BaseMessage]=[],agent_name=None)->str
         raise exc
     
 async def chat_stream(query:str,chat_history:list[BaseMessage]=[],agent_name=None):
-    agent_builder:BaseAgentBuilder|BaseGraphAgentBuilder|None = await build_agent(agent_name)
+    agent_builder:BaseAgentBuilder|None = await build_agent(agent_name)
     if agent_builder is None:
         return await chat_without_agent_stream(query,chat_history)
     try:
         response= agent_builder.astream({"input": query,"chat_history": chat_history })
-        async def gen(new_res=None):
+        async def gen():
             intermediate_steps=[]
             final_output=""
-            async for payload in new_res or response:
+            async for payload in response:
                 if("intermediate_steps" in payload):
                     intermediate_steps=payload["intermediate_steps"]
                 if "output" in payload:

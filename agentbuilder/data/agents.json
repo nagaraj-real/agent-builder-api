@@ -19,15 +19,6 @@
             "weather_clothing_tool"
         ]
     },
-    "python_agent": {
-        "name": "python_agent",
-        "agent_type": "tool_calling",
-        "source_type": "code",
-        "preamble": "You are very powerful assistant, with access to tools that can help you answer questions",
-        "tools": [
-            "python_interpreter"
-        ]
-    },
     "git_agent": {
         "name": "git_agent",
         "agent_type": "tool_calling",
@@ -55,5 +46,43 @@
             "json_spec_list_keys",
             "json_spec_get_value"
         ]
+    },
+    "python_agent": {
+        "name": "python_agent",
+        "agent_type": "tool_calling",
+        "source_type": "code",
+        "preamble": "You are very powerful assistant, with access to tools that can help you answer questions",
+        "tools": [
+            "python_interpreter"
+        ]
+    },
+    "resume_vector_agent": {
+        "name": "resume_vector_agent",
+        "agent_type": "tool_calling",
+        "source_type": "code",
+        "preamble": "\n            You are very powerful code assistant,with access to resume and job description tools.\n            ",
+        "tools": [
+            "resume_search_tool",
+            "job_description_tool",
+            "save_skill_tool"
+        ]
+    },
+    "rating_agent": {
+        "name": "rating_agent",
+        "agent_type": "tool_calling",
+        "source_type": "code",
+        "preamble": "\n            You are very powerful interview rating assistant,with access to save rating tools.\n            ",
+        "tools": [
+            "interview_answers_tool",
+            "save_rating_tool",
+            "save_evaluation_tool"
+        ]
+    },
+    "interview_agent": {
+        "name": "interview_agent",
+        "agent_type": "tool_calling",
+        "source_type": "code",
+        "preamble": "\n            You are very powerful interview preparation agent.\n            ",
+        "tools": []
     }
 }

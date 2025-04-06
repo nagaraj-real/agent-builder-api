@@ -1,0 +1,28 @@
+Sabrina Chesterfield
+Buffalo, NY | 716-555-0195 | schesterfield@email.com
+Summary
+&nbsp;
+Self-motivated problem solver with experience in Android development using GitHub and Java. Designed and maintained the applications' full stacks through design, testing and deployment.
+Education
+&nbsp;
+Natural University
+2020
+Bachelor of Science in computer science
+Experience
+&nbsp;
+Marketeers, Inc., New York, NY, Android Developer
+December 2020 – Current
+Migrated applications from other operating systems to Android
+Coordinated updates for data storage and retrieval
+Designed new Android marketing software
+Integrated APIs for all applications
+Fixed application bugs within 24-hour service level agreement
+Certifications
+&nbsp;
+Associate Android Developer Certification, Google - 2020
+Skills
+&nbsp;
+Java
+Critical thinking
+UI/UX
+HTML

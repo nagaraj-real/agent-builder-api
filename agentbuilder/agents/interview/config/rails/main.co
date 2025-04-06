@@ -1,0 +1,128 @@
+import core
+import llm
+import guardrails
+
+flow main
+  activate user expressed something
+
+flow user expressed something
+  global $user_message
+  match UtteranceUserActionFinished() as $event_ref
+  $user_message = $event_ref.final_transcript
+  await run input rails $user_message
+  global $interview_state
+  $interview_state = await GetInterviewFullStateAction()
+  print($interview_state)
+  bot express start interview
+  
+
+flow bot express start interview
+  global $interview_state
+  $programming_language = $interview_state["programming_language"]
+  $user_confirmed = $interview_state["user_confirmed_interview"]
+  if not $programming_language
+    $job_skills = await GetInterviewJobSkillsAction()
+    bot ask programming language $job_skills
+  elif not $user_confirmed
+    bot express interview start confirmation
+  else
+    bot express interview start 
+
+flow bot express interview start confirmation
+  """
+  You are a bot that can only respond with a single bot expression.
+
+  # Important Instructions
+  - output generated should contain only bot messages and no other text.
+  - bot messages always start with 'bot express' or 'bot say'
+    examples: 
+    - bot say "hello"
+    - bot express interview start
+    - bot express interview declined
+
+  Validate if user message can be considered as confirmation.
+  Example messages for confirmation: "Yes", "sure"
+  
+  Current User Message: '{{ user_message }}'.
+
+  # Output Message
+  - If user message translates to confirmation or acceptance, respond with message: bot express interview start
+
+  - If user message translates to decline or rejection, respond with message: bot express interview declined
+
+  - else, respond with message: bot say "Sorry I did not get that ! Are you ready for your interview ?"
+
+  """
+  global $user_message
+  ...
+
+flow bot express interview declined
+  await ClearInterviewStateAction()
+  bot say "ok ! Have a nice day ! "
+
+flow bot express interview start
+  global $user_message
+  global $interview_state
+  $num_questions= $interview_state["questions_count"]
+  $user_confirmed = $interview_state["user_confirmed_interview"]
+  $current_question = $interview_state["current_question"]
+  $qa = $interview_state["question_answers"]
+  $programming_language = $interview_state["programming_language"]
+
+  if not $user_confirmed
+    await UpdateInterviewStateAction(new_data={"user_confirmed_interview": True})
+
+  if len($qa) == 0 or len($qa) < $num_questions
+    $question = await InterviewQuestionAction(user_message=$user_message)
+    if $question
+      bot say """{$question}"""
+    else
+      await UpdateInterviewStateAction(new_data={"current_question": ""})
+      bot express evaluation report
+  else
+    bot express evaluation report
+    
+
+flow bot express evaluation report
+  $response = await InterviewRatingAction()
+  bot say """{$response}"""
+
+flow bot ask programming language $job_skills
+  """
+  You are a bot that checks if user has provided any programming language and 
+  returns the exact bot message as instructed.
+
+  # Important Instructions
+  - bot messages always start with 'bot ask'
+  - output generated should contain only bot messages and no other text.
+
+  # These are some examples how the bot thinks:
+  {{ examples }}
+
+  The user was asked a confirmation question for which the user gave the following response: 
+  {{ user_message }}
+
+  If the user provided any programming language, respond with the below message by filling <<programming_language>>:
+  bot ask programming language confirm "<<programming_language>>"
+
+  If the user did not provide any programming language, respond with the below message:
+  bot ask which language
+  """
+  global $user_message
+  ...
+
+flow bot ask which language
+  $job_skills = await GetInterviewJobSkillsAction()
+  if $job_skills
+    bot say "These are the suggested skills: {$job_skills}. Please choose a programming language to start interview."
+  else
+    bot say "Please provide a programming language to start interview."
+
+flow bot ask programming language confirm $programming_language
+  await UpdateInterviewStateAction(new_data={"programming_language":$programming_language})
+  bot say "Your progamming language is set to : {$programming_language}. Would you like you start Interview ?"
+
+
+
+
+

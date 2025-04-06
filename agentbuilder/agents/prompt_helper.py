@@ -35,6 +35,16 @@ def get_react_agent_prompt(preamble):
       prompt.template= replace_until_separator(prompt.template,"Assistant has access to the following tools:",preamble)
    return prompt
 
+def get_vector_search_prompt():
+   prompt_template = ChatPromptTemplate.from_template("""Answer the following question based only on the provided context:
+
+        <context>
+        {context}
+        </context>
+
+        Question: {input}""")
+   return prompt_template
+
 def replace_until_separator(original_string, separator, replacement):
     parts = original_string.split(separator, 1)
     if len(parts) > 1:

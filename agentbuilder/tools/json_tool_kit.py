@@ -3,8 +3,12 @@ import yaml
 from langchain_community.agent_toolkits.json.toolkit import JsonToolkit
 from langchain_community.tools.json.tool import JsonSpec
 
-with open("agentbuilder/data/petstore.yaml") as f:
+
+data_path= str(Path(__file__).parent)+"./../data"
+
+with open(f"{data_path}/petstore.yaml") as f:
     data = yaml.load(f, Loader=yaml.FullLoader)
+
 json_spec = JsonSpec(dict_=data, max_value_length=4000)
 
 

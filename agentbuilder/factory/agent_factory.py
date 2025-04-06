@@ -1,12 +1,9 @@
-
-
-from agentbuilder.agents.BaseAgentBuilder import AgentBuilderParams, BaseAgentBuilder
+from agentbuilder.agents.base_agent_builder import AgentBuilderParams, BaseAgentBuilder
 from agentbuilder.agents.params import AgentParams
 from agentbuilder.factory.tool_factory import greeting_tool,temperature_sensor_tool,weather_clothing_tool,temperature_tool
 from agentbuilder.factory.tool_factory import  git_pull_request_diff_tool,sum_tool,json_tools
 from agentbuilder.tools.repl_tool import repl_tool
 from agentbuilder.helper.env_helper import get_default_agent_type
-
 
 def default_agent():
     return AgentParams(name="default_agent",
@@ -58,6 +55,35 @@ def git_agent():
             agent_type= get_default_agent_type()
       )
 
+def resume_vector_agent():
+    return AgentParams(
+            name="resume_vector_agent",
+            preamble= """
+            You are very powerful code assistant,with access to resume and job description tools.
+            """,
+            tools=  ["resume_search_tool","job_description_tool","save_skill_tool"],
+            agent_type= get_default_agent_type()
+      )
+
+def rating_agent():
+    return AgentParams(
+            name="rating_agent",
+            preamble= """
+            You are very powerful interview rating assistant,with access to save rating tools.
+            """,
+            tools=  ["interview_answers_tool","save_rating_tool","save_evaluation_tool"],
+            agent_type= get_default_agent_type()
+      )
+
+def interview_agent():
+    return AgentParams(
+            name="interview_agent",
+            preamble= """
+            You are very powerful interview preparation agent.
+            """,
+            tools=  [],
+            agent_type= get_default_agent_type()
+      )
 
 def get_all_agents():
     return [
@@ -67,18 +93,28 @@ def get_all_agents():
             sum_agent(),
             rest_api_agent(),
             python_agent(),
-
+            resume_vector_agent(),
+            rating_agent(),
+            interview_agent()
     ]
 
 def get_agent_builder(params:AgentBuilderParams):
     agent_name= params.name
     match agent_name:
         case "graph_agent":
-            from agentbuilder.agents.BaseGraphAgentBuilder import BaseGraphAgentBuilder
+            from agentbuilder.agents.base_graph_agent_builder import BaseGraphAgentBuilder
             return BaseGraphAgentBuilder(params)
+        case "interview_agent":
+            from agentbuilder.agents.interview.interview_agent import InterviewAgentBuilder
+            return InterviewAgentBuilder(params)
+        case "math_agent_guard":
+            from agentbuilder.agents.math_agent import MathAgentBuilder
+            return MathAgentBuilder.MathAgentBuilder(params)
+        case "doctor_agent_guard":
+            from agentbuilder.agents.doctor_agent import DoctorAgentBuilder
+            return DoctorAgentBuilder.DoctorAgentBuilder(params)
         case _:
             return BaseAgentBuilder(params)
-
 
 
 
