@@ -1,6 +1,6 @@
 from pathlib import Path
 from langchain.agents import Tool
-from pydantic.v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 from langchain_experimental.utilities import PythonREPL
 
 python_repl = PythonREPL()
@@ -11,7 +11,6 @@ repl_tool = Tool(
 )
 repl_tool.name = "python_interpreter"
 
-# from langchain_core.pydantic_v1 import BaseModel, Field
 class ToolInput(BaseModel):
    code: str = Field(description="Python code to execute.")
 

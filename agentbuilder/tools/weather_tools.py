@@ -3,7 +3,7 @@
 import asyncio
 from pathlib import Path
 from langchain_core.tools import tool
-from pydantic.v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 from langchain_core.tools import StructuredTool
 from agentbuilder.error.error_handler import default_handle_error
 
