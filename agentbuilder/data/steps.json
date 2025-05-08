@@ -1,4 +1,88 @@
 {
+    "(Suggest what to wear in London,weather_agent,b049f529-1329-11f0-992e-60a5e2d4ce9c)": {
+        "query": "Suggest what to wear in London",
+        "id": "b049f52a-1329-11f0-83a0-60a5e2d4ce9c",
+        "agent_name": "weather_agent",
+        "output": "You should wear a warm jacket in London as the temperature is currently 10 degrees Celsius.",
+        "steps": [
+            {
+                "tool": {
+                    "tool": "temperature_tool",
+                    "tool_input": {
+                        "city": "London"
+                    },
+                    "log": "\nInvoking: `temperature_tool` with `{'city': 'London'}`\n\n\n",
+                    "type": "AgentActionMessageLog",
+                    "message_log": [
+                        {
+                            "content": "",
+                            "additional_kwargs": {
+                                "tool_calls": [
+                                    {
+                                        "index": 0,
+                                        "id": "call_PvCtPJ6WIrUf4E7dZPJ8mMhm",
+                                        "function": {
+                                            "arguments": "{\"city\":\"London\"}",
+                                            "name": "temperature_tool"
+                                        },
+                                        "type": "function"
+                                    }
+                                ]
+                            },
+                            "response_metadata": {
+                                "finish_reason": "tool_calls",
+                                "model_name": "gpt-3.5-turbo-0125"
+                            },
+                            "type": "AIMessageChunk",
+                            "name": null,
+                            "id": "run-b6d20d9f-ab79-4c8c-b859-d9a26b082f31"
+                        }
+                    ],
+                    "tool_call_id": "call_PvCtPJ6WIrUf4E7dZPJ8mMhm",
+                    "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\weather_tools.py"
+                },
+                "output": "10 degrees celsius"
+            },
+            {
+                "tool": {
+                    "tool": "weather_clothing_tool",
+                    "tool_input": {
+                        "temperature": 10
+                    },
+                    "log": "\nInvoking: `weather_clothing_tool` with `{'temperature': 10}`\n\n\n",
+                    "type": "AgentActionMessageLog",
+                    "message_log": [
+                        {
+                            "content": "",
+                            "additional_kwargs": {
+                                "tool_calls": [
+                                    {
+                                        "index": 0,
+                                        "id": "call_VdH3631IN6mu1klRvzg5eDxG",
+                                        "function": {
+                                            "arguments": "{\"temperature\":10}",
+                                            "name": "weather_clothing_tool"
+                                        },
+                                        "type": "function"
+                                    }
+                                ]
+                            },
+                            "response_metadata": {
+                                "finish_reason": "tool_calls",
+                                "model_name": "gpt-3.5-turbo-0125"
+                            },
+                            "type": "AIMessageChunk",
+                            "name": null,
+                            "id": "run-bb72ab9f-49dd-4541-bd71-0ccead5a80dc"
+                        }
+                    ],
+                    "tool_call_id": "call_VdH3631IN6mu1klRvzg5eDxG",
+                    "file_path": "C:\\Users\\NAGARAJ\\dev\\agent-llm\\agent-builder-api\\agentbuilder\\tools\\weather_tools.py"
+                },
+                "output": "Warm Jacket"
+            }
+        ]
+    },
     "(what is 8 + 10,sum_agent,5c57529a-131e-11f0-83f3-60a5e2d4ce9c)": {
         "query": "what is 8 + 10",
         "id": "5c57529b-131e-11f0-b2b4-60a5e2d4ce9c",

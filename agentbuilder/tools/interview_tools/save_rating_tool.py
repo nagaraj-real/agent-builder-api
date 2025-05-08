@@ -1,5 +1,5 @@
 from langchain_core.tools import StructuredTool
-from pydantic.v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 from agentbuilder.agents.interview.data import interview_state
 
 def save_rating(correct_answer:str,rating:int|str,explanation:str,question_number:int|str) -> str|None:

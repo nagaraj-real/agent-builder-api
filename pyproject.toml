@@ -23,15 +23,16 @@ langgraph = { version = "*", optional = true }
 ipython = { version = "8.24.0", optional = true }
 pymongo = { version = "4.7.2", optional = true }
 motor = { version = "3.4.0", optional = true }
-langchain-openai = { version = "0.1.7", optional = true }
-langchain-cohere = { version = "0.1.5", optional = true }
-langchain-google-genai = { version = "1.0.4", optional = true }
-langchain-anthropic = { version = "0.1.13", optional = true }
-langchain-voyageai = { version = "0.1.1", optional = true }
+langchain-openai = { version = "*", optional = true }
+langchain-cohere = { version = "*", optional = true }
+langchain-google-genai = { version = "*", optional = true }
+langchain-anthropic = { version = "*", optional = true }
+langchain-voyageai = { version = "*", optional = true }
 guardrails-ai = { version = "*", optional = true }
-nemoguardrails = { version = "0.9.0", optional = true }
+nemoguardrails = { version = "*", optional = true }
 gradio = { version = "4.44.1", optional = true }
 langchain-nvidia-ai-endpoints = { version = "*", optional = true }
+langchain-mcp-adapters = { version = "*", optional = true}
 
 [tool.poetry.extras]
 vectordb = ["faiss-cpu", "beautifulsoup4", "tiktoken"]
@@ -44,6 +45,7 @@ anthropic = ["langchain-anthropic", "langchain-voyageai"]
 nvidia = ["langchain-nvidia-ai-endpoints"]
 guardrails = ["guardrails-ai", "nemoguardrails"]
 ui = ["gradio"]
+mcp = ["langchain-mcp-adapters"]
 
 [tool.poetry.scripts]
 start-server = "agentbuilder.main:start_api"
