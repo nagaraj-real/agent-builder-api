@@ -45,7 +45,7 @@ For fine-grained dependency management, use [Poetry](https://python-poetry.org/)
 2. Pick and choose dependency packs to install.
 
    ```sh
-   poetry install --extras "openai gemini cohere anthropic mongodb vectordb langgraph guardrails ui"
+   poetry install --extras "mcp openai gemini cohere anthropic mongodb vectordb langgraph guardrails ui"
    ```
 
 3. Set the model name and API key in **.env** file
@@ -63,6 +63,22 @@ For fine-grained dependency management, use [Poetry](https://python-poetry.org/)
 
 > [!NOTE]
 > Poetry will create a virtual environment for us.
+
+#### MCP servers
+
+- Local MCP servers can be added in [MCP server folder](agentbuilder/mcp/servers)
+
+- Multiple MCP clients can be configured in [MPC client file](agentbuilder/mcp/clients/multi_mcp_client.py)
+
+  ```py
+  mcp_servers={
+        "math": {
+           "command": sys.executable,
+           "args": [f"{current_dir}\\servers\\math.py"],
+           "transport": "stdio",
+        }
+     }
+  ```
 
 #### [Optional] Enable MongoDB
 
