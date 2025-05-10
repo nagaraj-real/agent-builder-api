@@ -13,9 +13,9 @@ def default_agent():
             agent_type= get_default_agent_type()
     )
 
-def weather_agent():
+def weather_clothing_agent():
     return AgentParams(
-            name="weather_agent",
+            name="weather_clothing_agent",
             preamble= "You are a powerful weather assistant with access to weather tools",
             tools= [temperature_tool,temperature_sensor_tool,weather_clothing_tool],
             agent_type= get_default_agent_type()
@@ -89,14 +89,7 @@ def interview_agent():
 def get_all_agents():
     return [
             default_agent(),
-            weather_agent(),
-            git_agent(),
-            sum_agent(),
-            rest_api_agent(),
-            python_agent(),
-            resume_vector_agent(),
-            rating_agent(),
-            interview_agent()
+            weather_clothing_agent(),
     ]
 
 def get_agent_builder(params:AgentBuilderParams):

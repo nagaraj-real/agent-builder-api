@@ -35,14 +35,12 @@ async def get_all_tools()->Sequence[BaseTool]:
     server_name_to_tools= mcp_client.server_name_to_tools
     mcp_tools= [setattr(tool, 'metadata',{"mcp_server": name}) or tool  for name, tools in server_name_to_tools.items() for tool in tools]
     all_tools=[ 
-            sum_tool,greeting_tool,
+            greeting_tool,
             weather_clothing_tool,
             temperature_tool,
             temperature_sensor_tool,
             directly_answer_tool,
-            git_pull_request_diff_tool,
-            repl_tool,
-            ] + interview_tools+get_vectordb_tools()+ get_websearch_tools() + json_tools + mcp_tools
+            ] + mcp_tools
     return all_tools
 
 
