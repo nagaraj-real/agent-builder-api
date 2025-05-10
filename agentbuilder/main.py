@@ -21,13 +21,14 @@ from agentbuilder.logger import uvicorn_logger as logger
 log_level = get_log_level()
 
 async def migrate_to_db():
-    try:
-        code_agents = {params.name:params  for params in get_all_agents()}
-        pesist_db.set_code_agents(code_agents)
-        await pesist_db.update_tools(get_all_tools())
-        await pesist_db.update_agents()
-    except Exception as exc:
-        logger.error(f"Error: {str(exc)}")
+        try:
+            code_agents = {params.name:params  for params in get_all_agents()}
+            pesist_db.set_code_agents(code_agents)
+            all_tools = await get_all_tools()
+            await pesist_db.update_tools(all_tools)
+            await pesist_db.update_agents()
+        except Exception as exc:
+            logger.error(f"Error: {str(exc)}")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -127,7 +128,7 @@ def deleteChatHistory(chat_id:str):
         return JSONResponse({"chatResponse": f"{chat_id} not found to delete"},status_code=404)
 
 def start_api():
-    uvicorn.run("agentbuilder.main:app", host="0.0.0.0", port=8080,workers=1,reload=True,log_level=log_level)
+    uvicorn.run("agentbuilder.main:app", host="0.0.0.0", port=8080,workers=1,reload=False,log_level=log_level)
 
 if __name__ == "__main__":
     start_api()

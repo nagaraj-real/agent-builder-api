@@ -1,4 +1,23 @@
 {
+    "test2": {
+        "name": "test2",
+        "agent_type": "tool_calling",
+        "source_type": "ui",
+        "preamble": "",
+        "tools": [
+            "get_weather"
+        ]
+    },
+    "test": {
+        "name": "test",
+        "agent_type": "tool_calling",
+        "source_type": "ui",
+        "preamble": "",
+        "tools": [
+            "multiply",
+            "add"
+        ]
+    },
     "default_agent": {
         "name": "default_agent",
         "agent_type": "tool_calling",
