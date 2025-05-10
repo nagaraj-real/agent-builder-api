@@ -17,7 +17,16 @@ def agent_serializer(agents:dict[str,AgentParams]):
                         "tools":[t.name if isinstance(t,BaseTool) else str(t) for t in params.tools]} for (agent_key,params) in agents.items()}
 
 def tools_serializer(tools: Sequence[BaseTool]):
-    return {t.name:{"name":t.name,"description": t.description,"metadata":t.metadata,"params": t.args} for t in tools}
+    def get_args(t:BaseTool):
+        args=t.args
+        schema_ref:str=args.get("params",{}).get("$ref")
+        if schema_ref is not None:
+            defn:dict=t.args_schema.get("$defs",{}).get(schema_ref.removeprefix("#/$defs/"),None)
+            if defn is not None:
+                properties=defn.get('properties')
+                return properties
+        return t.args
+    return {t.name:{"name":t.name,"description": t.description,"metadata":t.metadata,"params": get_args(t)} for t in tools}
 
 def steps_serializer(messagelog: list[tuple[AgentAction, str]],tools=None):
     def augment_file_path(tool_dict):

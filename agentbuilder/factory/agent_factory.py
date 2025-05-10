@@ -1,4 +1,5 @@
 from agentbuilder.agents.base_agent_builder import AgentBuilderParams, BaseAgentBuilder
+from agentbuilder.agents.base_mcp_react_agent_builder import BaseMCPReactAgentBuilder
 from agentbuilder.agents.params import AgentParams
 from agentbuilder.factory.tool_factory import greeting_tool,temperature_sensor_tool,weather_clothing_tool,temperature_tool
 from agentbuilder.factory.tool_factory import  git_pull_request_diff_tool,sum_tool,json_tools
@@ -114,7 +115,7 @@ def get_agent_builder(params:AgentBuilderParams):
             from agentbuilder.agents.doctor_agent import DoctorAgentBuilder
             return DoctorAgentBuilder.DoctorAgentBuilder(params)
         case _:
-            return BaseAgentBuilder(params)
+            return BaseMCPReactAgentBuilder(params)
 
 
 
