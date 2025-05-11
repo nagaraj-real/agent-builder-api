@@ -70,12 +70,10 @@ class BaseMCPReactAgentBuilder:
             async for output in response:
                 for _, value in output.items():
                     if "messages" in value:
-                        print(value)
                         _=self.get_intermediate_steps(value["messages"])
                     output_dict= self.message_output_parser(value)
                     if(output_dict):
                         yield output_dict
-            print(self.intermediate_steps)
             steps=[(AgentAction(tool=step["tool"],
                              tool_input=step["tool_input"],log=""),
                              step["tool_output"]) for step in self.intermediate_steps]
@@ -94,7 +92,6 @@ class BaseMCPReactAgentBuilder:
         messages_dict = response
         parsed_response = self.message_output_parser(messages_dict)
         parsed_response["intermediate_steps"] = self.get_intermediate_steps(messages_dict.get("messages",[]))
-        print(parsed_response)
         return parsed_response
     
     async def ainvoke(self,params):
