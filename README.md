@@ -18,7 +18,7 @@ You can also open GitHub Codespaces in a remote environment/browser using secret
 
    ```sh
    python -m venv --prompt agent-builder-api venv
-   source venv/bin/activate
+   source venv/Scripts/activate
    # venv/Scripts/activate (Windows PS)
    pip install -r requirements.txt
    ```

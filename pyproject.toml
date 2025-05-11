@@ -6,7 +6,7 @@ authors = ["Nagarajan Ramasamy"]
 packages = [{ include = "agentbuilder" }]
 
 [tool.poetry.dependencies]
-python = ">=3.10.0,<3.12.4"
+python = ">=3.10.0,<=3.12.10"
 langchain = "*"
 langchain-community = "*"
 langchain-experimental = "*"
