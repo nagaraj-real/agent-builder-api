@@ -1,0 +1,1 @@
+docker compose -f agent-containers/docker-compose.yml up

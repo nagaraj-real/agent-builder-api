@@ -2,9 +2,9 @@ from pathlib import Path
 import yaml
 from langchain_community.agent_toolkits.json.toolkit import JsonToolkit
 from langchain_community.tools.json.tool import JsonSpec
+from agentbuilder.data import data_path
 
 
-data_path= str(Path(__file__).parent)+"./../data"
 
 with open(f"{data_path}/petstore.yaml") as f:
     data = yaml.load(f, Loader=yaml.FullLoader)

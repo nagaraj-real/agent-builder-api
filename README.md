@@ -73,10 +73,10 @@ For fine-grained dependency management, use [Poetry](https://python-poetry.org/)
   ```py
   mcp_servers={
         "math": {
-           "command": sys.executable,
-           "args": [f"{current_dir}\\servers\\math.py"],
-           "transport": "stdio",
-        }
+            "command": sys.executable,
+            "args": [str(current_dir / "servers" / "mcp_math.py")],
+            "transport": "stdio",
+          },
      }
   ```
 

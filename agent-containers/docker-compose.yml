@@ -1,8 +1,6 @@
-version: "3"
-
 services:
   mongodb:
-    image: mongo:latest
+    image: ghcr.io/nagaraj-real/agent-builder-mongo:latest
     container_name: mongo-container
     ports:
       - "27017:27017"
@@ -12,7 +10,7 @@ services:
       - llm-network
 
   agent-builder:
-    image: nagaraj23/agent-builder-api
+    image: ghcr.io/nagaraj-real/agent-builder-api:latest
     tty: true
     depends_on:
       - mongodb
@@ -22,11 +20,13 @@ services:
       - llm-network
     container_name: agent-builder-container
     env_file: ./../.env
+    volumes:
+      - ./../.env:/app/.env
     environment:
       # Add extra dependencies to install based on your LLM provider and tools usage
       # Supported extra dependencies - openai,cohere,gemini,anthropic,vectordb,mongodb,langgraph
-      EXTRA_DEPS: "openai,mongodb"
-      UVICORN_OPTIONS: "--host 0.0.0.0 --port 8080 --log-level info --log-config /app/log_config.yml --workers 1 --reload --reload-dir /app --reload-include .env"
+      EXTRA_DEPS: "openai,mongodb,langgraph,mcp"
+      UVICORN_OPTIONS: "--host 0.0.0.0 --port 8080 --log-level info --log-config /app/log_config.yml --workers 1"
       MONGODB_URL: "mongodb://mongodb:27017/llmdb"
 
 networks:
