@@ -11,5 +11,6 @@ agentbuilder/agentbuilder.egg-info/*
 deploy.txt
 todo.md
 .env.sample
+agentbuilder.log
 
 
