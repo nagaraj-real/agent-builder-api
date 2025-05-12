@@ -4,6 +4,8 @@
 
 # EXTRA_DEPS="openai,cohere,gemini,anthropic,nvidia,vectordb,mongodb,langgraph,guardrails,ui"
 
+pip install watchfiles
+
 if [ -n "$EXTRA_DEPS" ]; then
   echo "installing extra dependencies" "$EXTRA_DEPS"
   pip install -e .[${EXTRA_DEPS}]
