@@ -30,7 +30,7 @@ langchain-anthropic = { version = "*", optional = true }
 langchain-voyageai = { version = "*", optional = true }
 guardrails-ai = { version = "*", optional = true }
 nemoguardrails = { version = "*", optional = true }
-gradio = { version = "4.44.1", optional = true }
+gradio = { version = "5.23.0", optional = true }
 langchain-nvidia-ai-endpoints = { version = "*", optional = true }
 langchain-mcp-adapters = { version = "*", optional = true}
 
