@@ -1219,14 +1219,15 @@ grpc = ["grpcio (>=1.44.0,<2.0.0)"]
 
 [[package]]
 name = "gradio"
-version = "5.11.0"
+version = "5.23.0"
 description = "Python library for easily interacting with trained machine learning models"
 optional = true
 python-versions = ">=3.10"
 groups = ["main"]
 markers = "extra == \"ui\""
 files = [
-    {file = "gradio-5.11.0-py3-none-any.whl", hash = "sha256:0b8fdb90ceaad2bb8bb7aecb3ad5b05d3020945eb6162fb779c6c09525f94082"},
+    {file = "gradio-5.23.0-py3-none-any.whl", hash = "sha256:31894d4e21ce924af92128aaa4fe06418769cbe45cb28843d7424b5fc77ffe4a"},
+    {file = "gradio-5.23.0.tar.gz", hash = "sha256:f70c1939f1bcd1cfe9bc8e57fb4faa0c991ff230785a1bf1a6278f0ad4afe03e"},
 ]
 
 [package.dependencies]
@@ -1234,11 +1235,12 @@ aiofiles = ">=22.0,<24.0"
 anyio = ">=3.0,<5.0"
 fastapi = ">=0.115.2,<1.0"
 ffmpy = "*"
-gradio-client = "1.5.3"
+gradio-client = "1.8.0"
+groovy = ">=0.1,<1.0"
 httpx = ">=0.24.1"
-huggingface-hub = ">=0.25.1"
+huggingface-hub = ">=0.28.1"
 jinja2 = "<4.0"
-markupsafe = ">=2.0,<3.0"
+markupsafe = ">=2.0,<4.0"
 numpy = ">=1.0,<3.0"
 orjson = ">=3.0,<4.0"
 packaging = "*"
@@ -1248,7 +1250,7 @@ pydantic = ">=2.0"
 pydub = "*"
 python-multipart = ">=0.0.18"
 pyyaml = ">=5.0,<7.0"
-ruff = {version = ">=0.2.2", markers = "sys_platform != \"emscripten\""}
+ruff = {version = ">=0.9.3", markers = "sys_platform != \"emscripten\""}
 safehttpx = ">=0.1.6,<0.2.0"
 semantic-version = ">=2.0,<3.0"
 starlette = {version = ">=0.40.0,<1.0", markers = "sys_platform != \"emscripten\""}
@@ -1263,15 +1265,15 @@ oauth = ["authlib", "itsdangerous"]
 
 [[package]]
 name = "gradio-client"
-version = "1.5.3"
+version = "1.8.0"
 description = "Python library for easily interacting with trained machine learning models"
 optional = true
 python-versions = ">=3.10"
 groups = ["main"]
 markers = "extra == \"ui\""
 files = [
-    {file = "gradio_client-1.5.3-py3-none-any.whl", hash = "sha256:50f8ab48f7c4eccdb4c25030343271511391acbde5fbf64fcd03bada56dc8ee9"},
-    {file = "gradio_client-1.5.3.tar.gz", hash = "sha256:f2b41278d1c7748b1060b6f97cde6660535baabc946031d0485890dba9855727"},
+    {file = "gradio_client-1.8.0-py3-none-any.whl", hash = "sha256:27a3ab5278a44d57d1d05a86de67cec5f7370e540600d11816744a620addb967"},
+    {file = "gradio_client-1.8.0.tar.gz", hash = "sha256:a58c520c73fa7ff8bef54e41b19df2cd9071fd9d0cc00475eb397842baed19c8"},
 ]
 
 [package.dependencies]
@@ -1280,7 +1282,7 @@ httpx = ">=0.24.1"
 huggingface-hub = ">=0.19.3"
 packaging = "*"
 typing-extensions = ">=4.0,<5.0"
-websockets = ">=10.0,<15.0"
+websockets = ">=10.0,<16.0"
 
 [[package]]
 name = "greenlet"
@@ -1367,6 +1369,22 @@ files = [
 
 [package.dependencies]
 colorama = ">=0.4"
+
+[[package]]
+name = "groovy"
+version = "0.1.2"
+description = "A small Python library created to help developers protect their applications from Server Side Request Forgery (SSRF) attacks."
+optional = true
+python-versions = ">3.9"
+groups = ["main"]
+markers = "extra == \"ui\""
+files = [
+    {file = "groovy-0.1.2-py3-none-any.whl", hash = "sha256:7f7975bab18c729a257a8b1ae9dcd70b7cafb1720481beae47719af57c35fa64"},
+    {file = "groovy-0.1.2.tar.gz", hash = "sha256:25c1dc09b3f9d7e292458aa762c6beb96ea037071bf5e917fc81fb78d2231083"},
+]
+
+[package.extras]
+dev = ["pytest", "ruff (==0.9.3)"]
 
 [[package]]
 name = "grpcio"
@@ -6220,4 +6238,4 @@ vectordb = ["beautifulsoup4", "faiss-cpu", "tiktoken"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10.0,<=3.12.10"
-content-hash = "40133177b6fa621bb7917a72fca6aa2bc13ddcf9ab89619a861c3db2f2154c6a"
+content-hash = "ab14fe3d39cddbe3323ded150c6030a8fe72434f3325d925c15ac4067310baca"

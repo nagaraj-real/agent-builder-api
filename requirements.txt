@@ -44,10 +44,11 @@ google-ai-generativelanguage==0.6.18 ; python_version >= "3.10" and python_full_
 google-api-core==2.24.2 ; python_version >= "3.10" and python_full_version <= "3.12.10"
 google-auth==2.40.1 ; python_version >= "3.10" and python_full_version <= "3.12.10"
 googleapis-common-protos==1.70.0 ; python_version >= "3.10" and python_full_version <= "3.12.10"
-gradio-client==1.5.3 ; python_version >= "3.10" and python_full_version <= "3.12.10"
-gradio==5.11.0 ; python_version >= "3.10" and python_full_version <= "3.12.10"
+gradio-client==1.8.0 ; python_version >= "3.10" and python_full_version <= "3.12.10"
+gradio==5.23.0 ; python_version >= "3.10" and python_full_version <= "3.12.10"
 greenlet==3.2.2 ; python_version >= "3.10" and python_full_version <= "3.12.10" and (platform_machine == "aarch64" or platform_machine == "ppc64le" or platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64" or platform_machine == "win32" or platform_machine == "WIN32")
 griffe==0.36.9 ; python_version >= "3.10" and python_full_version <= "3.12.10"
+groovy==0.1.2 ; python_full_version >= "3.10.0" and python_full_version <= "3.12.10"
 grpcio-status==1.71.0 ; python_version >= "3.10" and python_full_version <= "3.12.10"
 grpcio==1.71.0 ; python_version >= "3.10" and python_full_version <= "3.12.10"
 guardrails-ai==0.6.6 ; python_version >= "3.10" and python_full_version <= "3.12.10"
