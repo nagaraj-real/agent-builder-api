@@ -80,6 +80,18 @@ For fine-grained dependency management, use [Poetry](https://python-poetry.org/)
      }
   ```
 
+#### Custom UI (Gradio)
+
+- Start gradio ui
+
+  ```bash
+  poetry run start-ui
+  # OR
+  gradio ./agentbuilder/ui/app.py
+  ```
+
+- More agents can be enabled by adding it in the dropdown choices - [app.py](agentbuilder\ui\app.py)
+
 #### [Optional] Enable MongoDB
 
 By default, data is stored as JSON files. Enable storage in Mongo DB by setting url using the environment variable.

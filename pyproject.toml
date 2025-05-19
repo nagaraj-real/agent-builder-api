@@ -49,7 +49,8 @@ mcp = ["langchain-mcp-adapters"]
 
 [tool.poetry.scripts]
 start-server = "agentbuilder.main:start_api"
-start-ui = "agentbuilder.ui.app:demo.launch"
+migrate="agentbuilder.migrate:migrate"
+start-ui = "agentbuilder.ui.app:launch_ui"
 
 [tool.poetry.requires-plugins]
 poetry-plugin-export = ">=1.8"
