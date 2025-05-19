@@ -90,7 +90,7 @@ For fine-grained dependency management, use [Poetry](https://python-poetry.org/)
   gradio ./agentbuilder/ui/app.py
   ```
 
-- More agents can be enabled by adding it in the dropdown choices - [app.py](agentbuilder\ui\app.py)
+- More agents can be enabled by adding it in the dropdown choices - [app.py](agentbuilder/ui/app.py)
 
 #### [Optional] Enable MongoDB
 
