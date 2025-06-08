@@ -3,15 +3,15 @@ from langchain_core.messages import BaseMessage,AIMessage,HumanMessage
 from agentbuilder.agents.base_agent_builder import BaseAgentBuilder
 from agentbuilder.agents.agent_helper import build_agent
 from langchain_core.prompts import ChatPromptTemplate
-from agentbuilder.llm import get_chat_llm,get_casual_chat_prompt
+from agentbuilder.llm import get_chat_llm,get_default_chat_prompt
 from agentbuilder.db import pesist_db as db
 
-async def chat(query:str,chat_history:list[BaseMessage]=[],agent_name=None)->str:
+async def chat(query:str,chat_history:list[BaseMessage]=[],agent_name=None,imageData=None)->str:
     agent_builder:BaseAgentBuilder|None = await build_agent(agent_name)
     if agent_builder is None:
         return await chat_without_agent(query,chat_history)
     try:
-        response = await agent_builder.ainvoke({"input": query,"chat_history": chat_history })
+        response = await agent_builder.ainvoke({"input": query,"chat_history": chat_history,"image_data":imageData  })
         if("intermediate_steps" in response):
             await db.update_agent_steps(query,response["output"],agent_name,response["intermediate_steps"])
         return response["output"]
@@ -19,12 +19,12 @@ async def chat(query:str,chat_history:list[BaseMessage]=[],agent_name=None)->str
         logger.error(f"Error: {str(exc)}")
         raise exc
     
-async def chat_stream(query:str,chat_history:list[BaseMessage]=[],agent_name=None):
+async def chat_stream(query:str,chat_history:list[BaseMessage]=[],agent_name=None,imageData=None):
     agent_builder:BaseAgentBuilder|None = await build_agent(agent_name)
     if agent_builder is None:
         return await chat_without_agent_stream(query,chat_history)
     try:
-        response= agent_builder.astream({"input": query,"chat_history": chat_history })
+        response= agent_builder.astream({"input": query,"chat_history": chat_history,"image_data":imageData  })
         async def gen():
             intermediate_steps=[]
             final_output=""
@@ -42,12 +42,12 @@ async def chat_stream(query:str,chat_history:list[BaseMessage]=[],agent_name=Non
     
 async def chat_without_agent(query:str,chat_history:list[BaseMessage]=[])->str:
     try:
-        prompt: ChatPromptTemplate = get_casual_chat_prompt("You are a chatbot that can have a casual chat")
+        prompt: ChatPromptTemplate = get_default_chat_prompt("You are a chatbot that can have a normal chat")
         if not chat_history:
             chat_history.extend(prompt.format_messages(input=query))
         else:
             chat_history.extend([HumanMessage(content=query)])
-        response:BaseMessage = await get_chat_llm(casual=True).ainvoke(chat_history)
+        response:BaseMessage = await get_chat_llm().ainvoke(chat_history)
         return str(response.content)
     except Exception as exc:
         logger.error(f"Error: {str(exc)}")
@@ -55,12 +55,12 @@ async def chat_without_agent(query:str,chat_history:list[BaseMessage]=[])->str:
     
 async def chat_without_agent_stream(query:str,chat_history:list[BaseMessage]=[]):
     try:
-        prompt: ChatPromptTemplate = get_casual_chat_prompt("You are a chatbot that can have a casual chat")
+        prompt: ChatPromptTemplate = get_default_chat_prompt("You are a chatbot that can have a normal chat")
         if not chat_history:
             chat_history.extend(prompt.format_messages(input=query))
         else:
             chat_history.extend([HumanMessage(content=query)])
-        response= get_chat_llm(casual=True).astream(chat_history) # type: ignore
+        response= get_chat_llm().astream(chat_history) # type: ignore
         async def gen():
             async for payload in response: # type: ignore
                 if isinstance(payload,BaseMessage):

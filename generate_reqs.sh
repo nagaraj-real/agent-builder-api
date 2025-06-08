@@ -1,1 +1,1 @@
-poetry export --format requirements.txt --without-hashes --output requirements.txt --extras "mcp vectordb mongodb openai cohere gemini anthropic langgraph guardrails ui"
+poetry export --format requirements.txt --without-hashes --output requirements.txt --extras "mcp vectordb mongodb openai cohere ollama gemini anthropic langgraph guardrails ui"
