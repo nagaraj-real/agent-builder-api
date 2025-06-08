@@ -1,12 +1,16 @@
 from langgraph.prebuilt import create_react_agent
+from agentbuilder.agents.agent_tracer import PrintFileCallbackHandler
 from agentbuilder.agents.params import AgentBuilderParams
-from agentbuilder.agents.prompt_helper import get_default_agent_prompt,get_react_agent_prompt
+from agentbuilder.agents.prompt_helper import get_default_agent_prompt, get_image_agent_prompt,get_react_agent_prompt
 from agentbuilder.llm import chat_llm as default_llm
-from langchain_core.messages import AIMessage,ToolMessage,BaseMessage
+from langchain_core.messages import AIMessage,ToolMessage,BaseMessage,HumanMessage
 from langchain_core.agents import AgentAction
 
 from agentbuilder.mcp.clients.multi_mcp_client import invoke_mcp_client
 from langchain_mcp_adapters.client import MultiServerMCPClient
+from langchain.callbacks.tracers import ConsoleCallbackHandler
+
+
 
 class BaseMCPReactAgentBuilder:
 
@@ -51,8 +55,25 @@ class BaseMCPReactAgentBuilder:
         preamble = self.builder_params.preamble
         input = params["input"]
         chat_history= params["chat_history"]
-        prompt = get_default_agent_prompt(preamble)
-        messages = prompt.format_messages(input=input,chat_history=chat_history)
+        if "image_data" in params and params["image_data"]:
+            image_data= params["image_data"]
+            prompt = get_image_agent_prompt(preamble)
+            human_msg= HumanMessage(
+            content=[
+                {"type": "text", "text": "{input}"},
+                {
+                    "type": "image",
+                    "source_type": "base64",
+                    "data": image_data.base64,
+                    "mime_type": image_data.mimeType,
+                 } 
+            ])
+            messages = prompt.format_messages(input=input,
+                                              chat_history=chat_history,
+                                              human_msg=[human_msg])
+        else:
+            prompt = get_default_agent_prompt(preamble)
+            messages = prompt.format_messages(input=input,chat_history=chat_history)
         return {"messages":messages}
     
     def get_intermediate_steps(self,messages=[]):
@@ -88,7 +109,7 @@ class BaseMCPReactAgentBuilder:
 
     async def ainvokemcp(self,params,client:MultiServerMCPClient):
         runnable=  self.compile(client)
-        response = await runnable.ainvoke(self.input_parser(params))
+        response = await runnable.ainvoke(self.input_parser(params), config={"callbacks": [PrintFileCallbackHandler()],"recursion_limit":50})
         messages_dict = response
         parsed_response = self.message_output_parser(messages_dict)
         parsed_response["intermediate_steps"] = self.get_intermediate_steps(messages_dict.get("messages",[]))

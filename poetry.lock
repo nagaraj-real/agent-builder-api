@@ -674,7 +674,7 @@ description = "Distro - an OS platform information API"
 optional = true
 python-versions = ">=3.6"
 groups = ["main"]
-markers = "extra == \"openai\" or extra == \"guardrails\" or extra == \"anthropic\""
+markers = "extra == \"openai\" or extra == \"togetherai\" or extra == \"guardrails\" or extra == \"anthropic\""
 files = [
     {file = "distro-1.9.0-py3-none-any.whl", hash = "sha256:7bffd925d65168f85027d8da9af6bddab658135b840670a223589bc0c8ef02b2"},
     {file = "distro-1.9.0.tar.gz", hash = "sha256:2fa77c6fd8940f116ee1d6b94a2f90b13b5ea8d019b98bc8bafdcabcdd9bdbed"},
@@ -1852,7 +1852,7 @@ description = "Fast iterable JSON parser."
 optional = true
 python-versions = ">=3.8"
 groups = ["main"]
-markers = "extra == \"openai\" or extra == \"guardrails\" or extra == \"anthropic\""
+markers = "extra == \"openai\" or extra == \"togetherai\" or extra == \"guardrails\" or extra == \"anthropic\""
 files = [
     {file = "jiter-0.9.0-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:816ec9b60fdfd1fec87da1d7ed46c66c44ffec37ab2ef7de5b147b2fce3fd5ad"},
     {file = "jiter-0.9.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:9b1d3086f8a3ee0194ecf2008cf81286a5c3e540d977fa038ff23576c023c0ea"},
@@ -2219,13 +2219,30 @@ filetype = ">=1.2.0,<2.0.0"
 langchain-core = ">=0.3.51,<0.4"
 
 [[package]]
+name = "langchain-ollama"
+version = "0.3.2"
+description = "An integration package connecting Ollama and LangChain"
+optional = true
+python-versions = "<4.0,>=3.9"
+groups = ["main"]
+markers = "extra == \"ollama\""
+files = [
+    {file = "langchain_ollama-0.3.2-py3-none-any.whl", hash = "sha256:f7516f2f22d912dba1286d644bff00c287799e758d7e465a1439244a1bb02820"},
+    {file = "langchain_ollama-0.3.2.tar.gz", hash = "sha256:9e747e7bda1b55cdfa344433814b035be3f06d1bae32b1ffb696ccfc12cfa8ae"},
+]
+
+[package.dependencies]
+langchain-core = ">=0.3.52,<1.0.0"
+ollama = ">=0.4.4,<1"
+
+[[package]]
 name = "langchain-openai"
 version = "0.3.16"
 description = "An integration package connecting OpenAI and LangChain"
 optional = true
 python-versions = ">=3.9"
 groups = ["main"]
-markers = "extra == \"openai\""
+markers = "extra == \"openai\" or extra == \"togetherai\""
 files = [
     {file = "langchain_openai-0.3.16-py3-none-any.whl", hash = "sha256:eae74a6758d38a26159c5fde5abf8ef313e6400efb01a08f12dd7410c9f4fd0f"},
     {file = "langchain_openai-0.3.16.tar.gz", hash = "sha256:4e423e39d072f1432adc9430f2905fe635cc019f01ad1bdffa5ed8d0dda32149"},
@@ -2250,6 +2267,25 @@ files = [
 
 [package.dependencies]
 langchain-core = ">=0.3.51,<1.0.0"
+
+[[package]]
+name = "langchain-together"
+version = "0.3.0"
+description = "An integration package connecting Together AI and LangChain"
+optional = true
+python-versions = "<4.0,>=3.9"
+groups = ["main"]
+markers = "extra == \"togetherai\""
+files = [
+    {file = "langchain_together-0.3.0-py3-none-any.whl", hash = "sha256:4dcb4f6858c910c23d2268da1ed5f54e8cd01224ecf086dc7a8adbacdc6cb686"},
+    {file = "langchain_together-0.3.0.tar.gz", hash = "sha256:c8a96377e49c065526435f766c6e1c7da3f7d054361326f079de8bd368ea76f2"},
+]
+
+[package.dependencies]
+aiohttp = ">=3.9.1,<4.0.0"
+langchain-core = ">=0.3.29,<0.4.0"
+langchain-openai = ">=0.3,<0.4"
+requests = ">=2,<3"
 
 [[package]]
 name = "langchain-voyageai"
@@ -3114,6 +3150,23 @@ files = [
 ]
 
 [[package]]
+name = "ollama"
+version = "0.5.1"
+description = "The official Python client for Ollama."
+optional = true
+python-versions = ">=3.8"
+groups = ["main"]
+markers = "extra == \"ollama\""
+files = [
+    {file = "ollama-0.5.1-py3-none-any.whl", hash = "sha256:4c8839f35bc173c7057b1eb2cbe7f498c1a7e134eafc9192824c8aecb3617506"},
+    {file = "ollama-0.5.1.tar.gz", hash = "sha256:5a799e4dc4e7af638b11e3ae588ab17623ee019e496caaf4323efbaa8feeff93"},
+]
+
+[package.dependencies]
+httpx = ">=0.27"
+pydantic = ">=2.9"
+
+[[package]]
 name = "onnx"
 version = "1.17.0"
 description = "Open Neural Network Exchange"
@@ -3208,7 +3261,7 @@ description = "The official Python library for the openai API"
 optional = true
 python-versions = ">=3.8"
 groups = ["main"]
-markers = "extra == \"openai\" or extra == \"guardrails\""
+markers = "extra == \"openai\" or extra == \"togetherai\" or extra == \"guardrails\""
 files = [
     {file = "openai-1.78.0-py3-none-any.whl", hash = "sha256:1ade6a48cd323ad8a7715e7e1669bb97a17e1a5b8a916644261aaef4bf284778"},
     {file = "openai-1.78.0.tar.gz", hash = "sha256:254aef4980688468e96cbddb1f348ed01d274d02c64c6c69b0334bf001fb62b3"},
@@ -4535,7 +4588,7 @@ description = "Alternative regular expression module, to replace re."
 optional = true
 python-versions = ">=3.8"
 groups = ["main"]
-markers = "extra == \"vectordb\" or extra == \"openai\" or extra == \"guardrails\""
+markers = "extra == \"vectordb\" or extra == \"openai\" or extra == \"togetherai\" or extra == \"guardrails\""
 files = [
     {file = "regex-2024.11.6-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:ff590880083d60acc0433f9c3f713c51f7ac6ebb9adf889c79a261ecf541aa91"},
     {file = "regex-2024.11.6-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:658f90550f38270639e83ce492f27d2c8d2cd63805c65a13a14d36ca126753f0"},
@@ -5249,7 +5302,7 @@ description = "tiktoken is a fast BPE tokeniser for use with OpenAI's models"
 optional = true
 python-versions = ">=3.8"
 groups = ["main"]
-markers = "extra == \"vectordb\" or extra == \"openai\" or extra == \"guardrails\""
+markers = "extra == \"vectordb\" or extra == \"openai\" or extra == \"togetherai\" or extra == \"guardrails\""
 files = [
     {file = "tiktoken-0.7.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:485f3cc6aba7c6b6ce388ba634fbba656d9ee27f766216f45146beb4ac18b25f"},
     {file = "tiktoken-0.7.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:e54be9a2cd2f6d6ffa3517b064983fb695c9a9d8aa7d574d1ef3c3f931a99225"},
@@ -5350,7 +5403,7 @@ description = "Fast, Extensible Progress Meter"
 optional = true
 python-versions = ">=3.7"
 groups = ["main"]
-markers = "extra == \"openai\" or extra == \"guardrails\" or extra == \"cohere\" or extra == \"anthropic\" or extra == \"ui\""
+markers = "extra == \"openai\" or extra == \"togetherai\" or extra == \"guardrails\" or extra == \"cohere\" or extra == \"anthropic\" or extra == \"ui\""
 files = [
     {file = "tqdm-4.67.1-py3-none-any.whl", hash = "sha256:26445eca388f82e72884e0d580d5464cd801a3ea01e63e5601bdff9ba6a48de2"},
     {file = "tqdm-4.67.1.tar.gz", hash = "sha256:f8aef9c52c08c13a65f30ea34f4e5aac3fd1a34959879d7e59e63027286627f2"},
@@ -6231,11 +6284,13 @@ langgraph = ["ipython", "langgraph"]
 mcp = ["langchain-mcp-adapters"]
 mongodb = ["motor", "pymongo"]
 nvidia = ["langchain-nvidia-ai-endpoints"]
+ollama = ["langchain-ollama"]
 openai = ["langchain-openai"]
+togetherai = ["langchain-together"]
 ui = ["gradio"]
 vectordb = ["beautifulsoup4", "faiss-cpu", "tiktoken"]
 
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10.0,<=3.12.10"
-content-hash = "ab14fe3d39cddbe3323ded150c6030a8fe72434f3325d925c15ac4067310baca"
+content-hash = "697b84bc81435a62385ae29ee51ba90df4c17a5c5a58339768e99ccd7477229a"

@@ -1,10 +1,14 @@
 from pydantic import BaseModel
 
+class ImageData(BaseModel):
+    base64: str
+    mimeType: str
 
 class ChatRequest(BaseModel):
     chatId: str| None= None
     query: str = ""
     agentName: str|None= None
+    imageData: ImageData|None=None
     stream:bool|None=False
 
 class ErrorResponse(BaseModel):

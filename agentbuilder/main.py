@@ -70,7 +70,7 @@ def health():
 async def post_chat(chat_query:ChatRequest)->ChatResponse:
     chat_id = str(uuid.uuid1()) if chat_query.chatId is None else chat_query.chatId
     chat_history = retrieveOrCreateChatMemory(chat_id,chat_query.query)
-    response= await chat(chat_query.query,chat_history,chat_query.agentName)
+    response= await chat(chat_query.query,chat_history,chat_query.agentName,chat_query.imageData)
     chat_history.extend([HumanMessage(content=chat_query.query),AIMessage(content=response)])
     chat_response = ChatResponse(chatResponse=response,chatId=chat_id)
     logger.debug(f"Chat Response: {chat_response}")
@@ -83,7 +83,7 @@ async def post_chat_stream(chat_query:ChatRequest)->StreamingResponse:
     async def gen()->AsyncGenerator:
         try:
             final_output=""
-            response= await chat_stream(chat_query.query,chat_history,chat_query.agentName)
+            response= await chat_stream(chat_query.query,chat_history,chat_query.agentName,chat_query.imageData)
             yield chat_id
             async for payload in response:
                 time.sleep(0.01)

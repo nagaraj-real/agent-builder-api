@@ -1,5 +1,6 @@
 from langchain import hub
-from langchain_core.prompts import ChatPromptTemplate,SystemMessagePromptTemplate
+from langchain_core.prompts import ChatPromptTemplate,SystemMessagePromptTemplate,MessagesPlaceholder
+from langchain_core.messages import SystemMessage, HumanMessage
 
 def get_default_agent_prompt(preamble=None):
     return ChatPromptTemplate.from_messages(
@@ -11,6 +12,15 @@ def get_default_agent_prompt(preamble=None):
         ("placeholder", "{chat_history}"),
         ("human", "{input}"),
         ("placeholder", "{agent_scratchpad}"),
+    ]
+)
+
+def get_image_agent_prompt(preamble=None):
+  return ChatPromptTemplate.from_messages(
+   [
+        SystemMessage(content=preamble or "You are a helpful assistant. Make use of the tools available."),
+        MessagesPlaceholder(variable_name="chat_history"),
+        MessagesPlaceholder(variable_name="human_msg")
     ]
 )
 

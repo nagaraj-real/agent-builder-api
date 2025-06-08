@@ -12,5 +12,6 @@ deploy.txt
 todo.md
 .env.sample
 agentbuilder.log
+bash_*
 
 
