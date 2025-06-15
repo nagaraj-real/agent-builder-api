@@ -1,10 +1,15 @@
-from agentbuilder.agents.base_agent_builder import AgentBuilderParams, BaseAgentBuilder
+from agentbuilder.agents.base_agent_builder import AgentBuilderParams
 from agentbuilder.agents.base_mcp_react_agent_builder import BaseMCPReactAgentBuilder
 from agentbuilder.agents.params import AgentParams
-from agentbuilder.factory.tool_factory import greeting_tool,temperature_sensor_tool,weather_clothing_tool,temperature_tool
-from agentbuilder.factory.tool_factory import  git_pull_request_diff_tool,sum_tool,json_tools
+from agentbuilder.factory.prompt_factory import get_all_prompts
+from agentbuilder.factory.tool_factory import get_all_tools, greeting_tool,temperature_sensor_tool,weather_clothing_tool,temperature_tool
 from agentbuilder.tools.repl_tool import repl_tool
 from agentbuilder.helper.env_helper import get_default_agent_type
+from agentbuilder.tools.sum_tool import sum_tool
+from agentbuilder.tools.greeting_tool import greeting_tool
+from agentbuilder.tools.git_pull_request_tool import git_pull_request_diff_tool
+from agentbuilder.tools.repl_tool import repl_tool
+from agentbuilder.tools.json_tool_kit import json_tools
 
 def default_agent():
     return AgentParams(name="default_agent",
@@ -18,6 +23,22 @@ def weather_clothing_agent():
             name="weather_clothing_agent",
             preamble= "You are a powerful weather assistant with access to weather tools",
             tools= [temperature_tool,temperature_sensor_tool,weather_clothing_tool],
+            agent_type= get_default_agent_type()
+    )
+
+def vibe_coding_agent():
+    tools = get_all_tools()
+    prompts = get_all_prompts()
+    coding_prompt= next((x for x in prompts if x.name =="code_prompt"), None)
+    coding_prompt = "You are a coding Agent" if coding_prompt is None else coding_prompt.content
+    return AgentParams(
+            name="vibe_coding_agent",
+            preamble= coding_prompt,
+            tools= [tool for tool in tools if tool.name in ["get_project_info",
+            "execute_bash_command",
+            "fetch_bash_logs",
+            "resolve-library-id",
+            "get-library-docs"]],
             agent_type= get_default_agent_type()
     )
 
@@ -90,6 +111,7 @@ def get_all_agents():
     return [
             default_agent(),
             weather_clothing_agent(),
+            vibe_coding_agent()
     ]
 
 def get_agent_builder(params:AgentBuilderParams):

@@ -1,0 +1,11 @@
+services:
+  alpine:
+    user: root
+    image: alpine:latest
+    container_name: alpine_runner
+    command:
+      ["/bin/sh", "-c", "touch /var/log/vibe.log && tail -f /var/log/vibe.log"]
+    volumes:
+      # - $project_path:/root/projects/appname --- Replace with projects path
+    ports:
+      - 8000:3000 # Application Ports

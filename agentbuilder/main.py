@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+from agentbuilder.factory.prompt_factory import get_all_prompts
 from agentbuilder.helper.env_helper import get_log_level
 import uuid
 from fastapi.exceptions import RequestValidationError
@@ -15,6 +16,7 @@ from agentbuilder.factory.tool_factory import get_all_tools
 from agentbuilder.factory.agent_factory import get_all_agents
 from agentbuilder.llm import load_chat_llm
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from agentbuilder.mcp import initialize_mcp_client
 from agentbuilder.types import AgentData, ChatRequest, ChatResponse, ToolData
 from agentbuilder.logger import uvicorn_logger as logger
 
@@ -22,13 +24,14 @@ log_level = get_log_level()
 
 async def migrate_to_db():
         try:
+            await initialize_mcp_client()
             code_agents = {params.name:params  for params in get_all_agents()}
             pesist_db.set_code_agents(code_agents)
-            all_tools = await get_all_tools()
+            all_tools = get_all_tools()
             await pesist_db.update_tools(all_tools)
             await pesist_db.update_agents()
         except Exception as exc:
-            logger.error(f"Error: {str(exc)}")
+            raise exc
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -117,6 +120,10 @@ async def save_agents(agentsWithParams:list[AgentData]):
 async def get_tools()->dict[str,ToolData]:
     tools= await pesist_db.get_tools()
     return tools
+
+@app.get("/api/prompts")
+async def get_prompts()->list:
+    return get_all_prompts()
     
 @app.delete("/api/chatHistory/{chat_id}")
 def deleteChatHistory(chat_id:str):
