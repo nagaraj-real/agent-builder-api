@@ -91,7 +91,7 @@ Pre-defined [docker compose file](vibe-compose/docker-compose.yml) can be used t
 
   `docker logs alpine_runner -f`
 
-- Project related information can be configured in [openvibe.py](agentbuilder/mcp/servers/openvibe.py)
+- Project related information can be configured in [openvibe.py](agentbuilder/mcp/servers/openvibe.py#L13)
 
   ```
   @mcp.resource("config://app")
