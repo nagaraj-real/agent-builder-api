@@ -9,7 +9,7 @@ async def migrate_to_db():
         try:
             code_agents = {params.name:params  for params in get_all_agents()}
             pesist_db.set_code_agents(code_agents)
-            all_tools = await get_all_tools()
+            all_tools = get_all_tools()
             await pesist_db.update_tools(all_tools)
             await pesist_db.update_agents()
         except Exception as exc:

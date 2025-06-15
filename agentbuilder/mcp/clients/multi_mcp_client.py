@@ -17,6 +17,18 @@ mcp_servers = {
         "command": sys.executable,
         "args": [str(current_dir / "servers" / "weather.py")],
         "transport": "stdio",
+    },
+     "openvibe": {
+        "command": sys.executable,
+        "args": [str(current_dir / "servers" / "openvibe.py")],
+        "transport": "stdio",
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "env": {
+        "DEFAULT_MINIMUM_TOKENS": "6000"
+      }
     }
 }
 
@@ -28,7 +40,6 @@ async def get_multi_mcp_client()->MultiServerMCPClient:
         try:
             return client
         except Exception as exc:
-            print(exc)
             logger.error(f"Error: {str(exc)}")
             raise exc
 
@@ -41,7 +52,6 @@ async def invoke_mcp_client(params,callback)->MultiServerMCPClient:
            res=await callback(params,client)
            return res
         except Exception as exc:
-            print(exc)
             logger.error(f"Error: {str(exc)}")
             raise exc
 

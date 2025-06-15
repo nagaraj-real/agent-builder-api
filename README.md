@@ -80,6 +80,28 @@ For fine-grained dependency management, use [Poetry](https://python-poetry.org/)
      }
   ```
 
+#### Vibe coding Agent
+
+Projects are run inside a docker container (alpine_runner).
+Pre-defined [docker compose file](vibe-compose\docker-compose.yml) can be used to bind host volumes and application ports.
+
+- Start the docker container using the compose file.
+
+- All commands executed by the model can be viewed using docker logs
+  `docker logs alpine_runner -f`
+
+- Project related information can be configured in [openvibe.py](agentbuilder\mcp\servers\openvibe.py)
+
+  ```
+  @mcp.resource("config://app")
+  def get_config() -> any:
+     """Static configuration data"""
+     return  {
+        "project_path": "~/projects/appname",
+        "project_docs_path": "~/projects/appname/docs"
+     }
+  ```
+
 #### Custom UI (Gradio)
 
 - Start gradio ui
