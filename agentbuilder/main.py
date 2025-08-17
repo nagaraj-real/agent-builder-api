@@ -71,7 +71,7 @@ def health():
 
 @app.post("/api/chat")
 async def post_chat(chat_query:ChatRequest)->ChatResponse:
-    chat_id = str(uuid.uuid1()) if chat_query.chatId is None else chat_query.chatId
+    chat_id = str(uuid.uuid1()) if chat_query.chatId is None or chat_query.chatId=="" else chat_query.chatId
     chat_history = retrieveOrCreateChatMemory(chat_id,chat_query.query)
     response= await chat(chat_query.query,chat_history,chat_query.agentName,chat_query.imageData)
     chat_history.extend([HumanMessage(content=chat_query.query),AIMessage(content=response)])
@@ -125,6 +125,14 @@ async def get_tools()->dict[str,ToolData]:
 async def get_prompts()->list:
     return get_all_prompts()
     
+@app.get("/api/chatHistory")
+def get_all_chat_history():
+    # Convert BaseMessage objects to dictionaries for JSON serialization
+    serializable_history = {}
+    for chat_id, messages in chat_memory_dict.items():
+        serializable_history[chat_id] = [msg.dict() for msg in messages]
+    return serializable_history
+
 @app.delete("/api/chatHistory/{chat_id}")
 def deleteChatHistory(chat_id:str):
     chat_history= chat_memory_dict.get(chat_id)

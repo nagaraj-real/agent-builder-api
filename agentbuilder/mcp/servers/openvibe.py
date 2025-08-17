@@ -13,8 +13,8 @@ current_dir = Path(__file__).resolve().parent
 def get_config() -> any:
     """Static configuration data"""
     return  {
-        "project_path": "~/projects/my-react-app",
-        "project_docs_path": "~/projects/my-react-app/docs"
+        "project_path": "~/projects/app",
+        "project_docs_path": "~/projects/app/docs"
     }
 
 @mcp.prompt()

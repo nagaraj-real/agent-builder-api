@@ -45,7 +45,7 @@ For fine-grained dependency management, use [Poetry](https://python-poetry.org/)
 2. Pick and choose dependency packs to install.
 
    ```sh
-   poetry install --extras "mcp openai gemini cohere anthropic mongodb vectordb langgraph guardrails ui"
+   poetry install --extras "mcp openai gemini cohere anthropic mongodb togetherai ollama vectordb langgraph guardrails ui"
    ```
 
 3. Set the model name and API key in **.env** file
@@ -102,6 +102,19 @@ Pre-defined [docker compose file](vibe-compose/docker-compose.yml) can be used t
         "project_docs_path": "~/projects/appname/docs"
      }
   ```
+
+#### CLI mode
+
+- Add alias to chat.sh & api_client.sh script in shell config (~/.zshrc,~/.bashrc)
+
+  ```
+  alias chat=/pathto/chat.sh
+  alias api=/pathto/api_client.sh
+  ```
+
+- Use the help command option to identify different options
+
+  `chat -h`
 
 #### Custom UI (Gradio)
 
