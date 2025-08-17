@@ -1,3 +1,4 @@
+from pydantic import InstanceOf
 from agentbuilder.logger import uvicorn_logger as logger
 from langchain_core.messages import BaseMessage,AIMessage,HumanMessage
 from agentbuilder.agents.base_agent_builder import BaseAgentBuilder
@@ -12,8 +13,11 @@ async def chat(query:str,chat_history:list[BaseMessage]=[],agent_name=None,image
         return await chat_without_agent(query,chat_history)
     try:
         response = await agent_builder.ainvoke({"input": query,"chat_history": chat_history,"image_data":imageData  })
+        if(isinstance(response["output"],list)):
+           response["output"]="".join(response["output"])
         if("intermediate_steps" in response):
             await db.update_agent_steps(query,response["output"],agent_name,response["intermediate_steps"])
+        
         return response["output"]
     except Exception as exc:
         logger.error(f"Error: {str(exc)}")

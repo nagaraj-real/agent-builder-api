@@ -105,7 +105,8 @@ class BaseMCPReactAgentBuilder:
          if "messages" in messages_dict:
             messages = messages_dict['messages']
             if messages and isinstance(messages[-1],AIMessage):
-                return {"output":messages[-1].content}
+                message:AIMessage=messages[-1]
+                return {"output":message.content}
 
     async def ainvokemcp(self,params,client:MultiServerMCPClient):
         runnable=  self.compile(client)

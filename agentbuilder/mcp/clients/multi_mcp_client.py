@@ -29,6 +29,14 @@ mcp_servers = {
       "env": {
         "DEFAULT_MINIMUM_TOKENS": "6000"
       }
+    },
+     "awslabs.aws-documentation-mcp-server": {
+      "command": "uvx",
+      "args": ["--from", "awslabs.aws-documentation-mcp-server@latest", "awslabs.aws-documentation-mcp-server.exe"],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR",
+        "AWS_DOCUMENTATION_PARTITION": "aws"
+      }
     }
 }
 
